@@ -1,0 +1,97 @@
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+</style>
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", "verdana", "sans-serif";
+    color: black;
+}
+div#container{
+    min-width: 100vw;
+    min-height: 100vh;
+    background-color: #CCC;
+    background-color: rgba(68, 117, 136, 0.548);
+    background-image: url("img/gris.png");
+}
+div#flexCard-container{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    gap: 15px ;
+    /* margin: 15px;
+     background-color: yellow; */
+}
+div.flexCard{
+    width: 300px;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #fff;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+    transition: 1s;
+}
+div.flexCard:hover{
+    transform: translate(-10px, -20px);
+    transition: 1s;
+}
+div.flexCard:hover div.coeur{
+    left: 0;
+    color: red;
+    transition: 1s;
+}
+div.flexCard:hover div.flexCard-picture img{
+    filter: grayscale(0);
+    transition: 1s;
+}
+div.flexCard-picture{
+    position: relative;
+}
+div.flexCard-picture img{
+    width: 300px;
+    height: 200px;
+    /* object-fit: cover; */
+    filter: grayscale(0.9);
+    transition: 1s;
+}
+div.flexCard-picture div.coeur{
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: -100px;
+    color: gray;
+    font-size: 30px;
+    background-color: pink;
+    transition: 1s;
+}
+
+div.flexCard-text{
+    padding: 30px;
+    width: 300px;
+    /* background-color: green; */
+}
+div.flexCard-text h1{
+    font-size: 25px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    margin-top: 0px;
+    text-shadow: #CCC;
+    /* background-color: red; */
+}
+div.flexCard-text p{
+    font-size: 14px;
+    font-weight: 300;
+    color: darkgray;
+}
+
+/*
+background-color: red;
+*/

@@ -1,0 +1,26 @@
+Film 
+Realisateur realisateur
+Acteur acteur
+titre
+date de sortie en France, 
+durée (en minutes) 
+synopsis
+genre cinématographique (science-fiction, aventure, action, ...)
+
+
+Réalisateur 
+Film film
+nom
+prénom
+sexe
+date de naissance
+
+
+Acteur
+Film film
+nom 
+prenom
+sexe 
+dateNaissance 
+roleNomPersonnage
+

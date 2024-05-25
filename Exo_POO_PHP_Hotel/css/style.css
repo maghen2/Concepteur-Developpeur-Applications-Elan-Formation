@@ -1,0 +1,21 @@
+.green .red {
+    display: block;
+    font-weight: 200;
+    width: 100%;
+    border-radius: 15px;
+    color: white;
+}
+
+.red {
+    background-color: red;
+}
+.green{
+    background-color: green;
+}
+
+table{
+    table-layout: fixed;
+    width: 500px;
+    border-collapse: collapse;
+    border: 3px solid blue;
+}
