@@ -6,21 +6,15 @@ class Personne{
     
     // constructeur
     public function __construct(string $prenom, string $nom, string $sexe, DateTime $dateNaissance){
-        $this-> = ;
-        $this-> = ;
-        $this-> = ;
-        $this-> = ;
-        $this-> = ;
-        $this-> = ;
-        $this-> = ;
-        $this-> = ;
-        $this-> = ;
-        $this-> = ;
+        $this->prenom = $prenom;
+        $this->nom = $nom;
+        $this->sexe = $sexe;
+        $this->dateNaissance = $dateNaissance;
     }
 
     //__toString
     public function __toString(){
-        return $this->;
+        return $this->nom." ".$this->prenom." (".$this->dateNaissance.")";
     }
 
     //getInfo

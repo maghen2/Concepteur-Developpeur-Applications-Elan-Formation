@@ -1,22 +1,14 @@
 <?php
 Class Genre{
+    private string $genre;
     // constructeur
-    public function __construct(string $titre, string $synopsys, int $duree, DateTime $dateSortie, Genre $genre, Realisateur $realisateur){
-        $this-> = ;
-        $this-> = ;
-        $this-> = ;
-        $this-> = ;
-        $this-> = ;
-        $this-> = ;
-        $this-> = ;
-        $this-> = ;
-        $this-> = ;
-        $this-> = ;
+    public function __construct(string $genre){
+        $this->genre = $genre;
     }
 
     //__toString
     public function __toString(){
-        return $this->;
+        return $this->genre;
     }
 
     //getInfo

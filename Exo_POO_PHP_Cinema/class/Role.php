@@ -1,22 +1,16 @@
 <?php
 class Role{
+    private string $role;
+
     // constructeur
-    public function __construct(string $titre, string $synopsys, int $duree, DateTime $dateSortie, Genre $genre, Realisateur $realisateur){
-        $this-> = ;
-        $this-> = ;
-        $this-> = ;
-        $this-> = ;
-        $this-> = ;
-        $this-> = ;
-        $this-> = ;
-        $this-> = ;
-        $this-> = ;
-        $this-> = ;
+    public function __construct(string $role){
+        $this->role = $role;
+
     }
 
     //__toString
     public function __toString(){
-        return $this->;
+        return $this->role;
     }
 
     //getInfo
