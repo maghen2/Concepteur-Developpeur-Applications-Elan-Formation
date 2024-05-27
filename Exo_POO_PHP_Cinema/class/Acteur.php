@@ -1,6 +1,7 @@
 <?php
-    private array $castings;
     class Acteur extends Personne{
+        private array $castings;
+        
         //getInfo
         public function getInfo(){
 

@@ -14,7 +14,9 @@ class Film{
         $this->duree = $duree;
         $this->dateSortie = $dateSortie;
         $this->genre = $genre;
+        $this->genre->addFilm($this);
         $this->realisateur = $realisateur;
+        $this->realisateur->addFilm($this);
         
     }
 
