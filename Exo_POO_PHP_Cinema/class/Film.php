@@ -5,6 +5,7 @@ class Film{
     private DateTime $dateSortie;
     private Genre $genre;
     private Realisateur $realisateur;
+    private array $castings;
 
     // constructeur
     public function __construct(string $titre, string $synopsys, int $duree, DateTime $dateSortie, Genre $genre, Realisateur $realisateur){
@@ -14,6 +15,7 @@ class Film{
         $this->dateSortie = $dateSortie;
         $this->genre = $genre;
         $this->realisateur = $realisateur;
+        $castings[] = ;
     }
 
     //__toString
@@ -26,6 +28,6 @@ class Film{
 
     }
 
-    
+
     
 }
