@@ -24,4 +24,44 @@ class Role{
         $this->castings[] = $casting;
     }
 
+
+    /**
+     * Get the value of role
+     */ 
+    public function getRole()
+    {
+        return $this->role;
+    }
+
+    /**
+     * Set the value of role
+     *
+     * @return  self
+     */ 
+    public function setRole($role)
+    {
+        $this->role = $role;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of castings
+     */ 
+    public function getCastings()
+    {
+        return $this->castings;
+    }
+
+    /**
+     * Set the value of castings
+     *
+     * @return  self
+     */ 
+    public function setCastings($castings)
+    {
+        $this->castings = $castings;
+
+        return $this;
+    }
 }
