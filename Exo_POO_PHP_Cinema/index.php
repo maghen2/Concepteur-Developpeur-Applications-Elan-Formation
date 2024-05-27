@@ -30,72 +30,57 @@ spl_autoload_register(function($class){
     </ul>
 <h2>Il faudra d’abord faire un MCD répondant aux exigences citées ci-dessus et le faire valider par un formateur avant de passer à la création des classes</h2>
     <h1>Solution de l'exercice</h1>
+
   <?php
   // Tableuax des differents objets créer
     $films=[];
     $acteurs=[];
     $realisateurs=[];
     $personnes=[];
+    $genres=[];
 
-    $hotels = [ // (int $idHotel, string $hotelName, string $adress, string $zipCode, string $city)
-      new Hotel(1, "Hotel de Paris", "1 rue de Paris", "75001", "Paris"),
-      new Hotel(2, "Hotel de Lyon", "1 rue de Lyon", "69001", "Lyon"),
-      new Hotel(3, "Hotel de Marseille", "1 rue de Marseille", "13001", "Marseille"),
-      new Hotel(4, "Hotel de Lille", "1 rue de Lille", "59001", "Lille"),
-      new Hotel(5, "Hotel de Bordeaux", "1 rue de Bordeaux", "33001", "Bordeaux"),
-      new Hotel(6, "Hotel de Strasbourg", "1 rue de Strasbourg", "67001", "Strasbourg"),
+    //création des genres de film
+    $genres = [
+      new Genre("Science-fiction"),
+      new Genre("Aventure"),
+      new Genre("Action")
     ];
-    // foreach($hotels as $hotel){
-    //   echo "<h3>".$hotel."</h3>";
-    //   echo "<pre>".$hotel->getInfo()."</pre>";
+
+    //création des réalisateurs
+    $realisateurs =[
+      new Realisateur(),
+      
+    ];
+
+    //creation des films
+    $films = [ // __construct(string $titre, string $synopsys, int $duree, DateTime $dateSortie, Genre $genre, Realisateur $realisateur){
+      new Films("Star Wars", 
+      "La saga épique de science-fiction créée par George Lucas, qui se déroule dans une galaxie lointaine, très lointaine. Elle suit les aventures des Jedi, des Sith, des rebelles et des personnages emblématiques tels que Luke Skywalker, Leia Organa et Dark Vador.", 
+      3240, 
+      $date, ,),
+      new Films("Blade Runner", 
+      "Un film de science-fiction dystopique réalisé par Ridley Scott en 1982. Il se déroule dans un futur sombre où des humains appelés “réplicants” sont créés pour effectuer des tâches dangereuses. Le détective Rick Deckard est chargé de traquer et de “retirer” des réplicants rebelles.", 
+      117, 
+      $date, ,),
+      new Films(
+        "Batman", 
+        "Le film de Tim Burton sorti en 1989 met en scène le super-héros Batman (Bruce Wayne) dans sa lutte contre le Joker (Jack Napier). Le style visuel du film est sombre et gothique, rappelant l’univers de Gotham City.", 
+        126, 
+        $date, ,)
+    ];
+
+    echo"<h2>Lister la liste des acteurs ayant incarné un rôle précis (ex: les acteurs ayant joué le rôle de Batman : Michael Keaton, Val Kilmer, George Clooney, …)</h2>";
+
+    // foreach($Filmss as $Films){
+    //   echo "<h3>".$Films."</h3>";
+    //   echo "<pre>".$Films->getInfo()."</pre>";
     // }
-    for($i=0; $i<count($hotels); $i++){ // création de chambres d'hitels
+    for($i=0; $i<count($Filmss); $i++){ // création de chambres d'hitels
       for($j=0; $j<rand(5,15); $j++){
-        $rooms[] = new Room($j, "Chambre $j", round((rand(100,1000)*lcg_value()),2), (bool)rand(-1,0), (bool)rand(-1,0), rand(1,4), $hotels[$i]);
+        $rooms[] = new Room($j, "Chambre $j", round((rand(100,1000)*lcg_value()),2), (bool)rand(-1,0), (bool)rand(-1,0), rand(1,4), $Filmss[$i]);
       }
     }
-
-    // echo "<h2>Liste des Hotels avec leurs chrambres</h2>";
-    // foreach($hotels as $hotel){
-    //   echo "<h3>".$hotel."</h3>";
-    //   echo "<pre>".$hotel->getInfo()."</pre><ol>";
-    //   foreach($hotel->getRooms() as $room){
-    //     echo "<li>".$room->getInfo()."</li>";
-    //   }
-    //   echo "</ol>";
-    // }
-
-    // creation des clients (int $idCustomer, string $firstName, string $lastName){
-      // echo "<h2>Classe Customer</h2>";
-      for($i=0, $j="A"; $i<rand(5,15); $i++,$j++){ // création de chambres d'hitels
-        $customers[$i] = new Customer($i, "Prenom$j", "Nom$j");
-        // echo "<h3>".$customers[$i]."</h3>";
-        //  echo "<pre>".$customers[$i]->getInfo()."</pre>";
-      }
-
-      //creation des reservations (Room $room, Customer $customer, DateTime $dateBooking, DateTime $dateEntry, DateTime $dateLeaving)
-      for($i=0; $i<20; $i++){
-        $annee = rand(2024, 2027);
-        $mois = rand(1,11);
-        $jour = rand(1,28);
-        $dateBooking = new DateTime("now");
-        $dateEntry = new DateTime("now");
-        $dateEntry = $dateEntry->setDate($annee, $mois, $jour);
-        $dateLeaving  = new DateTime("now");
-        $dateLeaving  = $dateLeaving->setDate($annee, ($mois+rand(1,11))%12, ($jour+rand(1,28))%28);
-        $bookings[$i]= new Booking($rooms[rand(0, (count($rooms)-1))], $customers[rand(0, (count($customers)-1))], $dateBooking, $dateEntry, $dateLeaving);
-      }
-      /*
-      Hilton **** Strasbourg
-10 route de la Gare 67000 STRASBOURG
-Nombre de chambres: 30
-Nombre de chambres réservées: 3
-Nombre de chambres dispo: 27
-      */
-      $hotel=$hotels[rand(0, (count($hotels)-1))];
-      $customer=$customers[rand(0, (count($customers)-1))];
-      echo $hotel->getHotelStatus();
-      echo $hotel->getReservations();
-      echo $customer->getReservations();
-      echo $hotel->getRoomStatus();
-
+    echo"<h2>Lister le casting d'un film (dans le film Star Wars Episode IV, Han Solo a été incarné par Harrison Ford, Luke Skywalker a été incarné par Mark Hamill, ...)</h2>";
+    echo"<h2>Lister les films par genre (exemple : le genre SF est associé à X films : Star Wars, Blade Runner, ...)</h2>";
+    echo"<h2>Lister la filmographie d'un acteur (dans quels films a-t-il joué ?)</h2>";
+    echo"<h2>Lister la filmographie d'un réalisateur (quels sont les films qu'a réalisé ce réalisateur ?)</h2>";

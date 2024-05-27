@@ -5,11 +5,11 @@ class Personne{
 
     
     // constructeur
-    public function __construct(string $prenom, string $nom, string $sexe, DateTime $dateNaissance){
+    public function __construct(string $prenom, string $nom, string $sexe, string $dateNaissance){
         $this->prenom = $prenom;
         $this->nom = $nom;
         $this->sexe = $sexe;
-        $this->dateNaissance = $dateNaissance;
+        $this->dateNaissance = new DateTime($dateNaissance);
     }
 
     //__toString

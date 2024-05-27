@@ -24,5 +24,4 @@ class Role{
         $this->castings[] = $casting;
     }
 
-
 }
