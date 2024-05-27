@@ -39,7 +39,7 @@ spl_autoload_register(function($class){
     $personnes=[];
     $genres=[];
     $roles=[];
-    $casting=[];
+    $castings=[];
 
     //création des genres de film
     $genres = [
@@ -58,12 +58,12 @@ spl_autoload_register(function($class){
     //création des acteurs
     $sexe=["Masculin", "Féminin"];
       for($i=0, $j="A"; $i<rand(5,15); $i++,$j++){ // __construct(string $prenom, string $nom, string $sexe, string $dateNaissance){
-        $acteurs[$i] = new Acteur("Prenom$j", "Nom$j", $sexe[rand(0,1)], rand(1920, 20210)."-".rand(1, 12)."-".rand(1, 28));
+        $acteurs[$i] = new Acteur("ActeurPrenom$j", "ActeurNom$j", $sexe[rand(0,1)], rand(1920, 20210)."-".rand(1, 12)."-".rand(1, 28));
       }
 
     // Creation des roles des personnage
     for($i=0, $j="A"; $i<rand(5,15); $i++,$j++){ //  __construct(string $role){
-      $roles[$i] = new Role("Prenom$j Nom$j");
+      $roles[$i] = new Role("RôlePrenom$j RôleNom$j");
     }
 
     //creation des films
@@ -86,16 +86,24 @@ spl_autoload_register(function($class){
 
     // Creation des castings  __construct(Acteur $acteur, Film $film, Role $role){
       for($i=0; $i<25; $i++){
-        $casting[$i] = new Casting($acteurs[rand(0,(count($acteurs)-1))], $films[rand(0,(count($films)-1))], $roles[rand(0,(count($roles)-1))]);
+        $castings[$i] = new Casting($acteurs[rand(0,(count($acteurs)-1))], $films[rand(0,(count($films)-1))], $roles[rand(0,(count($roles)-1))]);
       }
-      var_dump($films);
-      var_dump($acteurs);
-      var_dump($realisateurs);
-      var_dump($personnes);
-      var_dump($genres);
-      var_dump($roles);
-      var_dump($casting);
-    echo"<h2>Lister la liste des acteurs ayant incarné un rôle précis (ex: les acteurs ayant joué le rôle de Batman : Michael Keaton, Val Kilmer, George Clooney, …)</h2>";
+      // var_dump($films);
+      // var_dump($acteurs);
+      // var_dump($realisateurs);
+      // var_dump($personnes);
+      // var_dump($genres);
+      // var_dump($roles);
+      // var_dump($castings);
+      
+    echo"<h2>Liste des acteurs ayant incarné le rôle de ".$roles[0]."</h2>";
+    echo"<ul>";
+    for($i=0; $i<(count($castings)-1); $i++){
+      if($castings[$i]->getRole()->getRole()==$roles[0]->getRole())
+      echo"<li>".$castings[$i]->getActeur()."</li>";
+    }
+    echo"</ul>";
+
     echo"<h2>Lister le casting d'un film (dans le film Star Wars Episode IV, Han Solo a été incarné par Harrison Ford, Luke Skywalker a été incarné par Mark Hamill, ...)</h2>";
     echo"<h2>Lister les films par genre (exemple : le genre SF est associé à X films : Star Wars, Blade Runner, ...)</h2>";
     echo"<h2>Lister la filmographie d'un acteur (dans quels films a-t-il joué ?)</h2>";

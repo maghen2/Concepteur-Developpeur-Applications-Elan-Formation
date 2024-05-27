@@ -14,7 +14,7 @@ class Personne{
 
     //__toString
     public function __toString(){
-        return $this->nom." ".$this->prenom." (".$this->dateNaissance.")";
+        return $this->nom." ".$this->prenom." (".$this->dateNaissance->format('d-m-Y').")";
     }
 
     //getInfo
