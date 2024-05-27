@@ -14,7 +14,6 @@ class Film{
         $this->dateSortie = $dateSortie;
         $this->genre = $genre;
         $this->realisateur = $realisateur;
-        
     }
 
     //__toString
