@@ -38,6 +38,8 @@ spl_autoload_register(function($class){
     $realisateurs=[];
     $personnes=[];
     $genres=[];
+    $roles=[];
+    $casting=[];
 
     //création des genres de film
     $genres = [
@@ -47,39 +49,45 @@ spl_autoload_register(function($class){
     ];
 
     //création des réalisateurs
-    $realisateurs =[
-      new Realisateur(),
-      
+    $realisateurs =[ // __construct(string $prenom, string $nom, string $sexe, string $dateNaissance){
+      new Realisateur("Ridley","Scott","Masculin","1937-11-30"),
+      new Realisateur("George","Lucas","Masculin","1944-05-14"),
+      new Realisateur("Tim","Burton","Masculin","1958-08-25")
     ];
+
+    //création des acteurs
+    $sexe=["Masculin", "Féminin"];
+      for($i=0, $j="A"; $i<rand(5,15); $i++,$j++){ // __construct(string $prenom, string $nom, string $sexe, string $dateNaissance){
+        $acteurs[$i] = new Acteur("Prenom$j", "Nom$j", $sexe[random(0,1)], random(1920, 20210)."-".random(1, 12)."-".random(1, 28));
+      }
+
+    // Creation des roles des personnage
+    for($i=0, $j="A"; $i<rand(5,15); $i++,$j++){ //  __construct(string $role){
+      $roles[$i] = new Role("Prenom$j Nom$j");
+    }
 
     //creation des films
     $films = [ // __construct(string $titre, string $synopsys, int $duree, DateTime $dateSortie, Genre $genre, Realisateur $realisateur){
-      new Films("Star Wars", 
+      new Film("Star Wars", 
       "La saga épique de science-fiction créée par George Lucas, qui se déroule dans une galaxie lointaine, très lointaine. Elle suit les aventures des Jedi, des Sith, des rebelles et des personnages emblématiques tels que Luke Skywalker, Leia Organa et Dark Vador.", 
-      3240, 
-      $date, ,),
-      new Films("Blade Runner", 
+      3240, "2023-10-26", $genres[0],$realisateurs[0]),
+      new Film("Blade Runner", 
       "Un film de science-fiction dystopique réalisé par Ridley Scott en 1982. Il se déroule dans un futur sombre où des humains appelés “réplicants” sont créés pour effectuer des tâches dangereuses. Le détective Rick Deckard est chargé de traquer et de “retirer” des réplicants rebelles.", 
-      117, 
-      $date, ,),
-      new Films(
+      117, "2020-07-15", $genres[1],$realisateurs[1]),
+      new Film(
         "Batman", 
         "Le film de Tim Burton sorti en 1989 met en scène le super-héros Batman (Bruce Wayne) dans sa lutte contre le Joker (Jack Napier). Le style visuel du film est sombre et gothique, rappelant l’univers de Gotham City.", 
-        126, 
-        $date, ,)
+        126, "2012-12-05", $genres[2],$realisateurs[2]),
+        new Film("James Bond 007 Mourir peut attendre", "James Bond n’est plus en service et profite d’une vie tranquille en Italie. Cependant, son répit est de courte durée lorsque l’agent de la CIA Felix Leiter fait son retour pour lui demander son aide1. Ce film marque la vingt-cinquième aventure cinématographique de James Bond et est surtout le dernier à mettre en scène l’acteur Daniel Craig dans le rôle du brillant agent secret. L’intrigue porte sur les thèmes de la famille et de l’héritage, et elle fait de Bond un personnage vulnérable soumis à des choix aux conséquences personnelles majeures",
+        136, "2020-06-30", $genres[1],$realisateurs[2]),
+        new Film("Le seigneur des anneux", "Dans les Terres du Milieu, l’Anneau unique forgé par Sauron le maléfique pour dominer les hommes, les elfes et les nains est tombé par inadvertance dans les mains de Frodon, paisible hobbit. Ce n’est qu’une question de temps avant que les sinistres Cavaliers Noirs, les Servants de l’Anneau, retrouvent sa trace",
+        112, "2022-10-13", $genres[0],$realisateurs[1])
     ];
 
-    echo"<h2>Lister la liste des acteurs ayant incarné un rôle précis (ex: les acteurs ayant joué le rôle de Batman : Michael Keaton, Val Kilmer, George Clooney, …)</h2>";
+    // Creation des castings
+    $casting=[];
 
-    // foreach($Filmss as $Films){
-    //   echo "<h3>".$Films."</h3>";
-    //   echo "<pre>".$Films->getInfo()."</pre>";
-    // }
-    for($i=0; $i<count($Filmss); $i++){ // création de chambres d'hitels
-      for($j=0; $j<rand(5,15); $j++){
-        $rooms[] = new Room($j, "Chambre $j", round((rand(100,1000)*lcg_value()),2), (bool)rand(-1,0), (bool)rand(-1,0), rand(1,4), $Filmss[$i]);
-      }
-    }
+    echo"<h2>Lister la liste des acteurs ayant incarné un rôle précis (ex: les acteurs ayant joué le rôle de Batman : Michael Keaton, Val Kilmer, George Clooney, …)</h2>";
     echo"<h2>Lister le casting d'un film (dans le film Star Wars Episode IV, Han Solo a été incarné par Harrison Ford, Luke Skywalker a été incarné par Mark Hamill, ...)</h2>";
     echo"<h2>Lister les films par genre (exemple : le genre SF est associé à X films : Star Wars, Blade Runner, ...)</h2>";
     echo"<h2>Lister la filmographie d'un acteur (dans quels films a-t-il joué ?)</h2>";
