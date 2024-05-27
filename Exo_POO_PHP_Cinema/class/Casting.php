@@ -5,22 +5,15 @@ class Casting{
     private Role $role;
 
     // constructeur
-    public function __construct(string $titre, string $synopsys, int $duree, DateTime $dateSortie, Genre $genre, Realisateur $realisateur){
-        $this-> = ;
-        $this-> = ;
-        $this-> = ;
-        $this-> = ;
-        $this-> = ;
-        $this-> = ;
-        $this-> = ;
-        $this-> = ;
-        $this-> = ;
-        $this-> = ;
+    public function __construct(Acteur $acteur, Film $film, Role $role){
+        $this->acteur = $acteur;
+        $this->film = $film;
+        $this->role = $role;
     }
 
     //__toString
     public function __toString(){
-        return $this->;
+        return " Acteur : ".$this->acteur."\n Film : ".$this->film."\n Rôle : ".$this->role."\n";
     }
 
     //getInfo
