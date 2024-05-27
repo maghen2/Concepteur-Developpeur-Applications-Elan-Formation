@@ -15,7 +15,7 @@ class Film{
         $this->dateSortie = $dateSortie;
         $this->genre = $genre;
         $this->realisateur = $realisateur;
-        $castings[] = ;
+        
     }
 
     //__toString
@@ -26,6 +26,11 @@ class Film{
     //getInfo
     public function getInfo(){
 
+    }
+
+    // Ajoute au fur et à mesure les differents castings liès à l'objet
+    public function addCasting(Casting $casting){
+        $this->castings[] = $casting;
     }
 
 

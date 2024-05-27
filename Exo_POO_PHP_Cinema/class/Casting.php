@@ -9,6 +9,9 @@ class Casting{
         $this->acteur = $acteur;
         $this->film = $film;
         $this->role = $role;
+        $this->acteur->addCasting($this);
+        $this->film->addCasting($this);
+        $this->role->addCasting($this);
     }
 
     //__toString
