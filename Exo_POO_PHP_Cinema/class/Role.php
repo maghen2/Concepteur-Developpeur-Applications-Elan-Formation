@@ -22,9 +22,14 @@ class Role{
     //GetActors permet d'onbtenir la liste des acteurs ayant incarné un rôle précis
     public function getActeurs(){
         $acteurs = [];
+        for($i=0; $i<count($this->castings); $i++){
+            $acteurs[$i]["acteur"] = $this->castings[$i]->getActeur();
+            $acteurs[$i]["film"] = $this->castings[$i]->getFilm();
+        }
+        /*
         foreach($this->castings as $casting){
             $acteurs[] = $casting->getActeur();
-        }
+        }*/
         return $acteurs;
     }
 

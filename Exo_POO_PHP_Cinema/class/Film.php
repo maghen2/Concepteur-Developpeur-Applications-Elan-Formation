@@ -22,7 +22,7 @@ class Film{
 
     //__toString
     public function __toString(){
-        return $this->titre."(".$this->dateSortie.")";
+        return $this->titre."(".$this->dateSortie->format('d-m-Y').")";
     }
 
     //getInfo
