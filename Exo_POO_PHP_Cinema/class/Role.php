@@ -23,7 +23,7 @@ class Role{
     public function getActeurs(){
         $acteurs = [];
         foreach($this->castings as $casting){
-            $actors[] = $casting->getActeur();
+            $acteurs[] = $casting->getActeur();
         }
         return $acteurs;
     }
