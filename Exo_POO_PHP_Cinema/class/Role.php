@@ -20,12 +20,12 @@ class Role{
     }
 
     //GetActors permet d'onbtenir la liste des acteurs ayant incarné un rôle précis
-    public function getActors(){
-        $actors = [];
+    public function getActeurs(){
+        $acteurs = [];
         foreach($this->castings as $casting){
-            $actors[] = $casting->getActor();
+            $actors[] = $casting->getActeur();
         }
-        return $actors;
+        return $acteurs;
     }
 
     // Ajoute au fur et à mesure les differents castings liès à l'objet
