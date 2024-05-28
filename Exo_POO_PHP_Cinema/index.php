@@ -107,3 +107,9 @@ spl_autoload_register(function($class){
     echo"<h2>Lister les films par genre (exemple : le genre SF est associé à X films : Star Wars, Blade Runner, ...)</h2>";
     echo"<h2>Lister la filmographie d'un acteur (dans quels films a-t-il joué ?)</h2>";
     echo"<h2>Lister la filmographie d'un réalisateur (quels sont les films qu'a réalisé ce réalisateur ?)</h2>";
+
+  ?>
+  <h2>Modèle Conceptuel de Données (MCD) et Modèle Logique de Données (MLD)</h2>
+  <img src="MCD_MLD.jpg" width="100%" alt="MCD et MLD" title="Modèle Conceptuel de Données (MCD) et Modèle Logique de Données (MLD)">
+  </body>
+</html>
