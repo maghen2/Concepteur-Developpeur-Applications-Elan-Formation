@@ -96,14 +96,7 @@ spl_autoload_register(function($class){
       // var_dump($roles);
       // var_dump($castings);
       
-    echo"<h2>Liste des acteurs ayant incarné le rôle de ".$roles[0]."</h2>";
-    echo"<ul>";
-    for($i=0; $i<(count($castings)-1); $i++){
-      if($castings[$i]->getRole()->getRole()==$roles[0]->getRole())
-      echo"<li>".$castings[$i]->getActeur()."</li>";
-    }
-    echo"</ul>";
-
+      echo $roles[0]->getActors();
     echo"<h2>Lister le casting d'un film (dans le film Star Wars Episode IV, Han Solo a été incarné par Harrison Ford, Luke Skywalker a été incarné par Mark Hamill, ...)</h2>";
     echo"<h2>Lister les films par genre (exemple : le genre SF est associé à X films : Star Wars, Blade Runner, ...)</h2>";
     echo"<h2>Lister la filmographie d'un acteur (dans quels films a-t-il joué ?)</h2>";
