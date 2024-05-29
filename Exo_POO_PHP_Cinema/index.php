@@ -103,10 +103,10 @@ spl_autoload_register(function($class){
     }
     echo"</ul>";
 
-    echo"<h2>Lister le casting du film".$films[0]." </h2>";
+    echo"<h2>Lister le casting du film ".$films[0]." </h2>";
     echo"<ul>";
     foreach($films[0]->getCasting() as $casting){
-      echo"<li>".$casting["acteur"]." a joué le role de ".$casting["role"]." dans le film ".$casting["film"]."</li>";
+      echo"<li>".$casting["acteur"]." a joué le role de ".$casting["role"]."</li>";
     }
     echo"</ul>";
 

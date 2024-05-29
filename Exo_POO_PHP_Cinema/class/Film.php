@@ -35,8 +35,14 @@ class Film{
         $this->castings[] = $casting;
     }
 
-
-    
+    //GetCasting permet d'onbtenir la liste des acteurs ainsi que le rôle joué dans le film
+    public function getCasting(){
+        $castings = [];
+        for($i=0; $i<count($this->castings); $i++){
+            $castings[$i]["acteur"] = $this->castings[$i]->getActeur();
+            $castings[$i]["role"] = $this->castings[$i]->getRole();
+        }
+    }
 
     /**
      * Get the value of titre
