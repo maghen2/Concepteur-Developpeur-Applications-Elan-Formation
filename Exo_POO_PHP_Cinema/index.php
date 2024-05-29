@@ -101,7 +101,6 @@ spl_autoload_register(function($class){
     echo $genres[0]->afficheFilms();
     echo $acteurs[0]->afficherFilmographie();
     echo $realisateurs[0]->afficherFilmographie();
-
   ?>
   <h2>Modèle Conceptuel de Données (MCD) et Modèle Logique de Données (MLD)</h2>
   <img src="MCD_MLD.jpg" width="100%" alt="MCD et MLD" title="Modèle Conceptuel de Données (MCD) et Modèle Logique de Données (MLD)">
