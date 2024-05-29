@@ -96,15 +96,9 @@ spl_autoload_register(function($class){
       // var_dump($roles);
       // var_dump($castings);
       
-  
-    $roles[0]->afficheActeurs();
+    echo $roles[0]->afficheActeurs();
+    echo $films[0]->afficheCastings();
 
-    echo"<h2>Lister le casting du film ".$films[0]." </h2>";
-    echo"<ul>";
-    foreach($films[0]->getCasting() as $casting){
-      echo"<li>".$casting["acteur"]." a joué le role de ".$casting["role"]."</li>";
-    }
-    echo"</ul>";
 
     $films = $genres[0]->getFilms();
     echo"<h2>Le genre ".$genres[0]." est associé à ".count($films)." films </h2>";

@@ -44,6 +44,16 @@ class Film{
         }
         return $castings;
     }
+    // Affichage de la liste des castings d'un film
+    public function afficheCastings() : string {
+        $string = "<h2>Lister le casting du film ".$this."</h2>";
+        $string .= "<ul>";
+        foreach($this->getCasting() as $casting){
+            $string .= "<li>".$casting["acteur"]." a joué le role de ".$casting["role"]."</li>";
+          }
+          $string .= "</ul>";
+        return $string;
+    }
 
     /**
      * Get the value of titre
