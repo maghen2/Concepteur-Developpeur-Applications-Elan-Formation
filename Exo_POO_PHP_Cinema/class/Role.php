@@ -38,6 +38,14 @@ class Role{
         $this->castings[] = $casting;
     }
 
+    // Affichage de la liste des acteurs
+    public function afficheActeurs() : string {
+        echo"<ul>"; 
+        foreach($roles[0]->getActeurs() as $actor){
+          echo"<li>".$actor["acteur"]." a joué ce role dans le film ".$actor["film"]."</li>";
+        }
+        echo"</ul>";
+    }
 
     /**
      * Get the value of role

@@ -97,11 +97,7 @@ spl_autoload_register(function($class){
       // var_dump($castings);
       
     echo"<h2>Liste des acteurs ayant incarné le rôle de ".$roles[rand(0,(count($roles)-1))]."</h2>";
-    echo"<ul>"; // var_dump($roles[0]->getActeurs());
-    foreach($roles[0]->getActeurs() as $actor){
-      echo"<li>".$actor["acteur"]." a joué ce role dans le film ".$actor["film"]."</li>";
-    }
-    echo"</ul>";
+
 
     echo"<h2>Lister le casting du film ".$films[0]." </h2>";
     echo"<ul>";
