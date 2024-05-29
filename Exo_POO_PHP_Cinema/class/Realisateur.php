@@ -16,6 +16,17 @@ class Realisateur extends Personne{
         public function addFilm(Film $film){
             $this->films[] = $film;
         }
+        
+        // Affichage de la liste des films d'un réalisateur précis
+        public function afficherFilmographie() : string {
+            $string = "<h2>Filmographie de l'acteur ".$this."</h2>";
+            $string .="<ul>";
+            foreach($this->getCastings() as $casting){
+                $string .= "<li>".$casting->getFilm()."</li>";
+            }
+            $string .= "</ul>";
+            return $string;
+        }
     
 
     /**

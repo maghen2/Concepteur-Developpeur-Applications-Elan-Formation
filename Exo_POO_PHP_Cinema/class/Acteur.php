@@ -16,7 +16,16 @@
         public function addCasting(Casting $casting){
             $this->castings[] = $casting;
         }
-    
+        // Affichage de la liste des films d'un acteur précis
+        public function afficherFilmographie() : string {
+            $string = "<h2>Filmographie de l'acteur ".$this."</h2>";
+            $string .="<ul>";
+            foreach($this->getCastings() as $casting){
+                $string .= "<li>".$casting->getFilm()."</li>";
+            }
+            $string .= "</ul>";
+            return $string;
+        }
 
 
         /**
