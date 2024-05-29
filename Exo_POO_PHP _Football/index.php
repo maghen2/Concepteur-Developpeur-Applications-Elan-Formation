@@ -11,27 +11,34 @@ spl_autoload_register(function($class){
   <head>
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <link rel="stylesheet" href="css/style.css">
-  <title>Exercices POO PHP cinéma - Elan Formation</title>
+  <title>Exercices POO PHP Football - Elan Formation</title>
   </head>
   <body>
-    <h1>Exercices POO PHP cinéma - Elan Formation</h1>
-    <h2>Vous avez en charge de gérer différentes entités autour de la thématique du cinéma.</h2>
-    <p>Les films seront caractérisés par leur titre, leur date de sortie en France, leur durée (en minutes) ainsi que leur réalisateur (unique, avec nom, prénom, sexe et date de naissance). Un résumé du film (synopsis) pourra éventuellement être renseigné. Chaque film est caractérisé par un seul genre cinématographique (science-fiction, aventure, action, ...).</p>
-    <p>Votre application devra recenser également les acteurs de chacun des films. On désire connaître le nom, le prénom, le sexe et la date de naissance de l’acteur ainsi que le rôle (nom du personnage) joué par l’acteur dans le(s) film(s) concerné(s).</p>
-    <p>Il serait intéressant d'utiliser la notion d'héritage entre classes dans cet exercice. A vous de le mettre en place correctement !</p>
-    <p>Attention, le rôle (par exemple James Bond) ne doit être instancié qu'une seule fois (dans la mesure où ce rôle a été incarné par plusieurs acteurs.)</p>
-    <p>On doit pouvoir :</p>
-    <ul>
-      <li>Lister la liste des acteurs ayant incarné un rôle précis (ex: les acteurs ayant joué le rôle de Batman : Michael Keaton, Val Kilmer, George Clooney, …)</li>
-      <li>Lister le casting d'un film (dans le film Star Wars Episode IV, Han Solo a été incarné par Harrison Ford, Luke Skywalker a été incarné par Mark Hamill, ...)</li>
-      <li>Lister les films par genre (exemple : le genre SF est associé à X films : Star Wars, Blade Runner, ...)</li>
-      <li>Lister la filmographie d'un acteur (dans quels films a-t-il joué ?)</li>
-      <li>Lister la filmographie d'un réalisateur (quels sont les films qu'a réalisé ce réalisateur ?)</li>
-    </ul>
+    <h1>Exercices POO PHP Football - Elan Formation</h1>
+    <h1>POO FOOTBALL  </h1>
+<h2>Soit une application qui gère des équipes de football  </h2>
+<p>Une équipe possède un nom (Paris Saint-Germain, Bayern Munich, Real Madrid, ...) et un ensemble de joueurs </p>
+<p>identifié par un prénom, un nom et une date de naissance  </p>
+<p>Chaque équipe appartient à un pays (France, Espagne, Allemagne, ...) et chaque joueur a une nationalité (France, </p>
+<p>Espagne, Allemagne, ...)  </p>
+<p>Un joueur peut jouer dans une ou plusieurs équipes dans sa carrière (avec une année de début de saison)  </p>
+<p>Concevez le projet en POO de façon à : </p> 
+<ul>
+<li>lister toutes les équipes d'un pays (Ex : France --> PSG, OM, OL, RCSA, ...)  </li>
+<li>lister tous les joueur s d'une équipe (avec nom, prénom, âge et pays d'origine) Ex : PSG --> Neymar JR  (30 ans), Lionel Messi (35 ans), Kylian Mbappé (23 ans)  </li>
+<li>lister toutes les équipes d'un joueur (Ex : Lionel Messi (FC Barcelone 2004, PSG 2021)) </li>
+</ul>
+<p>On liste les équipes d'un PAYS  </p>
+<p>On liste les joueurs de chaque équipe (remarquez que des joueurs apparaissent dans plusieurs équipes à des années différentes)  </p>
+<p>On liste la carrière d'un joueur </p>
+ 
+ 
 <h2>Il faudra d’abord faire un MCD répondant aux exigences citées ci-dessus et le faire valider par un formateur avant de passer à la création des classes</h2>
     <h1>Solution de l'exercice</h1>
 
   <?php
+
+  /* Création des objets
   // Tableuax des differents objets créer
     $films=[];
     $acteurs=[];
@@ -101,7 +108,9 @@ spl_autoload_register(function($class){
     echo $genres[0]->afficheFilms();
     echo $acteurs[0]->afficherFilmographie();
     echo $realisateurs[0]->afficherFilmographie();
+ */   
   ?>
+  
   <h2>Modèle Conceptuel de Données (MCD) et Modèle Logique de Données (MLD)</h2>
   <img src="MCD_MLD.jpg" width="100%" alt="MCD et MLD" title="Modèle Conceptuel de Données (MCD) et Modèle Logique de Données (MLD)">
   </body>
