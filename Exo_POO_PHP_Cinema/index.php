@@ -120,8 +120,9 @@ spl_autoload_register(function($class){
 
     echo"<h2>Filmographie de l'acteur ".$acteurs[0]."</h2>";
     echo"<ul>";
-    foreach($acteurs[0]->getFilms() as $film){
-      echo"<li>$film</li>";
+    var_dump($acteurs[0]->getCastings());
+    foreach($acteurs[0]->getCastings() as $casting){
+      echo"<li>$casting->getFilm()</li>";
     }
     echo"</ul>";
 
