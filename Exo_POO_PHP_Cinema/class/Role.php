@@ -6,7 +6,7 @@ class Role{
     // constructeur
     public function __construct(string $role){
         $this->role = $role;
-
+        $this->castings = [];
     }
 
     //__toString

@@ -6,6 +6,7 @@ Class Genre{
     // constructeur
     public function __construct(string $genre){
         $this->genre = $genre;
+        $this->films = [];
     }
 
     //__toString
