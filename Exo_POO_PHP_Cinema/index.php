@@ -111,14 +111,20 @@ spl_autoload_register(function($class){
     echo"</ul>";
 
     $films = $genres[0]->getFilms();
-    echo"<h2>Le genre".genres[0]." est associé à ".count($films)." films </h2>";
+    echo"<h2>Le genre ".$genres[0]." est associé à ".count($films)." films </h2>";
     echo"<ul>";
     foreach($films as $film){
-      echo"<li>"$film["acteur"]." a joué le role de ".$casting["role"]."</li>";
+      echo"<li>$film</li>";
     }
     echo"</ul>";
 
-    echo"<h2>Lister la filmographie d'un acteur (dans quels films a-t-il joué ?)</h2>";
+    echo"<h2>Filmographie de l'acteur ".$acteurs[0]."</h2>";
+    echo"<ul>";
+    foreach($acteurs[0]->getFilms() as $film){
+      echo"<li>$film</li>";
+    }
+    echo"</ul>";
+
     echo"<h2>Lister la filmographie d'un réalisateur (quels sont les films qu'a réalisé ce réalisateur ?)</h2>";
 
   ?>
