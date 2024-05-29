@@ -105,6 +105,7 @@ spl_autoload_register(function($class){
 
     echo"<h2>Lister le casting du film ".$films[0]." </h2>";
     echo"<ul>";
+    var_dump($films[0]->getCasting()); // var_dump($roles[0]->getActeurs());
     foreach($films[0]->getCasting() as $casting){
       echo"<li>".$casting["acteur"]." a joué le role de ".$casting["role"]."</li>";
     }
