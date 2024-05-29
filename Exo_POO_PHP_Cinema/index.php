@@ -100,13 +100,8 @@ spl_autoload_register(function($class){
     echo $films[0]->afficheCastings();
     echo $genres[0]->afficheFilms();
     echo $acteurs[0]->afficherFilmographie();
+    echo $realisateurs[0]->afficherFilmographie();
 
-    echo"<h2>Filmographie du réalisateur ".$realisateurs[0]."</h2>";
-    echo"<ul>";
-    // var_dump($realisateurs[0]->getFilms());
-    foreach($realisateurs[0]->getFilms() as $film){
-      echo"<li>$film</li>";
-    }
   ?>
   <h2>Modèle Conceptuel de Données (MCD) et Modèle Logique de Données (MLD)</h2>
   <img src="MCD_MLD.jpg" width="100%" alt="MCD et MLD" title="Modèle Conceptuel de Données (MCD) et Modèle Logique de Données (MLD)">
