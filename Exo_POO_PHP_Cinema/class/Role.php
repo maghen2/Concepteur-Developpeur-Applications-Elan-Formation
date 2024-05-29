@@ -40,11 +40,13 @@ class Role{
 
     // Affichage de la liste des acteurs
     public function afficheActeurs() : string {
-        echo"<ul>"; 
-        foreach($roles[0]->getActeurs() as $actor){
-          echo"<li>".$actor["acteur"]." a joué ce role dans le film ".$actor["film"]."</li>";
+        $string = "<h2>Liste des acteurs ayant incarné le rôle de ".$this."</h2>";
+        $string .="<ul>";
+        foreach($this->getActeurs() as $actor){
+            $string .= "<li>".$actor["acteur"]." a joué ce role dans le film ".$actor["film"]."</li>";
         }
-        echo"</ul>";
+        $string .= "</ul>";
+        return $string;
     }
 
     /**

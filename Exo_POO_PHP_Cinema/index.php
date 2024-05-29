@@ -57,12 +57,12 @@ spl_autoload_register(function($class){
 
     //création des acteurs
     $sexe=["Masculin", "Féminin"];
-      for($i=0, $j="A"; $i<rand(5,15); $i++,$j++){ // __construct(string $prenom, string $nom, string $sexe, string $dateNaissance){
+      for($i=0, $j="A"; $i<rand(4,6); $i++,$j++){ // __construct(string $prenom, string $nom, string $sexe, string $dateNaissance){
         $acteurs[$i] = new Acteur("ActeurPrenom$j", "ActeurNom$j", $sexe[rand(0,1)], rand(1920, 20210)."-".rand(1, 12)."-".rand(1, 28));
       }
 
     // Creation des roles des personnage
-    for($i=0, $j="A"; $i<rand(5,15); $i++,$j++){ //  __construct(string $role){
+    for($i=0, $j="A"; $i<rand(4,6); $i++,$j++){ //  __construct(string $role){
       $roles[$i] = new Role("RôlePrenom$j RôleNom$j");
     }
 
@@ -85,7 +85,7 @@ spl_autoload_register(function($class){
     ];
 
     // Creation des castings  __construct(Acteur $acteur, Film $film, Role $role){
-      for($i=0; $i<25; $i++){
+      for($i=0; $i<6; $i++){
         $castings[$i] = new Casting($acteurs[rand(0,(count($acteurs)-1))], $films[rand(0,(count($films)-1))], $roles[rand(0,(count($roles)-1))]);
       }
       // var_dump($films);
@@ -96,8 +96,8 @@ spl_autoload_register(function($class){
       // var_dump($roles);
       // var_dump($castings);
       
-    echo"<h2>Liste des acteurs ayant incarné le rôle de ".$roles[rand(0,(count($roles)-1))]."</h2>";
-
+  
+    $roles[0]->afficheActeurs();
 
     echo"<h2>Lister le casting du film ".$films[0]." </h2>";
     echo"<ul>";
