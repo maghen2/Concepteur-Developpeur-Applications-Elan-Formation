@@ -111,6 +111,12 @@ spl_autoload_register(function($class){
     echo"</ul>";
 
     echo"<h2>Lister les films par genre (exemple : le genre SF est associé à X films : Star Wars, Blade Runner, ...)</h2>";
+    echo"<ul>";
+    foreach($films[0]->getCasting() as $casting){
+      echo"<li>".$casting["acteur"]." a joué le role de ".$casting["role"]."</li>";
+    }
+    echo"</ul>";
+    
     echo"<h2>Lister la filmographie d'un acteur (dans quels films a-t-il joué ?)</h2>";
     echo"<h2>Lister la filmographie d'un réalisateur (quels sont les films qu'a réalisé ce réalisateur ?)</h2>";
 
