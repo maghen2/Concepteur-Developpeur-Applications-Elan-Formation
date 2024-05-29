@@ -20,7 +20,7 @@ Class Genre{
     }
     // Affichage de la liste des films d'un genre précis
     public function afficheFilms() : string {
-        $string = "<h2>Liste des acteurs ayant incarné le rôle de ".$this."</h2>";
+        $string = "<h2>Liste des films du genre ".$this."</h2>";
         $string .="<ul>";
         foreach($this->getFilms() as $film){
             $string .= "<li>$film</li>";
