@@ -2,7 +2,63 @@
 Class Equipe{
     private string $nom;
     private Pays $pays;
-        
-    
+
+    // constructeur
+    public function __construct(string $nom, Pays $pays){
+        $this->nom = $nom;
+        $this->pays = $pays;
+        $this->pays->addEquipe($this);
+    }
+
+    //__toString
+    public function __toString(){
+        return $this->nom."(".$this->pays.")\n";
+    }
+
+    //getInfo
+    public function getInfo(){
+
+    }
+
+
+    /**
+     * Get the value of nom
+     */ 
+    public function getNom()
+    {
+        return $this->nom;
+    }
+
+    /**
+     * Set the value of nom
+     *
+     * @return  self
+     */ 
+    public function setNom($nom)
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of pays
+     */ 
+    public function getPays()
+    {
+        return $this->pays;
+    }
+
+    /**
+     * Set the value of pays
+     *
+     * @return  self
+     */ 
+    public function setPays($pays)
+    {
+        $this->pays = $pays;
+
+        return $this;
+    }
     }
     
