@@ -21,7 +21,9 @@ spl_autoload_register(function($class){
     new Pays("France"),
     new Pays("Angleterre"),
     new Pays("Espagne"),
-    new Pays("Italie")
+    new Pays("Italie"),
+    new Pays("Portugal"),
+    new Pays("Argentine"),
   ];
 
   // creation des equipes
@@ -34,5 +36,15 @@ spl_autoload_register(function($class){
     new Equipe("Juventus", $pays[3])
   ];
 
-// Creation 
+// Creation des joueurs __construct(string $prenom, string $nom, string $dateNaissance, Pays $pays)
+$joueurs = [
+    new Joueur("Killian", "Mbappe", "2020-06-15", $pays[0]),
+    new Joueur("Cristiano", "Ronaldo", "1987-02-24", $pays[4]),
+    new Joueur("Lionel", "Messi", "1990-09-06", $pays[5]),
+    new Joueur("Neymar", "Junior", "1988", $pays[6])
+];
 
+// Creations des contrats
+$contrats = [
+    new contrat(),
+];
