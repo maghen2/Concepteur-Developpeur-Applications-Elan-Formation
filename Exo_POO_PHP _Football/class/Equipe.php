@@ -2,6 +2,7 @@
 Class Equipe{
     private string $nom;
     private Pays $pays;
+    private array $contrats;
 
     // constructeur
     public function __construct(string $nom, Pays $pays){
@@ -20,6 +21,10 @@ Class Equipe{
 
     }
 
+    // ajouter des contrats du joueurs
+    public function addContrat(Contrat $contrat){
+        $this->contrats[] = $contrat;
+    }
 
     /**
      * Get the value of nom
@@ -57,6 +62,26 @@ Class Equipe{
     public function setPays($pays)
     {
         $this->pays = $pays;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of contrats
+     */ 
+    public function getContrats()
+    {
+        return $this->contrats;
+    }
+
+    /**
+     * Set the value of contrats
+     *
+     * @return  self
+     */ 
+    public function setContrats($contrats)
+    {
+        $this->contrats = $contrats;
 
         return $this;
     }

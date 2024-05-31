@@ -1,16 +1,17 @@
 <?php
+//implementation de la classe chargée de la gestion des contrats passé entre chaque joueur et equipe
 Class Contrat{
     private DateTime $date;
     private Joueur $joueur;
     private Equipe $equipe;
-    private array $contrats;
     
     public function __construct(string $date, Joueur $joueur, Equipe $equipe)
     {
         $this->date = new DateTime($date);
         $this->joueur = $joueur;
+        $this->joueur->addContrat($this);
         $this->equipe = $equipe;
-        $this->contrats[] = $this;  
+        $this->equipe->addContrat($this);
     }
 
     public function __toString()
@@ -79,26 +80,6 @@ Class Contrat{
     public function setEquipe($equipe)
     {
         $this->equipe = $equipe;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of contrats
-     */ 
-    public function getContrats()
-    {
-        return $this->contrats;
-    }
-
-    /**
-     * Set the value of contrats
-     *
-     * @return  self
-     */ 
-    public function setContrats($contrats)
-    {
-        $this->contrats = $contrats;
 
         return $this;
     }
