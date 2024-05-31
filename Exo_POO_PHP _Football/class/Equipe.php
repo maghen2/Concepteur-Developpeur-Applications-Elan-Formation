@@ -29,7 +29,7 @@ Class Equipe{
     public function listerJoueurs(){
         $reponse="<h2>Liste de tous les joueurs de l'équipe ".$this."</h2><ul>";
         foreach($this->contrats as $contrat){
-            $reponse .="<li>".$contrat->getJoueur().$contrat->date->format("d-m-Y")."</li>";
+            $reponse .="<li>".$contrat->getJoueur()." recruté le ".$contrat->getDate()->format("d-m-Y")."</li>";
         }
         return $reponse."</ul>\n";
     }

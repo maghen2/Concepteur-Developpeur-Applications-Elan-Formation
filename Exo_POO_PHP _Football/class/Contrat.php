@@ -16,7 +16,7 @@ Class Contrat{
 
     public function __toString()
     {
-        return $this->date->format("Y-m-d")." : ".$this->joueur." joue dans l'équipe ".$this->equipe;
+        return $this->date->format("d-m-Y")." : ".$this->joueur." joue dans l'équipe ".$this->equipe;
     }
 
     public function __getInfo(){
