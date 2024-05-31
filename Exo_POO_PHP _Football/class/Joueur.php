@@ -15,5 +15,94 @@ public function __construct(string $prenom, string $nom, string $dateNaissance, 
 
 }
 
+    //__toString
+    public function __toString(){
+        return $this->prenom." ".$this->nom." (".$this->dateNaissance->format("Y-m-d").")\n";
+    }
 
+    //getInfo
+    public function getInfo(){
+        return $this->prenom." ".$this->nom." (".$this->pays." ".$this->dateNaissance->format("Y-m-d").")\n";
+    }
+
+
+/**
+ * Get the value of prenom
+ */ 
+public function getPrenom()
+{
+return $this->prenom;
+}
+
+/**
+ * Set the value of prenom
+ *
+ * @return  self
+ */ 
+public function setPrenom($prenom)
+{
+$this->prenom = $prenom;
+
+return $this;
+}
+
+/**
+ * Get the value of nom
+ */ 
+public function getNom()
+{
+return $this->nom;
+}
+
+/**
+ * Set the value of nom
+ *
+ * @return  self
+ */ 
+public function setNom($nom)
+{
+$this->nom = $nom;
+
+return $this;
+}
+
+/**
+ * Get the value of dateNaissance
+ */ 
+public function getDateNaissance()
+{
+return $this->dateNaissance;
+}
+
+/**
+ * Set the value of dateNaissance
+ *
+ * @return  self
+ */ 
+public function setDateNaissance($dateNaissance)
+{
+$this->dateNaissance = $dateNaissance;
+
+return $this;
+}
+
+/**
+ * Get the value of pays
+ */ 
+public function getPays()
+{
+return $this->pays;
+}
+
+/**
+ * Set the value of pays
+ *
+ * @return  self
+ */ 
+public function setPays($pays)
+{
+$this->pays = $pays;
+
+return $this;
+}
 }

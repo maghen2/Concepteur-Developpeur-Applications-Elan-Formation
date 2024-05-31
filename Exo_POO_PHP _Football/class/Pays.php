@@ -32,5 +32,64 @@ Class Pays{
     }
     
     
-    
+
+    /**
+     * Get the value of nom
+     */ 
+    public function getNom()
+    {
+        return $this->nom;
+    }
+
+    /**
+     * Set the value of nom
+     *
+     * @return  self
+     */ 
+    public function setNom($nom)
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of equipes
+     */ 
+    public function getEquipes()
+    {
+        return $this->equipes;
+    }
+
+    /**
+     * Set the value of equipes
+     *
+     * @return  self
+     */ 
+    public function setEquipes($equipes)
+    {
+        $this->equipes = $equipes;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of joueurs
+     */ 
+    public function getJoueurs()
+    {
+        return $this->joueurs;
+    }
+
+    /**
+     * Set the value of joueurs
+     *
+     * @return  self
+     */ 
+    public function setJoueurs($joueurs)
+    {
+        $this->joueurs = $joueurs;
+
+        return $this;
+    }
     }
