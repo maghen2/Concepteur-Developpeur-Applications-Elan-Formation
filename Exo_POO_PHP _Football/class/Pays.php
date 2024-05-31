@@ -33,7 +33,11 @@ Class Pays{
     
     //lister toutes les équipes d'un pays (Ex : France --> PSG, OM, OL, RCSA, ...)
     public function listerEquipes(){
-
+     $reponse="<h2>Liste de toutes les équipes du pays ".$this."</h2><ul>";
+     foreach($this->equipes as $equipe){
+        $reponse .= "<li>".$equipe."</li>";
+     }
+     return $reponse."</ul>";
     }
 
     /**
