@@ -37,7 +37,7 @@ Class Pays{
      foreach($this->equipes as $equipe){
         $reponse .= "<li>".$equipe."</li>";
      }
-     return $reponse."</ul>";
+     return $reponse."</ul>\n";
     }
 
     /**

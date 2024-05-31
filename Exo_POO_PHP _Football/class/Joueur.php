@@ -20,7 +20,7 @@ public function __construct(string $prenom, string $nom, string $dateNaissance, 
     public function __toString(){
         $age = new DateTime();
         $age = $age->diff($this->dateNaissance);
-        return $this->prenom." ".$this->nom." (".$age->format('%Y')." ans )\n";
+        return $this->prenom." ".$this->nom." (".$age->format('%Y')." ans)\n";
     }
 
     //getInfo
@@ -33,11 +33,11 @@ public function __construct(string $prenom, string $nom, string $dateNaissance, 
     }
     //lister la carrière, toutes les équipes d'un joueur (Ex : Lionel Messi (FC Barcelone 2004, PSG 2021))
     public function listerEquipes() : string{
-        $reponse="<h2>Liste de la carrière du joueur ".$this."</h2><ul>";
+        $reponse="<h2>Liste de la carrière du joueur ".$this."(".$this->pays.")</h2><ul>";
         foreach($this->contrats as $contrat){
-           $reponse .= "<li>".$contrat->getEquipe()."(".$contrat->getDate()->format("Y-m-d").")</li>";
+           $reponse .= "<li>".$contrat->getEquipe()."(".$contrat->getDate()->format("d-m-Y").")</li>";
         }
-        return $reponse."</ul>";
+        return $reponse."</ul>\n";
        }
 /**
  * Get the value of prenom

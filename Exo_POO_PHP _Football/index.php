@@ -16,6 +16,9 @@ spl_autoload_register(function($class){
   $joueurs=[];
   $contrats=[];
 
+  $france = new Pays("France");
+  $equipe = new Equipe("AAA", $france);
+
   // creations des pays
   $pays = [
     new Pays("France"),
