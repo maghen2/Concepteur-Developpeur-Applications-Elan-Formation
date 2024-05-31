@@ -18,7 +18,9 @@ public function __construct(string $prenom, string $nom, string $dateNaissance, 
 
     //__toString
     public function __toString(){
-        return $this->prenom." ".$this->nom." (".$this->dateNaissance->format("Y-m-d").")\n";
+        $age = new DateTime();
+        $age = $age->diff($this->dateNaissance);
+        return $this->prenom." ".$this->nom." (".$age->format('%Y')." ans )\n";
     }
 
     //getInfo
@@ -29,11 +31,11 @@ public function __construct(string $prenom, string $nom, string $dateNaissance, 
     public function addContrat(Contrat $contrat){
         $this->contrats[] = $contrat;
     }
-    //lister toutes les équipes d'un joueur (Ex : Lionel Messi (FC Barcelone 2004, PSG 2021))
+    //lister la carrière, toutes les équipes d'un joueur (Ex : Lionel Messi (FC Barcelone 2004, PSG 2021))
     public function listerEquipes() : string{
-        $reponse="<h2>Liste de toutes les équipes du joueur ".$this."</h2><ul>";
+        $reponse="<h2>Liste de la carrière du joueur ".$this."</h2><ul>";
         foreach($this->contrats as $contrat){
-           $reponse .= "<li>".$contrat->equipe->getEquipe()."</li>";
+           $reponse .= "<li>".$contrat->getEquipe()."(".$contrat->getDate()->format("Y-m-d").")</li>";
         }
         return $reponse."</ul>";
        }

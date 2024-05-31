@@ -38,7 +38,7 @@ spl_autoload_register(function($class){
 
 // Creation des joueurs __construct(string $prenom, string $nom, string $dateNaissance, Pays $pays)
 $joueurs = [
-    new Joueur("Killian", "Mbappe", "2020-06-15", $pays[0]),
+    new Joueur("Killian", "Mbappe", "2000-06-15", $pays[0]),
     new Joueur("Cristiano", "Ronaldo", "1987-02-24", $pays[2]),
     new Joueur("Lionel", "Messi", "1990-09-06", $pays[4]),
     new Joueur("Neymar", "Junior", "1988", $pays[5])
