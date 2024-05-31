@@ -44,7 +44,31 @@ $joueurs = [
     new Joueur("Neymar", "Junior", "1988", $pays[6])
 ];
 
-// Creations des contrats
+// Creations des contrats __construct(string $date, Joueur $joueur, Equipe $equipe)
 $contrats = [
-    new contrat(),
+    new Contrat("2024-04-16", $joueurs[0], $equipes[0]),
+    new Contrat("2024-04-12",  $joueurs[1], $equipes[0]),
+    new Contrat("2024-04-02",  $joueurs[2], $equipes[0]),
+    new Contrat("2024-04-06",  $joueurs[3], $equipes[1]),
+    new Contrat("2023-12-15",  $joueurs[1], $equipes[4]),
+    new Contrat("2023-12-05",  $joueurs[2], $equipes[4]),
+    new Contrat("2023-11-05",  $joueurs[3], $equipes[3]),
+    new Contrat("2023-11-06",  $joueurs[0], $equipes[3]),
+    new Contrat("2023-11-07",  $joueurs[2], $equipes[3]),
+    new Contrat("2023-10-13",  $joueurs[3], $equipes[2]),
+    new Contrat("2023-10-05",  $joueurs[0], $equipes[2]),
+    new Contrat("2023-10-29",  $joueurs[1], $equipes[5]),
+    new Contrat("2022-01-15",  $joueurs[3], $equipes[5]),
+    new Contrat("2022-01-02",  $joueurs[2], $equipes[5]),
+    new Contrat("2022-02-06",  $joueurs[1], $equipes[4]),
+    new Contrat("2022-03-26",  $joueurs[0], $equipes[5]),
+    new Contrat("2021-03-26",  $joueurs[1], $equipes[5]),
+    new Contrat("2021-04-15",  $joueurs[2], $equipes[1]),
+    new Contrat("2021-05-12",  $joueurs[3], $equipes[2]),
+    
 ];
+
+echo $pays[0]->listerEquipes();
+echo $equipes[0]->listerJoueurs();
+echo $joueurs[0]->listerEquipes();
+

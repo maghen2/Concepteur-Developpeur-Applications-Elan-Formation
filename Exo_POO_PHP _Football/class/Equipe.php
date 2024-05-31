@@ -25,6 +25,10 @@ Class Equipe{
     public function addContrat(Contrat $contrat){
         $this->contrats[] = $contrat;
     }
+    //lister tous les joueur s d'une équipe (avec nom, prénom, âge et pays d'origine) Ex : PSG --> Neymar JR
+    public function listerJoueurs(){
+
+    }
 
     /**
      * Get the value of nom

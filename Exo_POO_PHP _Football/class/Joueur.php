@@ -36,6 +36,10 @@ public function getPrenom()
 {
 return $this->prenom;
 }
+    //lister toutes les équipes d'un pays (Ex : France --> PSG, OM, OL, RCSA, ...)
+    public function listerEquipes(){
+
+    }
 
 /**
  * Set the value of prenom

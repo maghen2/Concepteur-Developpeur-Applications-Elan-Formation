@@ -31,7 +31,10 @@ Class Pays{
         $this->joueurs[] = $joueur;
     }
     
-    
+    //lister toutes les équipes d'un pays (Ex : France --> PSG, OM, OL, RCSA, ...)
+    public function listerEquipes(){
+
+    }
 
     /**
      * Get the value of nom
