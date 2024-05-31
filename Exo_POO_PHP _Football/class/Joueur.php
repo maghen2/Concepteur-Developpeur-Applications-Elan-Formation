@@ -29,6 +29,14 @@ public function __construct(string $prenom, string $nom, string $dateNaissance, 
     public function addContrat(Contrat $contrat){
         $this->contrats[] = $contrat;
     }
+    //lister toutes les équipes d'un joueur (Ex : Lionel Messi (FC Barcelone 2004, PSG 2021))
+    public function listerEquipes() : string{
+        $reponse="<h2>Liste de toutes les équipes du joueur ".$this."</h2><ul>";
+        foreach($this->contrats as $contrat){
+           $reponse .= "<li>".$contrat->equipe->getEquipe()."</li>";
+        }
+        return $reponse."</ul>";
+       }
 /**
  * Get the value of prenom
  */ 
@@ -36,10 +44,6 @@ public function getPrenom()
 {
 return $this->prenom;
 }
-    //lister toutes les équipes d'un pays (Ex : France --> PSG, OM, OL, RCSA, ...)
-    public function listerEquipes(){
-
-    }
 
 /**
  * Set the value of prenom
