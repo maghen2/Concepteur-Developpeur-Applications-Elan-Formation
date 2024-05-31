@@ -25,9 +25,13 @@ Class Equipe{
     public function addContrat(Contrat $contrat){
         $this->contrats[] = $contrat;
     }
-    //lister tous les joueur s d'une équipe (avec nom, prénom, âge et pays d'origine) Ex : PSG --> Neymar JR
+    //lister tous les joueurs d'une équipe (avec nom, prénom, âge et pays d'origine) Ex : PSG --> Neymar JR
     public function listerJoueurs(){
-
+        $reponse="<h2>Liste de tous les joueurs de l'équipe ".$this."</h2><ul>";
+        foreach($this->contrats as $contrat){
+            $reponse .="<li>".$contrat->getJoueur()."</li>";
+        }
+        return $reponse."</ul";
     }
 
     /**
