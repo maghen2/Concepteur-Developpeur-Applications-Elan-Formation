@@ -97,11 +97,10 @@ $contrats = [
     new Contrat("2021-05-12",  $joueurs[3], $equipes[2]),
     
 ];
+foreach($pays as $pays){echo $pays->listerEquipes();}
+foreach($equipes as $equipe){echo $equipe->listerJoueurs();}
+foreach($joueurs as $joueur){echo $joueur->listerEquipes();}
 
-echo $pays[0]->listerEquipes();
-echo $equipes[0]->listerJoueurs();
-echo $joueurs[0]->listerEquipes();
- 
 ?>
 
 <h2>Modèle Conceptuel de Données (MCD) et Modèle Logique de Données (MLD)</h2>

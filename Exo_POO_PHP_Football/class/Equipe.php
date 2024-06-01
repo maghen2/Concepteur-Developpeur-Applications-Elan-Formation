@@ -27,7 +27,7 @@ Class Equipe{
     }
     //lister tous les joueurs d'une équipe (avec nom, prénom, âge et pays d'origine) Ex : PSG --> Neymar JR
     public function listerJoueurs(){
-        $reponse="<h2>Liste de tous les joueurs de l'équipe ".$this."</h2><ul>";
+        $reponse="<h2>Liste de tous les joueurs passés et presents de l'équipe ".$this."</h2><ul>";
         foreach($this->contrats as $contrat){
             $reponse .="<li>".$contrat->getJoueur()." recruté le ".$contrat->getDate()->format("d-m-Y")."</li>";
         }
