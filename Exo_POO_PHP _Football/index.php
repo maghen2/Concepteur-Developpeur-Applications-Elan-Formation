@@ -101,8 +101,7 @@ $contrats = [
 echo $pays[0]->listerEquipes();
 echo $equipes[0]->listerJoueurs();
 echo $joueurs[0]->listerEquipes();
-
-*/   
+ 
 ?>
 
 <h2>Modèle Conceptuel de Données (MCD) et Modèle Logique de Données (MLD)</h2>
