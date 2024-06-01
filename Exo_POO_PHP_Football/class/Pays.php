@@ -13,7 +13,7 @@ Class Pays{
 
     //__toString
     public function __toString(){
-        return $this->nom."\n";
+        return $this->nom;
     }
 
     //getInfo

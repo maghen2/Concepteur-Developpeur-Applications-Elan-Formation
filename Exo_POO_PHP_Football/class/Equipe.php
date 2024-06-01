@@ -13,7 +13,7 @@ Class Equipe{
 
     //__toString
     public function __toString(){
-        return $this->nom."(".$this->pays.")\n";
+        return $this->nom." (".$this->pays.")\n";
     }
 
     //getInfo

@@ -97,10 +97,16 @@ $contrats = [
     new Contrat("2021-05-12",  $joueurs[3], $equipes[2]),
     
 ];
+
+
+echo $pays[rand(0, (count($pays)-1))]->listerEquipes();
+echo $equipes[rand(0, (count($equipes)-1))]->listerJoueurs();
+echo $joueurs[rand(0, (count($joueurs)-1))]->listerEquipes();
+
+echo"<hr>";
 foreach($pays as $pays){echo $pays->listerEquipes();}
 foreach($equipes as $equipe){echo $equipe->listerJoueurs();}
 foreach($joueurs as $joueur){echo $joueur->listerEquipes();}
-
 ?>
 
 <h2>Modèle Conceptuel de Données (MCD) et Modèle Logique de Données (MLD)</h2>
