@@ -1,8 +1,8 @@
 #  Concepteur Développeur d’Applications
-## _Titre Professionel RNCP36490 Niveau 6 (Bac+3/Bac+4)_
+## _Titre Professionnel RNCP36490 Niveau 6 (Bac+3/Bac+4)_
 [![N|Solid](https://www.francecompetences.fr/app/themes/france-competences/public/images/logo--france-competences.30a014.png)](https://www.francecompetences.fr/recherche/rncp/36490/)
 
-[France Compétences Titre professionel RNCP36490 Concepteur développeur d'applications](https://www.francecompetences.fr/recherche/rncp/36490/)
+[France Compétences Titre Professionnel RNCP36490 Concepteur développeur d'applications](https://www.francecompetences.fr/recherche/rncp/36490/)
 https://elan-formation.fr/formation/19787
 ## L'essentiel
 - 326t : Programmation, mise en place de logiciels
@@ -11,7 +11,7 @@ https://elan-formation.fr/formation/19787
 
 >  AT 1 : Concevoir et développer des composants d’interface utilisateur en sécurité
 > AT 2 : Concevoir et développer la persistance des données en intégrant la sécurité
- > AT 3 : Concevoir et développer une application multicouche répartie en sécurité
+> AT 3 : Concevoir et développer une application multicouche répartie en sécurité
 
 
 ## Objectifs et contexte de la certification :
