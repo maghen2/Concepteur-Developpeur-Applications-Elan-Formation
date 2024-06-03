@@ -31,6 +31,28 @@ spl_autoload_register(function($class){
 <p>Affichera tous les produits en session (et en détail) et présentera le total général de tous les produits ajoutés.</p>
 </ol>
     <h1>Solution de l'exercice</h1>
+    <div class="form">
+    <h2 style="text-align: center">Ajouter des produits</h2>
+    <form action="traitement.php" method="post">
+      <label for="nom">Nom du produit
+      <input type="text" name="nom" id="nom" required>
+      </label>
+
+      <label for="prix">Prix unitaire
+      <input type="number" name="prix" id="prix" required>
+      </label>
+
+      <label for="quantite">Quantité
+      <input type="number" name="quantite" id="quantite" required>
+      </label>
+      <label for="Prix_total" >Prix total
+      <input type="number" name="Prix_total" id="Prix_total" disabled>
+      </label>
+      <label for="validation">
+      <button type="submit" name="validation">Ajouter</button> <button type="reset" name="validation">Annuler</button>
+      </label>
+    </form>
+    </div>
 
   <?php
  
