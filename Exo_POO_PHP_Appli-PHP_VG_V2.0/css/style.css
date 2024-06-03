@@ -1,9 +1,37 @@
+
+*{
+    padding: 0;
+    margin: 0;
+    size: 90%;
+    box-sizing: border-box;
+    font-family: "Poppins", "verdana", "sans-serif";
+    color: black;
+}
+
+div.flexCard-text h1{
+    font-size: 25px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    margin-top: 0px;
+    text-shadow: #CCC;
+    /* background-color: red; */
+}
+div.flexCard-text p{
+    font-size: 14px;
+    font-weight: 300;
+    color: darkgray;
+}
+
+/*
+background-color: red;
+*/
+
 div.form {
     margin: 0 auto;
     width: 350px;
     padding: 10px;
-    border: 1px solid #0F0;
-    background: #090;
+    border: 1px solid #00F;
+    background: #009;
     border-radius: 5px;
 }
 label{
@@ -11,5 +39,24 @@ label{
     width: 100%;
     color: #fff;
     font-size: 1.2em;
+}
+
+nav.li{
+    width: 75px;
+    padding: 30px;
+    display:block;
+    text-decoration: none;
+    color:#009;
+    font-size: 110%;
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+    transition: 1s;
+}
+
+nav li:hover{
+    transform: translate(-10px, -20px);
+    transition: 1s;
 }
 

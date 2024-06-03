@@ -12,10 +12,10 @@ spl_autoload_register(function($class){
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <link rel="stylesheet" href="css/style.css">
   <script src="js/script.js"></script>
-  <title>Exo_POO_PHP_Appli-PHP_VG_V1.0 Caddy - Elan Formation</title>
+  <title>Exo_POO_PHP_Appli-PHP_VG_V2.0 Caddy - Elan Formation</title>
   </head>
   <body>
-    <h1>Exo_POO_PHP_Appli-PHP_VG_V1.0 Caddy - Elan Formation</h1>
+    <h1>Exo_POO_PHP_Appli-PHP_VG_V2.0 Caddy - Elan Formation</h1>
 <h2>Cahier des charges  </h2>
 <p>L'application doit permettre à un utilisateur de renseigner différents produits par le biais d'un formulaire, produits qui seront consultables sur une page récapitulative. L'enregistrement en session de chaque produit est nécessaire. L'application ne nécessite pour l'instant aucun rendu visuel spécifique. Trois pages sont nécessaires à cela :</p>
 <ol>
@@ -31,6 +31,22 @@ spl_autoload_register(function($class){
 <li>recap.php</li>
 <p>Affichera tous les produits en session (et en détail) et présentera le total général de tous les produits ajoutés.</p>
 </ol>
+<h2>Améliorer l'application web PHP</h2>
+<p>Il vous est désormais demandé de vous occuper de plusieurs fonctionnalités supplémentaires à apporter à votre application :</p>
+<p>S'occuper du design (les lignes 6 et 9, respectivement dans index.php et recap.php attendent avec impatience votre feuille de style CSS pour améliorer le rendu visuel de ces deux pages)</p>
+<p>Permettre à l'utilisateur d'aller sur la page recap.php ou index.php à tout moment, à l’aide d’une barre de navigation</p>
+<p>Afficher le nombre de produits présents en session à tout moment, quelle que soit la page affichée (on parle ici de la quantité totale d’articles, non pas du nombre de produits distincts)</p>
+<p>Faire en sorte que le fichier traitement.php, lorsqu'il retourne au formulaire, créé un message (d'erreur ou de succès, selon le cas de figure) et permettre à index.php de l'afficher</p>
+<p>Ajouter trois fonctionnalités utiles dans recap.php :</p>
+<ul><li>
+Supprimer un produit en session (selon le choix de l'utilisateur)
+</li><li>
+Supprimer tous les produits en session en une seule fois
+</li><li>
+Modifier les quantités de chaque produit grâce à deux points "+" et "-" positionnés de part et d'autre du nombre dans la cellule
+</li></ul>
+<p>Ajouter des messages de notifications pour la suppression d’article</p>
+<p>Pour faire cohabiter ces fonctionnalités, on utilisera un switch dans traitement.php qui vérifie l’action dans l’url ($_GET) :</p>
     <h1>Solution de l'exercice</h1>
     <div class="form">
     <h2 style="text-align: center">Ajouter des produits</h2>
@@ -53,7 +69,10 @@ spl_autoload_register(function($class){
       <button type="submit" name="submit">Ajouter</button> <button type="reset" name="reset">Annuler</button>
       </label>
     </form>
-    <p><a href="recap.php">Voir le récapitulatif du panier</a></p>
+    <nav>
+      <li><a href="recap.php">Ajouter de nouveaux produits</a></li>
+      <li><a href="recap.php">Voir le récapitulatif du panier</a></li>
+    </nav>
     </div>
 
   <?php
