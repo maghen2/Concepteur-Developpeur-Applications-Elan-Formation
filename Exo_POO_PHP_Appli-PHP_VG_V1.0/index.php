@@ -48,8 +48,8 @@ spl_autoload_register(function($class){
       <label for="Prix_total" >Prix total
       <input type="number" name="Prix_total" id="Prix_total" disabled>
       </label>
-      <label for="validation">
-      <button type="submit" name="validation">Ajouter</button> <button type="reset" name="validation">Annuler</button>
+      <label for="submit">
+      <button type="submit" name="submit">Ajouter</button> <button type="reset" name="reset">Annuler</button>
       </label>
     </form>
     </div>

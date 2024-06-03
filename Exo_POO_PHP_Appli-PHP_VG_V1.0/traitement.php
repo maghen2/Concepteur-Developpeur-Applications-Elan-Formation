@@ -5,6 +5,28 @@ setlocale(LC_TIME, ['fr', 'fra', 'fr_FR']);
 spl_autoload_register(function($class){
   require_once("class/".$class.".php");
 });
+
+session_start();
+
+if(isset($_POST['submit'])){
+  $nom = filter_input(INPUT_POST, "nom", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+  $prix = filter_input(INPUT_POST, "prix", FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+  $quantite = filter_input(INPUT_POST, "quantite", FILTER_VALIDATE_INT);
+  $Prix_total = $prix * $quantite;
+
+  if($nom && $prix && $quantite){
+    /* Methode objet
+    $produit = new Produit($nom, $prix, $quantite, $Prix_total);
+    $_SESSION['produit'][] = $produit;
+*/
+
+// Methode procedurale
+    $_SESSION['produit'][] = ['nom' => $nom, 'prix' => $prix, 'quantite' => $quantite, 'Prix_total' => $Prix_total];
+
+  }
+
+}
+header('Location: index.php');
 ?>
 <!DOCTYPE html>
 <html>
