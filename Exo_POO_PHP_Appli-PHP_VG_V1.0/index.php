@@ -44,7 +44,7 @@ spl_autoload_register(function($class){
       </label>
 
       <label for="quantite">Quantité
-      <input type="number" name="quantite" min=1 id="quantite" required>
+      <input type="number" name="quantite" min=1 step="1" id="quantite" required>
       </label>
       <label for="Prix_total" >Prix total
       <input type="number" name="Prix_total" id="Prix_total" disabled>

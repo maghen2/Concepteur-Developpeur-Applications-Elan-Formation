@@ -22,6 +22,7 @@ session_start();
     <caption><h2>récapitulatif du panier </h2></caption>
     <thead>
       <tr>
+        <th>N°</th>
         <th>Nom du produit</th>
         <th>Prix unitaire</th>
         <th>Quantité</th>
@@ -31,11 +32,11 @@ session_start();
   <?php
    if(isset($_SESSION['produit'])){
     $total = 0;
-    foreach($_SESSION['produit'] as $produit){
+    foreach($_SESSION['produit'] as $index => $produit){
       $total += $produit['Prix_total'];
-      echo "<tr> <td>".$produit['nom']."</td> <td>".$produit['prix']."€</thd> <td>".$produit['quantite']."</td> <td>".$produit['Prix_total']." €</td> </tr>";
+      echo "<tr> <td>".$index."</td> <td>".$produit['nom']."</td> <td>".$produit['prix']."€</thd> <td>".$produit['quantite']."</td> <td>".$produit['Prix_total']." €</td> </tr>";
     }
-    echo "<tr> <th colspan=3>Total</th> <th>".$total." €</th> </tr>";
+    echo "<tr> <th colspan=4>Total</th> <th>".$total." €</th> </tr>";
   }
   ?>
    
