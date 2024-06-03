@@ -5,6 +5,7 @@ setlocale(LC_TIME, ['fr', 'fra', 'fr_FR']);
 spl_autoload_register(function($class){
   require_once("class/".$class.".php");
 });
+session_start();
 ?>
 <!DOCTYPE html>
 <html>
@@ -15,22 +16,28 @@ spl_autoload_register(function($class){
   </head>
   <body>
     <h1>Exo_POO_PHP_Appli-PHP_VG_V1.0 Caddy - Elan Formation</h1>
-<h2>Cahier des charges  </h2>
-<p>L'application doit permettre à un utilisateur de renseigner différents produits par le biais d'un formulaire, produits qui seront consultables sur une page récapitulative. L'enregistrement en session de chaque produit est nécessaire. L'application ne nécessite pour l'instant aucun rendu visuel spécifique. Trois pages sont nécessaires à cela :</p>
-<ol>
-<li>index.php </li>
-<p>Contiendra un formulaire permettant de renseigner les informations suivantes :</p>
-<ul>
-<li>Le nom du produit</li>
-<li>Son prix unitaire</li>
-<li>La quantité désirée</li>
-</ul>
-<li>traitement.php</li>
-<p>Traitera la requête provenant de la page index.php (après soumission du formulaire), ajoutera le produit avec son nom, son prix, sa quantité et le total calculé (prix × quantité) en session.</p>
-<li>recap.php</li>
-<p>Affichera tous les produits en session (et en détail) et présentera le total général de tous les produits ajoutés.</p>
-</ol>
-    <h1>Solution de l'exercice</h1>
 
+<div class="form">
+  <table border=1 collapse>
+    <caption><h2>récapitulatif du panier </h2></caption>
+    <thead>
+      <tr>
+        <th>Nom du produit</th>
+        <th>Prix unitaire</th>
+        <th>Quantité</th>
+        <th>Prix total</th>
+        </tr>
+    </thead>
   <?php
- 
+   if(isset($_SESSION['produit'])){
+    $total = 0;
+    foreach($_SESSION['produit'] as $produit){
+      $total += $produit['Prix_total'];
+      echo "<tr> <td>".$produit['nom']."</td> <td>".$produit['prix']."€</thd> <td>".$produit['quantite']."</td> <td>".$produit['Prix_total']." €</td> </tr>";
+    }
+    echo "<tr> <th colspan=3>Total</th> <th>".$total." €</th> </tr>";
+  }
+  ?>
+   
+  </table>
+</div>

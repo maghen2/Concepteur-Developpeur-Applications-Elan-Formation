@@ -11,6 +11,7 @@ spl_autoload_register(function($class){
   <head>
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <link rel="stylesheet" href="css/style.css">
+  <script src="js/script.js"></script>
   <title>Exo_POO_PHP_Appli-PHP_VG_V1.0 Caddy - Elan Formation</title>
   </head>
   <body>
@@ -39,11 +40,11 @@ spl_autoload_register(function($class){
       </label>
 
       <label for="prix">Prix unitaire
-      <input type="number" name="prix" id="prix" required>
+      <input type="number" name="prix" id="prix" min="0" max="100" step="0.01" required>
       </label>
 
       <label for="quantite">Quantité
-      <input type="number" name="quantite" id="quantite" required>
+      <input type="number" name="quantite" min=1 id="quantite" required>
       </label>
       <label for="Prix_total" >Prix total
       <input type="number" name="Prix_total" id="Prix_total" disabled>
@@ -52,6 +53,7 @@ spl_autoload_register(function($class){
       <button type="submit" name="submit">Ajouter</button> <button type="reset" name="reset">Annuler</button>
       </label>
     </form>
+    <p><a href="recap.php">Voir le récapitulatif du panier</a></p>
     </div>
 
   <?php
