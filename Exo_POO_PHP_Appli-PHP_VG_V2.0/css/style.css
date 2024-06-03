@@ -1,0 +1,15 @@
+div.form {
+    margin: 0 auto;
+    width: 350px;
+    padding: 10px;
+    border: 1px solid #0F0;
+    background: #090;
+    border-radius: 5px;
+}
+label{
+    display: block;
+    width: 100%;
+    color: #fff;
+    font-size: 1.2em;
+}
+

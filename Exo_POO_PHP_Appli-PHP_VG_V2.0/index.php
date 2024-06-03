@@ -5,33 +5,13 @@ setlocale(LC_TIME, ['fr', 'fra', 'fr_FR']);
 spl_autoload_register(function($class){
   require_once("class/".$class.".php");
 });
-
-session_start();
-
-if(isset($_POST['submit'])){
-  $nom = filter_input(INPUT_POST, "nom", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-  $prix = filter_input(INPUT_POST, "prix", FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
-  $quantite = filter_input(INPUT_POST, "quantite", FILTER_VALIDATE_INT);
-  $Prix_total = $prix * $quantite;
-
-  if($nom && $prix && $quantite){
-    // Methode objet
-    $produit = new Produit($nom, $prix, $quantite, $Prix_total);
-    $_SESSION['produit_POO'][] = $produit;
-
-// Methode procedurale
-    $_SESSION['produit'][] = ['nom' => $nom, 'prix' => $prix, 'quantite' => $quantite, 'Prix_total' => $Prix_total];
-
-  }
-
-}
-header('Location: index.php');
 ?>
 <!DOCTYPE html>
 <html>
   <head>
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <link rel="stylesheet" href="css/style.css">
+  <script src="js/script.js"></script>
   <title>Exo_POO_PHP_Appli-PHP_VG_V1.0 Caddy - Elan Formation</title>
   </head>
   <body>
@@ -52,6 +32,29 @@ header('Location: index.php');
 <p>Affichera tous les produits en session (et en détail) et présentera le total général de tous les produits ajoutés.</p>
 </ol>
     <h1>Solution de l'exercice</h1>
+    <div class="form">
+    <h2 style="text-align: center">Ajouter des produits</h2>
+    <form action="traitement.php" method="post">
+      <label for="nom">Nom du produit
+      <input type="text" name="nom" id="nom" required>
+      </label>
+
+      <label for="prix">Prix unitaire
+      <input type="number" name="prix" id="prix" min="0" max="100" step="0.01" required>
+      </label>
+
+      <label for="quantite">Quantité
+      <input type="number" name="quantite" min=1 step="1" id="quantite" required>
+      </label>
+      <label for="Prix_total" >Prix total
+      <input type="number" name="Prix_total" id="Prix_total" disabled>
+      </label>
+      <label for="submit">
+      <button type="submit" name="submit">Ajouter</button> <button type="reset" name="reset">Annuler</button>
+      </label>
+    </form>
+    <p><a href="recap.php">Voir le récapitulatif du panier</a></p>
+    </div>
 
   <?php
  
