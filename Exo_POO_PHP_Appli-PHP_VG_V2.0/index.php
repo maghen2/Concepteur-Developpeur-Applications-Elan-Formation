@@ -70,7 +70,7 @@ Modifier les quantités de chaque produit grâce à deux points "+" et "-" posit
       </label>
     </form>
     <nav>
-      <li><a href="recap.php">Ajouter de nouveaux produits</a></li>
+      <li><a href="traitement.php">Ajouter de nouveaux produits</a></li>
       <li><a href="recap.php">Voir le récapitulatif du panier</a></li>
     </nav>
     </div>
