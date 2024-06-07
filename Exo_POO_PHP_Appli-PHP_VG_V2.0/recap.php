@@ -19,7 +19,7 @@ session_start();
     <h1>Exo_POO_PHP_Appli-PHP_VG_V1.0 Caddy - Elan Formation</h1>
 
 <div class="form">
-  <table border=1 collapse>
+  <table border=1 collapse width="100%">
     <caption><h2>récapitulatif du panier </h2></caption>
     <?php if(isset($_SESSION['nombreArticles'])) echo' <h3>'.$_SESSION['nombreArticles'].' articles actuellement présents dans le panier</h3>'; ?>
     <thead>
@@ -39,8 +39,9 @@ session_start();
    if(isset($_SESSION['produit'])){  // on verifie si des produits existent dans la session
     $total = 0;
     foreach($_SESSION['produit'] as $id => $produit){
+      $produit['Prix_total'] = $produit['quantite']*$produit['prix'];
       $total += $produit['Prix_total'];
-      echo "<tr> <td>".$id."</td> <td>".$produit['nom']."</td> <td>".$produit['prix']."€</thd> <td><a href='traitement.php?id=$id&action=down-qtt'>-</a>".$produit['quantite']."<a href='traitement.php?id=$id&action=up-qtt'>+</a></td> <td>".$produit['quantite']*$produit['prix']." €</td> <td><a href='traitement.php?id=".$id.'&action=delete\'><img width="30px" src="src/supprimer.png" alt="Supprimer l\'artcle" title="Supprimer l\'artcle"> </a></td></tr>';
+      echo "<tr> <td>".$id."</td> <td>".$produit['nom']."</td> <td>".$produit['prix']."€</thd> <td><a href='traitement.php?id=$id&action=down-qtt'>-</a>".$produit['quantite']."<a href='traitement.php?id=$id&action=up-qtt'>+</a></td> <td>".$produit['Prix_total']." €</td> <td><a href='traitement.php?id=".$id.'&action=delete\'><img width="30px" src="src/supprimer.png" alt="Supprimer l\'artcle" title="Supprimer l\'artcle"> </a></td></tr>';
     }
     echo "<tr> <th colspan=4>Total</th> <th colspan=2>".$total." €</th> </tr>";
   }
