@@ -1,6 +1,6 @@
 <?php
 class Produit{
-  private string$nom;
+  private string $nom;
   private float $prix, $Prix_total;
   private int $quantite;
 

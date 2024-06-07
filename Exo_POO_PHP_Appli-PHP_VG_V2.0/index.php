@@ -50,6 +50,7 @@ Modifier les quantités de chaque produit grâce à deux points "+" et "-" posit
     <h1>Solution de l'exercice</h1>
     <div class="form">
     <h2 style="text-align: center">Ajouter des produits</h2>
+   <?php echo' <h3>'.$_SESSION['nombreArticles'].' articles actuellement dans le panier</h3>'?>;
     <form action="traitement.php" method="post">
       <label for="nom">Nom du produit
       <input type="text" name="nom" id="nom" required>

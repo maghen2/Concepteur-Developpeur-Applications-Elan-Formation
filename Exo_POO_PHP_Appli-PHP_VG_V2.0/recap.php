@@ -20,6 +20,7 @@ session_start();
 <div class="form">
   <table border=1 collapse>
     <caption><h2>récapitulatif du panier </h2></caption>
+    <?php echo' <h3>'.$_SESSION['nombreArticles'].' articles actuellement dans le panier</h3>'?>;
     <thead>
       <tr>
         <th>N°</th>
