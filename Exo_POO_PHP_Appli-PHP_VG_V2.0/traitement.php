@@ -41,6 +41,7 @@ if(isset($_SESSION['produit'])){  // on verifie si des produits existent dans la
       case 'clear' :
        $_SESSION['produit'] = [];
        $_SESSION['nombreArticles'] = 0;
+       
         // unset($_SESSION["produit"]);
         break;
       case 'delete' :
@@ -61,7 +62,9 @@ if(isset($_SESSION['produit'])){  // on verifie si des produits existent dans la
           case 'down-qtt' :
             if(isset($_GET["id"]) and isset($_SESSION['produit'][$_GET["id"]]) ){ // on verifie si l'utlisateur a trasmis l'id d'un produit valide
               $_SESSION['produit'][$_GET["id"]]["quantite"] -= 1;  
-              $_SESSION['nombreArticles'] -= 1; 
+              //($quantite>0)? $_SESSION['nombreArticles'] -= 1 : unset($_SESSION['produit'][$_GET["id"]]);
+              if ($_SESSION['produit'][$_GET["id"]]["quantite"]>=0) $_SESSION['nombreArticles'] -= 1;
+              else unset($_SESSION['produit'][$_GET["id"]]);
             }
             break;          
       default :
