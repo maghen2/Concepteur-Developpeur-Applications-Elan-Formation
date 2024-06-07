@@ -40,12 +40,14 @@ if(isset($_SESSION['produit'])){  // on verifie si des produits existent dans la
     switch($_GET["action"]){
       case 'clear' :
        $_SESSION['produit'] = [];
+       $_SESSION['nombreArticles'] = 0;
         // unset($_SESSION["produit"]);
         break;
       case 'delete' :
         if(isset($_GET["id"]) and isset($_SESSION['produit'][$_GET["id"]]) ){ // on verifie si l'utlisateur a trasmis l'id d'un produit valide
           $script = '<script>alert("produit '.$_SESSION["produit"][$_GET["id"]]["nom"].' supprimé!")</script>'; 
-          $_SESSION['script'] .= $script;          
+          $_SESSION['script'] .= $script; 
+          $_SESSION['nombreArticles'] -= $_SESSION['produit'][$_GET["id"]]["quantite"];         
           unset($_SESSION['produit'][$_GET["id"]]);
 
         }
@@ -53,11 +55,13 @@ if(isset($_SESSION['produit'])){  // on verifie si des produits existent dans la
         case 'up-qtt' :
           if(isset($_GET["id"]) and isset($_SESSION['produit'][$_GET["id"]]) ){ // on verifie si l'utlisateur a trasmis l'id d'un produit valide
             $_SESSION['produit'][$_GET["id"]]["quantite"] += 1;  
+            $_SESSION['nombreArticles'] += 1; 
           }
           break; 
           case 'down-qtt' :
             if(isset($_GET["id"]) and isset($_SESSION['produit'][$_GET["id"]]) ){ // on verifie si l'utlisateur a trasmis l'id d'un produit valide
               $_SESSION['produit'][$_GET["id"]]["quantite"] -= 1;  
+              $_SESSION['nombreArticles'] -= 1; 
             }
             break;          
       default :
