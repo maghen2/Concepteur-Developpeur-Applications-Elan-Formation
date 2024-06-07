@@ -32,4 +32,25 @@ if(isset($_POST['submit'])){
   $_SESSION['dernierAjout'] = true;
 }
 else{$_SESSION['dernierAjout'] = false;}
-header('Location: index.php');
+
+if(isset($_SESSION['produit'])){  // on verifie si des produits existent dans la session
+
+  //Supprimer un produit en session (selon le choix de l'utilisateur)
+  // Supprimer tous les produits en session en une seule fois
+  if(isset($_GET["action"]) and $_GET["action"] !=""){ // on verifie si l'utlisateur demande une action
+    switch($_GET["action"]){
+      case 'clear' :
+        $_SESSION['produit'] = [];
+        break;
+      case 'supprimer' :
+        if(isset($_GET["id"]) and isset($_SESSION['produit'][$_GET["id"]]) ){ // on verifie si l'utlisateur a trasmis l'id d'un produit valide
+          unset($_SESSION['produit'][$_GET["id"]]);  
+        }
+        break;  
+      default :
+    }
+  }
+}
+  (isset($_SESSION['HTTP_REFERER']) and stripos($_SERVER['HTTP_REFERER'], "recap.php"))?  header('Location: recap.php') : header('Location: index.php');
+
+?>
