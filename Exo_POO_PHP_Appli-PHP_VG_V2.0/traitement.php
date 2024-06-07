@@ -12,8 +12,11 @@ if(isset($_POST['submit'])){
   $nom = filter_input(INPUT_POST, "nom", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
   $prix = filter_input(INPUT_POST, "prix", FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
   $quantite = filter_input(INPUT_POST, "quantite", FILTER_VALIDATE_INT);
-
   $Prix_total = $prix * $quantite;
+
+  // cast du typage des variables obtenues du formulaire
+  settype($prix, "float");
+  settype($quantite, "int");
 
   if($nom && $prix && $quantite){
     // Methode objet __construct(string $nom, float $prix, int $quantite, float $Prix_total)

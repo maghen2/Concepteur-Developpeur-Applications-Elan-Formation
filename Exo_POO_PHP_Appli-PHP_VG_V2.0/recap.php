@@ -20,7 +20,7 @@ session_start();
 <div class="form">
   <table border=1 collapse>
     <caption><h2>récapitulatif du panier </h2></caption>
-    <?php echo' <h3>'.$_SESSION['nombreArticles'].' articles actuellement dans le panier</h3>'?>;
+    <?php if(isset($_SESSION['nombreArticles'])) echo' <h3>'.$_SESSION['nombreArticles'].' articles actuellement présents dans le panier</h3>'; ?>
     <thead>
       <tr>
         <th>N°</th>
@@ -42,4 +42,8 @@ session_start();
   ?>
    
   </table>
+  <nav>
+      <li><a href="traitement.php">Ajouter de nouveaux produits</a></li>
+      <li><a href="recap.php">Voir le récapitulatif du panier</a></li>
+  </nav>
 </div>

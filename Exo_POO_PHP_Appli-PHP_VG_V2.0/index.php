@@ -5,6 +5,7 @@ setlocale(LC_TIME, ['fr', 'fra', 'fr_FR']);
 spl_autoload_register(function($class){
   require_once("class/".$class.".php");
 });
+session_start();
 ?>
 <!DOCTYPE html>
 <html>
@@ -50,7 +51,7 @@ Modifier les quantités de chaque produit grâce à deux points "+" et "-" posit
     <h1>Solution de l'exercice</h1>
     <div class="form">
     <h2 style="text-align: center">Ajouter des produits</h2>
-   <?php echo' <h3>'.$_SESSION['nombreArticles'].' articles actuellement dans le panier</h3>'?>;
+    <?php if(isset($_SESSION['nombreArticles'])) echo' <h3>'.$_SESSION['nombreArticles'].' articles actuellement présents dans le panier</h3>'; ?>
     <form action="traitement.php" method="post">
       <label for="nom">Nom du produit
       <input type="text" name="nom" id="nom" required>
