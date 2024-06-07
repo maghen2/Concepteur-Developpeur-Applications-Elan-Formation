@@ -33,6 +33,9 @@ session_start();
         </tr>
     </thead>
   <?php
+  if(isset($_SESSION['script'])) echo $_SESSION['script'];
+  $_SESSION['script']="";
+
    if(isset($_SESSION['produit'])){  // on verifie si des produits existent dans la session
     $total = 0;
     foreach($_SESSION['produit'] as $id => $produit){

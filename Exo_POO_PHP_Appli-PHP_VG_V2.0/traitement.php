@@ -44,10 +44,24 @@ if(isset($_SESSION['produit'])){  // on verifie si des produits existent dans la
         break;
       case 'delete' :
         if(isset($_GET["id"]) and isset($_SESSION['produit'][$_GET["id"]]) ){ // on verifie si l'utlisateur a trasmis l'id d'un produit valide
-          unset($_SESSION['produit'][$_GET["id"]]);  
+          $script = '<script>alert("produit '.$_SESSION["produit"][$_GET["id"]]["nom"].' supprimé!")</script>'; 
+          $_SESSION['script'] .= $script;          
+          unset($_SESSION['produit'][$_GET["id"]]);
+
         }
-        break;  
+        break; 
+        case 'up-qtt' :
+          if(isset($_GET["id"]) and isset($_SESSION['produit'][$_GET["id"]]) ){ // on verifie si l'utlisateur a trasmis l'id d'un produit valide
+            $_SESSION['produit'][$_GET["id"]]["quantite"] += 1;  
+          }
+          break; 
+          case 'down-qtt' :
+            if(isset($_GET["id"]) and isset($_SESSION['produit'][$_GET["id"]]) ){ // on verifie si l'utlisateur a trasmis l'id d'un produit valide
+              $_SESSION['produit'][$_GET["id"]]["quantite"] -= 1;  
+            }
+            break;          
       default :
+
     }
   }
 }
