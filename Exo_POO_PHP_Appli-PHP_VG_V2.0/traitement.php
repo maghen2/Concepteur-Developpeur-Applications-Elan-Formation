@@ -29,6 +29,7 @@ if(isset($_POST['submit'])){
   //Afficher le nombre de produits présents en session à tout moment, quelle que soit la page affichée (on parle ici de la quantité totale d’articles, non pas du nombre de produits distincts)
   $_SESSION['nombreArticles'] += $quantite;
   }
-
+  $_SESSION['dernierAjout'] = true;
 }
+else{$_SESSION['dernierAjout'] = false;}
 header('Location: index.php');

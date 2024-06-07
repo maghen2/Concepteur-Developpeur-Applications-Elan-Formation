@@ -51,7 +51,13 @@ Modifier les quantités de chaque produit grâce à deux points "+" et "-" posit
     <h1>Solution de l'exercice</h1>
     <div class="form">
     <h2 style="text-align: center">Ajouter des produits</h2>
-    <?php if(isset($_SESSION['nombreArticles'])) echo' <h3>'.$_SESSION['nombreArticles'].' articles actuellement présents dans le panier</h3>'; ?>
+    <?php if(isset($_SESSION['nombreArticles'])) echo' <h3>'.$_SESSION['nombreArticles'].' articles actuellement présents dans le panier</h3>'; 
+          if(isset($_SESSION['HTTP_REFERER']) and stripos($_SERVER['HTTP_REFERER'], "index.php")){
+            if(isset($_SESSION['dernierAjout']) and $_SESSION['dernierAjout'] == true) $alert= "dernier article a été ajouté avec succés";
+            else $alert ="Le dernier article n'a pas pu être ajouté";
+            echo "<h4>$alert</h4>";
+          }
+    ?>
     <form action="traitement.php" method="post">
       <label for="nom">Nom du produit
       <input type="text" name="nom" id="nom" required>
