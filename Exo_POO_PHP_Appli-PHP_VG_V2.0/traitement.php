@@ -34,15 +34,15 @@ if(isset($_POST['submit'])){
 else{$_SESSION['dernierAjout'] = false;}
 
 if(isset($_SESSION['produit'])){  // on verifie si des produits existent dans la session
-
   //Supprimer un produit en session (selon le choix de l'utilisateur)
   // Supprimer tous les produits en session en une seule fois
   if(isset($_GET["action"]) and $_GET["action"] !=""){ // on verifie si l'utlisateur demande une action
     switch($_GET["action"]){
       case 'clear' :
-        $_SESSION['produit'] = [];
+       $_SESSION['produit'] = [];
+        // unset($_SESSION["produit"]);
         break;
-      case 'supprimer' :
+      case 'delete' :
         if(isset($_GET["id"]) and isset($_SESSION['produit'][$_GET["id"]]) ){ // on verifie si l'utlisateur a trasmis l'id d'un produit valide
           unset($_SESSION['produit'][$_GET["id"]]);  
         }
@@ -51,6 +51,12 @@ if(isset($_SESSION['produit'])){  // on verifie si des produits existent dans la
     }
   }
 }
-  (isset($_SESSION['HTTP_REFERER']) and stripos($_SERVER['HTTP_REFERER'], "recap.php"))?  header('Location: recap.php') : header('Location: index.php');
 
+header('Location: recap.php');
+/*
+if(isset($_SESSION['HTTP_REFERER']) and stripos($_SERVER['HTTP_REFERER'], "recap.php")){
+header('Location: recap.php');
+}
+else {header('Location: index.php');}
+*/
 ?>

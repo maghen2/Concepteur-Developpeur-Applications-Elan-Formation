@@ -24,7 +24,11 @@
 td, th {
     color: white;
 }
-
+td a{
+    text-decoration: none;
+    font-weight: 125;
+    font-size: large;
+}
 .form h2{
     font-size: 25px;
     font-weight: 700;

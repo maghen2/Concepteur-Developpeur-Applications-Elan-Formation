@@ -58,7 +58,7 @@ Modifier les quantités de chaque produit grâce à deux points "+" et "-" posit
             echo "<h4>$alert</h4>";
           }
     ?>
-    <form action="traitement.php" method="post">
+    <form action="traitement.php?action=add" method="post">
       <label for="nom">Nom du produit
       <input type="text" name="nom" id="nom" required>
       </label>
