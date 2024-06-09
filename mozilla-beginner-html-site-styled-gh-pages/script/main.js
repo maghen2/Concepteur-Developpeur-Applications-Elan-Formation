@@ -1,3 +1,8 @@
+/*
+Les bases de JavaScript - Apprendre le développement web | MDN
+JavaScript est un langage de programmation qui ajoute de l'interactivité à votre site web (par exemple : jeux, réponses
+*/
+
 // Changement du texte de la balise h1
 let myHeading = document.querySelector("h1");
 myHeading.textContent = "Bonjour, monde !";
