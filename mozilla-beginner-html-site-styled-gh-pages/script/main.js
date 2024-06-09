@@ -8,7 +8,11 @@ myTitle.textContent = "Bonjour, monde !";
 
 // Changement de l'image
 let myPicture =  document.querySelector("img");
-myPicture.src = "https://blog.mozilla.org/opendesign/files/2019/06/FX_Design_Blog_Logos_Family.jpg";
-myPicture.setAttribute("style", "width:100%");
+myPicture.addEventListener("click", function(){
+    myPicture.src = "https://blog.mozilla.org/opendesign/files/2019/06/FX_Design_Blog_Logos_Family.jpg";
+    //myPicture.getAttribute("src")
+    myPicture.setAttribute("style", "width:100%");
+});
+
 
 // C
