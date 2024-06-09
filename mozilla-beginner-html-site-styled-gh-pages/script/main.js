@@ -15,4 +15,13 @@ myPicture.addEventListener("click", function(){
 });
 
 
-// C
+// bouton changement d'utlisateur
+let myButton = document.querySelector("button");
+
+function setUserName(){
+    let myName = prompt("Quel est votre prénom?");
+    localStorage.setItem("name", myName);
+    myHeading.textContent = "Bonjour "+myName+"!";
+}
+
+myButton.addEventListener("click", function (){setUserName()});
