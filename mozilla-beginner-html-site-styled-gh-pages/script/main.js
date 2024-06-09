@@ -19,9 +19,17 @@ myPicture.addEventListener("click", function(){
 let myButton = document.querySelector("button");
 
 function setUserName(){
-    let myName = prompt("Quel est votre prénom?");
-    localStorage.setItem("name", myName);
-    myHeading.textContent = "Bonjour "+myName+"!";
+    // On verifie si un user est dejà stocké en local, si c'est le cas on l'affiche
+    if(typeof(localStorage.getItem("name")) != 'undefined' && localStorage.getItem("name") != ""){ 
+        let myStoredName = localStorage.getItem("name");
+        myTitle.textContent =  myHeading.textContent = "Bonjour "+myStoredName+"!";
+    } 
+    // dans le cas contraire, on en crée un, le stock en local et on l'affiche
+    else{
+        let myName = prompt("Quel est votre prénom?");
+        localStorage.setItem("name", myName);
+        myTitle.textContent =  myHeading.textContent = "Bonjour "+myName+"!";
+    }
 }
 
 myButton.addEventListener("click", function (){setUserName()});
