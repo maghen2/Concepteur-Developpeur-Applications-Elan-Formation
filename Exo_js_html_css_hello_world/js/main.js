@@ -22,3 +22,5 @@ function printMultiplicationTable(){
     } while(i<=10)
 }
 printMultiplicationTable();
+
+
