@@ -1,3 +1,8 @@
+//import math
+import { create, all } from 'mathjs'
+//init math
+const math = create(all,  {})
+
 // Exercice JS Hello World - Elan Formation
 console.log("Exercice JS Hello World - Elan Formation");
 
