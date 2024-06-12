@@ -23,4 +23,26 @@ function printMultiplicationTable(){
 }
 printMultiplicationTable();
 
+// ecrire une fonction qui invite l'utlisateur à deviner un nombre secret en au plsu 5 tentatives
+function findSecretNumber(){
+    const secretNumber = math.floor(math.random()*100);
+    const maxAttempt = 5;
+    let attemtp = maxAttempt;
+    let number = 0;
+
+    do{ //
+        number = window.prompt("Pourras-tu trouver le nombre secret?\n ${attemtp} tentatives restantes!");
+        attemtp -= 1;
+    } while(number != secretNumber && attemtp >= 0)
+    
+    if(number != secretNumber) {console.log("Vous avez perdu. Le nombre secret était ${secretNumber}");}
+    else {console.log("Vous avez gagné en ${maxAttempt - attemtp} tentatives!")}
+}
+findSecretNumber();
+
+let tab = [11,77,58,67,42,18,11,19,63];
+tab.push(1);
+console.log(tab);
+
+
 
