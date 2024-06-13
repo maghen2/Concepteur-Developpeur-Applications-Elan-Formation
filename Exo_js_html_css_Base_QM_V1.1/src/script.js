@@ -19,6 +19,7 @@ divCard.addEventListener("click", ()=>{
     let alert = " Couleur du texte: "+window.getComputedStyle(divCardSpan).getPropertyValue('color');
     alert += "\n couleur de fond: "+window.getComputedStyle(divCard).getPropertyValue('background-color');
     alert += "\n Hauteur et largeur du carré: "+window.getComputedStyle(divCard).getPropertyValue('width')+" x "+window.getComputedStyle(divCard).getPropertyValue('height');
-
+    alert += "\n Nom de la classe du carré: "+divCard.getAttribute("id");
+    alert += "\n Police et taille du texte: "+window.getComputedStyle(divCardSpan).getPropertyValue('font-family')+" "+window.getComputedStyle(divCardSpan).getPropertyValue('font-size');
     window.alert(alert);
 })
