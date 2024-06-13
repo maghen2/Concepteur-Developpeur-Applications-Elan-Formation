@@ -1,0 +1,42 @@
+*{
+    box-sizing: border-box;
+    font-family: "Poppins", "verdana", "sans-serif";
+    color: black;
+}
+body{
+    min-width: 100vw;
+    min-height: 100vh;
+    background-color: rgba(68, 117, 136, 0.548);
+    background-image: url("gris.png");
+}
+
+div#todoCards{
+    display: flex;
+    flex-wrap: wrap;
+}
+div.todoCard:hover{
+    transform: translate(-5px, -5px);
+    filter: grayscale(-0.9);
+    cursor: copy;
+    transition: 1s;
+}
+div.todoCard textarea.task{
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    border-radius: 5px;
+    border: 1px dashed darkblue;
+    color: darkblue;
+    background-color: #ccf;
+    font-weight: bold;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+    transition: 1s;
+}
+
+div.todoCard span{
+    color: darkblue; 
+    font-size: 35px;
+    font-weight: bold;
+}
+div.todoCard span:hover {
+    cursor: no-drop;
+}
