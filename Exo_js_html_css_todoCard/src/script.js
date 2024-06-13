@@ -1,23 +1,33 @@
 
+function getRandomColor() {
+    let letters = '0123456789ABCDEF';
+    let color, backgroundColor;
+    color = backgroundColor = '';
+    for (var i = 0; i < 6; i++) {
+        rgb = Math.floor(Math.random() * 16);
+        backgroundColor += letters[rgb];
+        color += letters[Math.floor(rgb/2)];
+    }
+    return [color, backgroundColor];
+}
+
 // On crée la fonction d’ajout addTask()
 function addTask(){
     //personnalisation des tâches avec de numéro et de couleurs differentes
-    let backgroundColor = Math.floor(Math.random()*0xFFFFFF);
-    let color = Math.floor(backgroundColor/2);
-    color.toString(16);
-    backgroundColor.toString(16);
-
+    let colors = getRandomColor();
+    console.log(colors);
     const newTask = taskCard.cloneNode(true); // clonage de la div .todoCard existante
     const newTextArea = newTask.querySelector(".task");
-    newTextArea.setAttribute("style", "color: #"+color+"; background-color: #"+backgroundColor); // application de la personnalisation des styles
+    newTextArea.setAttribute("style", "color: #"+colors[0]+"; border-color: #"+colors[0]+"; background-color: #"+colors[1]); // application de la personnalisation des styles
     const newDelBtn = newTask.querySelector(".delBtn"); // ajout de l'action de deleteBtn au nouveau child crées
+    newDelBtn.setAttribute("style", "color: #"+colors[0]);
     newDelBtn.addEventListener("click", function(){
         deleteTask(newTask);
     });
     counter += 1; // on incremente le compteur de tâches
     newTextArea.value = "New task "+counter;
     tasksContainer.appendChild(newTask); // on ajoute la nouvelle tache au noeud parent
-    divCount.innerHTML = "<p><b>"+counter+" tâches</b></p>";
+    divCount.innerHTML = "<p style='color: #"+colors[0]+"; font-weight: bolder;'>"+counter+" tâches</p>";
 }
 
 // On crée la fonction de suppression deleteTask()
@@ -45,4 +55,5 @@ delBtn.addEventListener("click", function(){
 let counter = 1; // on initialise le compteur
 const divCount = document.querySelector("#count"); // on selectionne la div du conteur
 divCount.innerHTML = "<p><b>"+counter+" tâches</b></p>";
+
 

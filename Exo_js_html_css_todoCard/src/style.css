@@ -14,11 +14,18 @@ div#todoCards{
     display: flex;
     flex-wrap: wrap;
 }
-textarea.task{
+div.todoCard textarea.task{
     font-size: 0.8rem;
     letter-spacing: 1px;
     border-radius: 5px;
     border: 1px dashed darkblue;
     color: darkblue;
     background-color: #ccf;
+    font-weight: bold;
+}
+
+div.todoCard span{
+    color: darkblue; 
+    font-size: 35px;
+    font-weight: bold;
 }
