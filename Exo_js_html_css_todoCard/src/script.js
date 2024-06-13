@@ -10,7 +10,7 @@ function addTask(){
     newTextArea.value = "New task";
     tasksContainer.appendChild(newTask); // on ajoute la nouvelle tache au noeud parent
     counter += 1; // on incremente le compteur de tâches
-    divCount.textContent = counter+" tâches";
+    divCount.innerHTML = "<p><b>"+counter+" tâches</b></p>";
 }
 
 // On crée la fonction de suppression deleteTask()
@@ -18,7 +18,7 @@ function deleteTask(taskCard){
     // taskCard.remove();
     tasksContainer.removeChild(taskCard);
     counter -= 1; // on desincremente le compteur de taches
-    divCount.textContent = counter+" tâches";
+    divCount.innerHTML = "<p><b>"+counter+" tâches</b></p>";
 }
 
 // On ajoute un écouteur d’évènement sur le bouton pour appeler une fonction ajout
@@ -36,4 +36,4 @@ delBtn.addEventListener("click", function(){
 
 let counter = 1; // on initialise le compteur
 const divCount = document.querySelector("#count"); // on selectionne la div du conteur
-divCount.textContent = counter+" tâches";
+divCount.innerHTML = "<p><b>"+counter+" tâches</b></p>";
