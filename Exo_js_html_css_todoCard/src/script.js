@@ -1,8 +1,15 @@
 
 // On crée la fonction d’ajout addTask()
 function addTask(){
+    //personnalisation des tâches avec de numéro et de couleurs differentes
+    let backgroundColor = Math.floor(Math.random()*0xFFFFFF);
+    let color = Math.floor(backgroundColor/2);
+    color.toString(16);
+    backgroundColor.toString(16);
+
     const newTask = taskCard.cloneNode(true); // clonage de la div .todoCard existante
     const newTextArea = newTask.querySelector(".task");
+    newTextArea.setAttribute("style", "color: #"+color+"; background-color: #"+backgroundColor); // application de la personnalisation des styles
     const newDelBtn = newTask.querySelector(".delBtn"); // ajout de l'action de deleteBtn au nouveau child crées
     newDelBtn.addEventListener("click", function(){
         deleteTask(newTask);
@@ -39,4 +46,3 @@ let counter = 1; // on initialise le compteur
 const divCount = document.querySelector("#count"); // on selectionne la div du conteur
 divCount.innerHTML = "<p><b>"+counter+" tâches</b></p>";
 
-// créer des div de couleurs differentes
