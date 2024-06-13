@@ -7,9 +7,9 @@ function addTask(){
     newDelBtn.addEventListener("click", function(){
         deleteTask(newTask);
     });
-    newTextArea.value = "New task";
-    tasksContainer.appendChild(newTask); // on ajoute la nouvelle tache au noeud parent
     counter += 1; // on incremente le compteur de tâches
+    newTextArea.value = "New task "+counter;
+    tasksContainer.appendChild(newTask); // on ajoute la nouvelle tache au noeud parent
     divCount.innerHTML = "<p><b>"+counter+" tâches</b></p>";
 }
 
@@ -34,6 +34,9 @@ delBtn.addEventListener("click", function(){
     deleteTask(taskCard);
 });
 
+// Ajouter une div dans l’html où l’on indiquera le nombre de cards (le compteur)
 let counter = 1; // on initialise le compteur
 const divCount = document.querySelector("#count"); // on selectionne la div du conteur
 divCount.innerHTML = "<p><b>"+counter+" tâches</b></p>";
+
+// créer des div de couleurs differentes
