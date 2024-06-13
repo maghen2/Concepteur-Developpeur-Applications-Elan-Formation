@@ -1,59 +1,24 @@
+/*
+Exercices JS - Base – Elan Formation
+Vous devez avoir fait l’exercice guidé TODO pour avoir la compréhension nécessaire de ces exercices. Si ce n’est pas le cas référez-vous à votre formateur du jour
 
-function getRandomColor() {
-    let letters = '0123456789ABCDEF';
-    let color, backgroundColor;
-    color = backgroundColor = '';
-    for (var i = 0; i < 6; i++) {
-        rgb = Math.floor(Math.random() * 16);
-        backgroundColor += letters[rgb];
-        color += letters[Math.floor(rgb/2)];
-    }
-    return [color, backgroundColor];
-}
+Exercice 1 : Créer une page web affichant un carré 200 x 200 pixels de la couleur et un contenu texte de votre choix.
+En cliquant sur la forme, une boîte de dialogue (alerte) affiche les informations suivantes
 
-// On crée la fonction d’ajout addTask()
-function addTask(){
-    //personnalisation des tâches avec de numéro et de couleurs differentes
-    let colors = getRandomColor();
-    console.log(colors);
-    const newTask = taskCard.cloneNode(true); // clonage de la div .todoCard existante
-    const newTextArea = newTask.querySelector(".task");
-    newTextArea.setAttribute("style", "color: #"+colors[0]+"; border-color: #"+colors[0]+"; background-color: #"+colors[1]); // application de la personnalisation des styles
-    const newDelBtn = newTask.querySelector(".delBtn"); // ajout de l'action de deleteBtn au nouveau child crées
-    newDelBtn.setAttribute("style", "color: #"+colors[0]);
-    newDelBtn.addEventListener("click", function(){
-        deleteTask(newTask);
-    });
-    counter += 1; // on incremente le compteur de tâches
-    newTextArea.value = "New task "+counter;
-    tasksContainer.appendChild(newTask); // on ajoute la nouvelle tache au noeud parent
-    divCount.innerHTML = "<p style='color: #"+colors[0]+"; font-weight: bolder;'>"+counter+" tâches</p>";
-}
+Couleur du texte et couleur de fond
+Hauteur et largeur du carré
+Nom de la classe du carré (class : "carre" par exemple)
+Police et taille du texte
+*/
 
-// On crée la fonction de suppression deleteTask()
-function deleteTask(taskCard){
-    // taskCard.remove();
-    tasksContainer.removeChild(taskCard);
-    counter -= 1; // on desincremente le compteur de taches
-    divCount.innerHTML = "<p><b>"+counter+" tâches</b></p>";
-}
+// on recupere l'element et on lui ajoute un evenement
+let divCard = document.querySelector("div#card"); // <div id="card">
+let divCardSpan = divCard.querySelector("span"); //<div id="card"> <span>
 
-// On ajoute un écouteur d’évènement sur le bouton pour appeler une fonction ajout
-const boutonAdd = document.querySelector("#btn"); // const boutonAdd = document.querySelector("button") on recupere le bnouton grace à son id
-//myButton.addEventListener("click", function (){setUserName()});
-boutonAdd.addEventListener("click", addTask); // on associe l'éxecution de la fonction addTask au clic sur le bouton #btn
-const taskCard = document.querySelector(".todoCard"); // div .todoCard
-const tasksContainer = document.querySelector("#todoCards"); // div #todoCards
+divCard.addEventListener("click", ()=>{
+    let alert = " Couleur du texte: "+window.getComputedStyle(divCardSpan).getPropertyValue('color');
+    alert += "\n couleur de fond: "+window.getComputedStyle(divCard).getPropertyValue('background-color');
+    alert += "\n Hauteur et largeur du carré: "+window.getComputedStyle(divCard).getPropertyValue('width')+" x "+window.getComputedStyle(divCard).getPropertyValue('height');
 
-// on ajoute l'action de la fonction deleteTask en cas de clic sur le bouton delBtn de loa carte
-const delBtn = taskCard.querySelector(".delBtn");
-delBtn.addEventListener("click", function(){
-    deleteTask(taskCard);
-});
-
-// Ajouter une div dans l’html où l’on indiquera le nombre de cards (le compteur)
-let counter = tasksContainer.children.length; // on initialise le compteur
-const divCount = document.querySelector("#count"); // on selectionne la div du conteur
-divCount.innerHTML = "<p><b>"+counter+" tâches</b></p>";
-
-
+    window.alert(alert);
+})
