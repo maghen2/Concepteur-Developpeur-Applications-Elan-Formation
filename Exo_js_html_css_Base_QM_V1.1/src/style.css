@@ -8,7 +8,7 @@ body{
     min-height: 100vh;
 }
 
-div#card{
+div#card, div.card{
     width: 200px;
     height: 200px;
     line-height: 200px; /* centrage vertical du texte enfant */
@@ -20,7 +20,7 @@ div#card{
     color: white;
     background-color:darkgreen;
 }
-div#card span{
+div#card span, div.card span{
     width: 200px;
     font-family: serif;
     font-size: 26px;
@@ -28,7 +28,7 @@ div#card span{
     text-align: center;
     color: rgb(197, 255, 197);
 }
-div#card:hover {
+div#card:hover, div.card:hover{
     transform: translate(-2px, -2px);
     cursor: pointer;
     transition: 1s;
