@@ -11,12 +11,11 @@ function getRandomColor() {
     return [color, backgroundColor];
 }
 
-// On crée la fonction d’ajout addTask()
-function addTask(){
+// On crée la fonction copyCard(card) qui va lire la card sur laquelle l'utilisateur a copié pour la coller dans la cadr du dessous
+function copyCard(card)(){
     //personnalisation des tâches avec de numéro et de couleurs differentes
     let colors = getRandomColor();
-    console.log(colors);
-    const newTask = taskCard.cloneNode(true); // clonage de la div .todoCard existante
+    const newCard = taskCard.cloneNode(true); // clonage de la div .todoCard existante
     const newTextArea = newTask.querySelector(".task");
     newTextArea.setAttribute("style", "color: #"+colors[0]+"; border-color: #"+colors[0]+"; background-color: #"+colors[1]); // application de la personnalisation des styles
     const newDelBtn = newTask.querySelector(".delBtn"); // ajout de l'action de deleteBtn au nouveau child crées
@@ -30,30 +29,30 @@ function addTask(){
     divCount.innerHTML = "<p style='color: #"+colors[0]+"; font-weight: bolder;'>"+counter+" tâches</p>";
 }
 
-// On crée la fonction de suppression deleteTask()
-function deleteTask(taskCard){
-    // taskCard.remove();
-    tasksContainer.removeChild(taskCard);
-    counter -= 1; // on desincremente le compteur de taches
-    divCount.innerHTML = "<p><b>"+counter+" tâches</b></p>";
+// On crée la fonction createCard qui créer de nouvelles card à la volet
+function addCard(card)(){
+    //personnalisation des tâches avec de numéro et de couleurs differentes
+    let colors = getRandomColor();
+    const newCard = taskCard.cloneNode(true); // clonage de la div .todoCard existante
+    const newTextArea = newTask.querySelector(".task");
+    newTextArea.setAttribute("style", "color: #"+colors[0]+"; border-color: #"+colors[0]+"; background-color: #"+colors[1]); // application de la personnalisation des styles
+    const newDelBtn = newTask.querySelector(".delBtn"); // ajout de l'action de deleteBtn au nouveau child crées
+    newDelBtn.setAttribute("style", "color: #"+colors[0]);
+    newDelBtn.addEventListener("click", function(){
+        deleteTask(newTask);
+    });
+    counter += 1; // on incremente le compteur de tâches
+    newTextArea.value = "New task "+counter;
+    tasksContainer.appendChild(newTask); // on ajoute la nouvelle tache au noeud parent
+    divCount.innerHTML = "<p style='color: #"+colors[0]+"; font-weight: bolder;'>"+counter+" tâches</p>";
 }
 
-// On ajoute un écouteur d’évènement sur le bouton pour appeler une fonction ajout
-const boutonAdd = document.querySelector("#btn"); // const boutonAdd = document.querySelector("button") on recupere le bnouton grace à son id
-//myButton.addEventListener("click", function (){setUserName()});
-boutonAdd.addEventListener("click", addTask); // on associe l'éxecution de la fonction addTask au clic sur le bouton #btn
-const taskCard = document.querySelector(".todoCard"); // div .todoCard
-const tasksContainer = document.querySelector("#todoCards"); // div #todoCards
+const cardContainer = document.querySelector("div#cardContainer"); // <div id="cardContainer">
+const card = cardContainer.querySelector("div.card"); // <div class="card">
 
-// on ajoute l'action de la fonction deleteTask en cas de clic sur le bouton delBtn de loa carte
-const delBtn = taskCard.querySelector(".delBtn");
-delBtn.addEventListener("click", function(){
-    deleteTask(taskCard);
+// ajout de l'action copyCard à l'évenement click sur div.card
+card.addEventListener("click", function (){
+    copyCard(card);
 });
-
-// Ajouter une div dans l’html où l’on indiquera le nombre de cards (le compteur)
-let counter = tasksContainer.children.length; // on initialise le compteur
-const divCount = document.querySelector("#count"); // on selectionne la div du conteur
-divCount.innerHTML = "<p><b>"+counter+" tâches</b></p>";
 
 
