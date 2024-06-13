@@ -30,3 +30,4 @@ Police et taille du texte
 
     window.alert(alert);
 })
+
