@@ -52,7 +52,7 @@ delBtn.addEventListener("click", function(){
 });
 
 // Ajouter une div dans l’html où l’on indiquera le nombre de cards (le compteur)
-let counter = 1; // on initialise le compteur
+let counter = tasksContainer.children.length; // on initialise le compteur
 const divCount = document.querySelector("#count"); // on selectionne la div du conteur
 divCount.innerHTML = "<p><b>"+counter+" tâches</b></p>";
 
