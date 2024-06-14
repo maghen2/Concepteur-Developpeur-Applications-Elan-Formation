@@ -24,7 +24,7 @@ div#card, div.card{
     flex-wrap: wrap;
     overflow: hidden;
     border: 1px dashed limegreen;
-    color: white;
+    color: limegreen;
     background-color:darkgreen;
     transition : all 2s;   
 }
@@ -51,6 +51,6 @@ div#screen{
 .anim{
     zoom : 90%;
     transform : rotate(360deg);
-    background : linear-gradient(#e66465, #91e5ad); /*linear-gradient(red, green);*/
+    background : radial-gradient(#e66465, #91e5ad); /*linear-gradient(red, green);*/
    transition : all 2s;
 }
