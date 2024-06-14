@@ -9,59 +9,21 @@ body{
     padding: 0 15px;
 }
 
-div#cardContainer{
+div#social-media{
     margin: 10px auto;
+    padding: 10px;
     display: flex;
     flex-wrap: wrap;
-}
+    background-color: #b4b0be;
 
-div#card, div.card{
-    width: 200px;
-    height: 200px;
-    line-height: 200px; /* centrage vertical du texte enfant */
-    margin: 2px;
-    display: flex;
-    flex-wrap: wrap;
-    overflow: hidden;
-    border: 1px dashed limegreen;
-    color: limegreen;
-    background-color:darkgreen;
-    transition : all 2s;   
 }
-div#card span, div.card span{
-    width: 100%;
-    font-family: serif;
-    font-size: 26px;
-    font-weight: bold;
-    text-align: center;
-    color: rgb(197, 255, 197);
-}
-
-div#card:hover, div.card:hover{
-    cursor: pointer;
-}
-
-div#screen{
-    margin: 10px auto;
-    width: 50%;
-    min-height: 200px;
-    height: auto;
-}
-
-.anim{
-    zoom : 90%;
-    transform : rotate(360deg);
-    background : radial-gradient(#e66465, #91e5ad); /*linear-gradient(red, green);*/
-   transition : all 2s;
-}
-
 .fa {
     padding: 20px;
     font-size: 30px;
     width: 200px;
     text-align: center;
     text-decoration: none;
-    margin: 5px 2px;
+    margin: 2px;
   }
   
   .fa:hover {
