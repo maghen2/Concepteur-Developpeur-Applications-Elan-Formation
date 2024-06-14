@@ -8,6 +8,10 @@ Les bords de l’icône s’arrondissent
 Une ombre apparaît derrière l’icône
 Lorsque l’on reclique sur une icône, le background redevient gris et l’icône reprend son aspect d’origine
 */
-function animSocialMedia(item){
 
+const divSocialMedia =  document.querySelector("div#social-media"); // <div id="social-media">
+function animSocialMedia(item){
+    divSocialMedia.style.background = window.getComputedStyle(item).getPropertyValue("background");
+    item.firstChild.style.display = "block";
+    divSocialMedia.style.border = "2px gray 10px";
 }
