@@ -13,29 +13,23 @@ function getRandomColor() {
 
 // On crée la fonction copyCard(card) qui va lire la card sur laquelle l'utilisateur a copié pour la coller dans la cadr du dessous
 function copyCard(divCard){
-    //personnalisation des tâches avec de numéro et de couleurs differentes
-    let colors = getRandomColor();
-    const newCard = card.cloneNode(true); // clonage de la div .todoCard existante
-    const newTextArea = newTask.querySelector(".task");
-    newTextArea.setAttribute("style", "color: #"+colors[0]+"; border-color: #"+colors[0]+"; background-color: #"+colors[1]); // application de la personnalisation des styles
-    const newDelBtn = newTask.querySelector(".delBtn"); // ajout de l'action de deleteBtn au nouveau child crées
-    newDelBtn.setAttribute("style", "color: #"+colors[0]);
-    newDelBtn.addEventListener("click", function(){
-        deleteTask(newTask);
-    });
-
-    tasksContainer.appendChild(newTask); // on ajoute la nouvelle tache au noeud parent
-    divCount.innerHTML = "<p style='color: #"+colors[0]+"; font-weight: bolder;'>"+counter+" tâches</p>";
+    // on recupère les valeurs de color et background-color de la div passé en param pour l'appliquer à la div screen
+    const color =  window.getComputedStyle(divCard).getPropertyValue('color');
+    const backgroundColor = window.getComputedStyle(divCard).getPropertyValue('background-color');
+    divScreen.setAttribute("style", `color: ${color}; border-color: ${color}; background-color: ${backgroundColor}; line-height: 1em; padding: 1em;`);
+    // On remplca le texte de la div screen par les infos de la div passée en param
+    divScreen.innerHTML = getInfo(divCard);
+   // divScreen.firstElementChild.setAttribute("style", "color: "+color+"; background-color: "+backgroundColor+"; line-height: 1em; padding: 1em;");
 }
 
 //on crée la fonction getInfo qui nous retourne les infos de la div
 function getInfo(divCard){
     let info = "<ul>";
-    info += "<li> couleur de fond: <strong>"+window.getComputedStyle(divCard).getPropertyValue('background-color')+"</strong><li>";
-    info += "<li> Hauteur et largeur du carré: <strong>"+window.getComputedStyle(divCard).getPropertyValue('width')+" x "+window.getComputedStyle(divCard).getPropertyValue('height')+"</strong><li>";
-    info += "<li> Nom de la classe du carré: <strong>"+divCard.getAttribute("class")+"</strong><li>";
-    info += "<li> Police et taille du texte: <strong>"+window.getComputedStyle(divCardSpan).getPropertyValue('font-family')+" "+window.getComputedStyle(divCardSpan).getPropertyValue('font-size')+"</strong><li>";
-    info += "</li>";
+    info += "<li> couleur de fond: <strong>"+window.getComputedStyle(divCard).getPropertyValue('background-color')+"</strong></li>";
+    info += "<li> Hauteur et largeur du carré: <strong>"+window.getComputedStyle(divCard).getPropertyValue('width')+" x "+window.getComputedStyle(divCard).getPropertyValue('height')+"</strong></li>";
+    info += "<li> Nom de la classe du carré: <strong>"+divCard.getAttribute("class")+"</strong></li>";
+    info += "<li> Police et taille du texte: <strong>"+window.getComputedStyle(divCard).getPropertyValue('font-family')+" "+window.getComputedStyle(divCard).getPropertyValue('font-size')+"</strong></li>";
+    info += "</ul>";
     return info;
 }
 
@@ -52,19 +46,22 @@ function addCard(divCard){
         copyCard(newDivCard);
     });
     counter += 1; // on incremente le compteur de carrée
-    newDivCard.innerHTML = "<span>Carrée "+counter+"</span>";
+    newDivCard.innerHTML = "<span style='color: #"+colors[0]+"'>Carrée "+counter+"</span>";
     divCardContainer.appendChild(newDivCard); // on ajoute la nouvelle tache au noeud parent
-    divCount.innerHTML = "<p style='color: #"+colors[0]+"; font-weight: bolder;'>"+counter+" carrées</p>";
+    div.innerHTML = "<p style='color: #"+colors[0]+"; font-weight: bolder;'>"+counter+" carrées</p>";
+    h2Solution.after(div); 
 }
 
 const divCardContainer = document.querySelector("div#cardContainer"); // <div id="cardContainer">
 const divCard = divCardContainer.querySelector("div.card"); // <div class="card">
 const buttonAddCard = document.querySelector("button#addCard"); // <button id="addCard">
-let counter = divCardContainer.childElementCount;
-
+let counter = divCardContainer.childElementCount; // on compte le nombre d'enfants de la div
+const divScreen = document.querySelector("div#screen"); // <div class="card" id="screen" >
+const h2Solution = document.querySelector("h2#solution"); // <h2 id="solution">Solution</h2>
+const div = document.createElement("div");
 // ajout de l'action copyCard à l'évenement click sur div.card
 divCard.addEventListener("click", function (){
-    copyCard(card);
+    copyCard(divCard);
 });
 
 // ajout de l'action addCard(card) au bouton 

@@ -45,5 +45,6 @@ div#card:hover, div.card:hover{
 div#screen{
     margin: 10px auto;
     width: 50%;
+    min-height: 200px;
     height: auto;
 }
