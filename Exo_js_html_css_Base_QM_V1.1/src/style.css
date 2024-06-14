@@ -1,7 +1,8 @@
 *{
     box-sizing: border-box;
     font-family: "Poppins", "verdana", "sans-serif";
-    color: black;
+    color: #030;
+    /* background-color: #efe; */
 }
 body{
     min-width: 100vw;
