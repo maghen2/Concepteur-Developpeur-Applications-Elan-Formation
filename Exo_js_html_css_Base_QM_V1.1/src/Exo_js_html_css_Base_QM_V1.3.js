@@ -1,11 +1,15 @@
 /*
-Exercice 2 : Créer une page web affichant 4 carrés de 200 x 200 pixels avec un fond de couleur différente pour chaque carré
+Exercice 3 : Créer une page web affichant plusieurs carrés numérotés de 200 x 200 pixels chacun avec un fond de couleur différente pour chaque carré
+En cliquant sur n'importe quel carré, celui-ci rétrécit de 10%, décrit une rotation de 360 degrés et prend un fond rouge. En recliquant dessus, le carré reprend ses propriétés initiales (voir animation en annexe)
+
 En cliquant sur n'importe quel carré du haut, le carré du bas prend sa couleur et le code couleur du carré sélectionné s’affiche ainsi que les informations suivantes :
 
 Couleur du texte et couleur de fond
 Hauteur et largeur du carré
 Nom de la classe du carré (class : "carre" par exemple)
 Police et taille du texte
+
+En survolant s'importe quel de ces carrée, celui ci afficge en info bulle les memes informations
 */
 function getRandomColor() {
     let letters = '0123456789ABCDEF';
@@ -39,6 +43,13 @@ function getInfo(divCard){
     info += "<li> Police et taille du texte: <strong>"+window.getComputedStyle(divCard).getPropertyValue('font-family')+" "+window.getComputedStyle(divCard).getPropertyValue('font-size')+"</strong></li>";
     info += "</ul>";
     return info;
+}
+
+// Affichage des informations au survul de l'élement avec la souris
+function tooltip(divCard){
+    let info = getInfo(divCard); // on recupère les informations
+    // on supprime les elements HTML du texte
+    divCard
 }
 
 // On crée la fonction createCard qui créer de nouvelles card à la volet
