@@ -7,13 +7,20 @@
 body{
     min-width: 100vw;
     min-height: 100vh;
+    padding: 0 15px;
+}
+
+div#cardContainer{
+    margin: 10px auto;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 div#card, div.card{
     width: 200px;
     height: 200px;
     line-height: 200px; /* centrage vertical du texte enfant */
-    margin: 10px auto;
+    margin: 2px;
     display: flex;
     flex-wrap: wrap;
     overflow: hidden;
@@ -22,7 +29,7 @@ div#card, div.card{
     background-color:darkgreen;
 }
 div#card span, div.card span{
-    width: 200px;
+    width: 100%;
     font-family: serif;
     font-size: 26px;
     font-weight: bold;
@@ -33,4 +40,10 @@ div#card:hover, div.card:hover{
     transform: translate(-2px, -2px);
     cursor: pointer;
     transition: 1s;
+}
+
+div#screen{
+    margin: 10px auto;
+    width: 50%;
+    height: auto;
 }

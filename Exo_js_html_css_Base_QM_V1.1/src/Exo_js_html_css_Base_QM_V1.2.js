@@ -12,7 +12,7 @@ function getRandomColor() {
 }
 
 // On crée la fonction copyCard(card) qui va lire la card sur laquelle l'utilisateur a copié pour la coller dans la cadr du dessous
-function copyCard(Card){
+function copyCard(divCard){
     //personnalisation des tâches avec de numéro et de couleurs differentes
     let colors = getRandomColor();
     const newCard = card.cloneNode(true); // clonage de la div .todoCard existante
