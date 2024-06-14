@@ -71,7 +71,12 @@ a.fa span{
   font-size: 15px;
 }
 .social-media-click{
-
+  border: white 2px dashed;
+  border-radius: 15px;
+  box-shadow: 5px 5px 5px white, -5px -5px 5px white;
+}
+.display{
+  display: block;
 }
 .fa {
     padding: 20px;

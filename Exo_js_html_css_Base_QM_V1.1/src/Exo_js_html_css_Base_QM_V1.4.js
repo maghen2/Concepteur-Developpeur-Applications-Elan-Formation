@@ -12,6 +12,6 @@ Lorsque l’on reclique sur une icône, le background redevient gris et l’icô
 const divSocialMedia =  document.querySelector("div#social-media"); // <div id="social-media">
 function animSocialMedia(item){
     divSocialMedia.style.background = window.getComputedStyle(item).getPropertyValue("background");
-    item.firstChild.style.display = "block";
-    divSocialMedia.style.border = "2px gray 10px";
+    item.firstChild.style.display = (window.getComputedStyle(item.firstChild).getPropertyValue("display") == "none")? "block" : "none";
+    item.classList.toggle("social-media-click");
 }
