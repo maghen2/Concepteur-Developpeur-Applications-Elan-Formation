@@ -12,10 +12,26 @@ Police et taille du texte
 En survolant s'importe quel de ces carrée, celui ci afficge en info bulle les memes informations
 */
 
-//
+/* fonction d'animation de l'objet
+// remplacer par divCard.classList.toggle("anim") 
 function anim(divCard){
+    // l'attribut personnalisé data-click nous permets de savoir si c'est le premeier ou second click
+    if(divCard.getAttribute("data-click") == 0){
+       
+        divCard.style.transform = "rotate(360deg)";
+        divCard.style.zoom = "90%";
+        divCard.style.background = "red";
+        divCard.style.transition = "all 2s";
+        divCard.setAttribute("data-click", 1);
 
+        ;
+    }
+    else {
+
+        divCard.setAttribute("data-click", 0);
+    }
 }
+    */
 function getRandomColor() {
     let letters = '0123456789ABCDEF';
     let color, backgroundColor;
@@ -70,6 +86,7 @@ function addCard(divCard){
     tooltip(newDivCard); // ajout de l'action copyCard(newDivCard) à l'évenement click
     newDivCard.addEventListener("click", function(){
         copyCard(newDivCard); // Affichage des informations au survul de l'élement avec la souris
+        newDivCard.classList.toggle("anim"); // ajout de l'action anim à l'évenement click sur newDivCard
     });
     counter += 1; // on incremente le compteur de carrée
     newDivCard.innerHTML = "<span style='color: #"+colors[0]+"'>Carrée "+counter+"</span>";
@@ -88,7 +105,7 @@ const div = document.createElement("div");
 // ajout de l'action copyCard à l'évenement click sur div.card
 divCard.addEventListener("click", function (){
     copyCard(divCard);
-    anim(divCard);
+    divCard.classList.toggle("anim");
 });
 
 // ajout de l'action addCard(card) au bouton 

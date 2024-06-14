@@ -26,6 +26,7 @@ div#card, div.card{
     border: 1px dashed limegreen;
     color: white;
     background-color:darkgreen;
+    transition : all 2s;   
 }
 div#card span, div.card span{
     width: 100%;
@@ -35,10 +36,9 @@ div#card span, div.card span{
     text-align: center;
     color: rgb(197, 255, 197);
 }
+
 div#card:hover, div.card:hover{
-    transform: translate(-2px, -2px);
     cursor: pointer;
-    transition: 1s;
 }
 
 div#screen{
@@ -46,4 +46,11 @@ div#screen{
     width: 50%;
     min-height: 200px;
     height: auto;
+}
+
+.anim{
+    zoom : 90%;
+    transform : rotate(360deg);
+    background : linear-gradient(#e66465, #91e5ad); /*linear-gradient(red, green);*/
+   transition : all 2s;
 }
