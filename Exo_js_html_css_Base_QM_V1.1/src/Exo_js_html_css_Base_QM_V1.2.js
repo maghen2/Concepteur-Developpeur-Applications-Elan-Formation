@@ -28,6 +28,17 @@ function copyCard(divCard){
     divCount.innerHTML = "<p style='color: #"+colors[0]+"; font-weight: bolder;'>"+counter+" tâches</p>";
 }
 
+//on crée la fonction getInfo qui nous retourne les infos de la div
+function getInfo(divCard){
+    let info = "<ul>";
+    info += "<li> couleur de fond: <strong>"+window.getComputedStyle(divCard).getPropertyValue('background-color')+"</strong><li>";
+    info += "<li> Hauteur et largeur du carré: <strong>"+window.getComputedStyle(divCard).getPropertyValue('width')+" x "+window.getComputedStyle(divCard).getPropertyValue('height')+"</strong><li>";
+    info += "<li> Nom de la classe du carré: <strong>"+divCard.getAttribute("class")+"</strong><li>";
+    info += "<li> Police et taille du texte: <strong>"+window.getComputedStyle(divCardSpan).getPropertyValue('font-family')+" "+window.getComputedStyle(divCardSpan).getPropertyValue('font-size')+"</strong><li>";
+    info += "</li>";
+    return info;
+}
+
 // On crée la fonction createCard qui créer de nouvelles card à la volet
 function addCard(divCard){
     //personnalisation des tâches avec de numéro et de couleurs differentes
