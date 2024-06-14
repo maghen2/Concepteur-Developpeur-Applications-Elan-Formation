@@ -11,6 +11,11 @@ Police et taille du texte
 
 En survolant s'importe quel de ces carrée, celui ci afficge en info bulle les memes informations
 */
+
+//
+function anim(divCard){
+
+}
 function getRandomColor() {
     let letters = '0123456789ABCDEF';
     let color, backgroundColor;
@@ -31,7 +36,7 @@ function copyCard(divCard){
     divScreen.setAttribute("style", `color: ${color}; border-color: ${color}; background-color: ${backgroundColor}; line-height: 1em; padding: 1em;`);
     // On remplca le texte de la div screen par les infos de la div passée en param
     divScreen.innerHTML = getInfo(divCard);
-   // divScreen.firstElementChild.setAttribute("style", "color: "+color+"; background-color: "+backgroundColor+"; line-height: 1em; padding: 1em;");
+   
 }
 
 //on crée la fonction getInfo qui nous retourne les infos de la div
@@ -48,8 +53,10 @@ function getInfo(divCard){
 // Affichage des informations au survul de l'élement avec la souris
 function tooltip(divCard){
     let info = getInfo(divCard); // on recupère les informations
-    // on supprime les elements HTML du texte
-    divCard
+        // on supprime les elements HTML du texte
+        div.innerHTML = info;
+        info = div.textContent;
+    divCard.setAttribute("title", info);
 }
 
 // On crée la fonction createCard qui créer de nouvelles card à la volet
@@ -60,9 +67,9 @@ function addCard(divCard){
     const newDivCard = divCard.cloneNode(true); 
     // application de la personnalisation des styles
     newDivCard.setAttribute("style", "color: #"+colors[0]+"; border-color: #"+colors[0]+"; background-color: #"+colors[1]); 
-    // ajout de l'action copyCard(newDivCard) à l'évenement click
+    tooltip(newDivCard); // ajout de l'action copyCard(newDivCard) à l'évenement click
     newDivCard.addEventListener("click", function(){
-        copyCard(newDivCard);
+        copyCard(newDivCard); // Affichage des informations au survul de l'élement avec la souris
     });
     counter += 1; // on incremente le compteur de carrée
     newDivCard.innerHTML = "<span style='color: #"+colors[0]+"'>Carrée "+counter+"</span>";
@@ -81,6 +88,7 @@ const div = document.createElement("div");
 // ajout de l'action copyCard à l'évenement click sur div.card
 divCard.addEventListener("click", function (){
     copyCard(divCard);
+    anim(divCard);
 });
 
 // ajout de l'action addCard(card) au bouton 
