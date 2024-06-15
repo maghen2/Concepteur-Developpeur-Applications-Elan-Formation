@@ -56,7 +56,22 @@ div#screen{
     background : radial-gradient(#e66465, #91e5ad); /*linear-gradient(red, green);*/
    transition : all 2s;
 }
-
+/*Exercice 5 : Convertisseur de devises*/
+ div#form{
+  max-width: 600px;
+  min-height: 60px;
+  margin: 0 auto;
+  display: flex;
+  border: 5px darkblue solid;
+  border-radius: 10px;
+  background: #430297 url("convertor.jpg");
+  color: white;
+  text-align: center;
+ }
+ div#form form{
+  width: 100%;
+  font-weight: bold;
+ }
 /* Awesome social media*/
 
 div#social-media{
