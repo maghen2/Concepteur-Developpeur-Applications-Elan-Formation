@@ -60,6 +60,7 @@ div#screen{
 /* Awesome social media*/
 
 div#social-media{
+    width: 660px;
     margin: 10px auto;
     padding: 10px;
     display: flex;
@@ -71,7 +72,7 @@ a.fa span{
   font-size: 15px;
 }
 .social-media-click{
-  border: white 2px dashed;
+  border: white 5px dashed;
   border-radius: 15px;
   box-shadow: 5px 5px 5px white, -5px -5px 5px white;
 }
