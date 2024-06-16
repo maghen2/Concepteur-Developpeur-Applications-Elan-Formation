@@ -18,6 +18,5 @@ function convertor(element){
         else
         document.querySelector("input#franc").value = Number((euro * 6.55957).toFixed(2)); 
 
-    // console.log(franc+" francs = "+euro+" euros");
     }
 }
