@@ -192,6 +192,8 @@ img {
     padding: 6rem 0;
     margin: 0;
     background-color:transparent;
+    /* background-image: url("../img/home-bg.jpg"); */
+    opacity: .8;
     backdrop-filter: blur(16px);
     --webkit--backdrop-filter: blur(16px); /* safari */
     transition: all var(--transition-duration);
