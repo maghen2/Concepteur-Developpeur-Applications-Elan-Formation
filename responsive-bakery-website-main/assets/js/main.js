@@ -15,8 +15,15 @@
 ![preview img](/preview.png)
 */
 /*=============== SHOW MENU ===============*/
-
-
+const divNavToggle = document.querySelector("div#nav-toggle");
+const divNavMenu = document.querySelector("div#nav-menu");
+const divNavClose =  document.querySelector("div#nav-close")
+divNavToggle.addEventListener("click", ()=>{
+    divNavMenu.classList.add("nav__menu__display");
+});
+divNavClose.addEventListener("click", ()=>{
+    divNavMenu.classList.remove("nav__menu__display");
+});
 /*=============== REMOVE MENU MOBILE ===============*/
 
 

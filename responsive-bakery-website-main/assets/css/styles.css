@@ -19,6 +19,8 @@
 
 /*=============== VARIABLES CSS ===============*/
 :root {
+    /*========== Dimension ==========*/
+  --menu-width: 20rem;
   --header-height: 3.5rem;
 
   /*========== Colors ==========*/
@@ -56,7 +58,7 @@
   --z-tooltip: 10;
   --z-fixed: 100;
 
-  /*========== auter ==========*/
+  /*========== Other ==========*/
   --transition-duration: 1s;
 
 
@@ -183,29 +185,64 @@ img {
 @media screen and (max-width: 1150px) {
   .nav__menu{
     position: fixed;
-    top: 0;
-    right: 0;
-    width: 80%;
+    top: -1000rem; /*hidden menu*/
+    right: -1000rem; 
+    width: var(--menu-width);
     height: 100%;
-    padding: 6rem 3rem 0;
+    padding: 6rem 0;
+    margin: 0;
     background-color:transparent;
-    /*background-color: var(--body-color);*/
     backdrop-filter: blur(16px);
     --webkit--backdrop-filter: blur(16px); /* safari */
-    transition: right var(--transition-duration);
-    
+    transition: all var(--transition-duration);
+  }
+  .nav__menu__display{
+    top: 0; /*display menu*/
+    right: 0; 
+    transition: all var(--transition-duration) ease;
   }
   .nav__list{
-    /* display: flex;
-    flex-direction: column;
-    row-gap: 2.5rem;  */
-    line-height: 2.5rem;
-
+    display: block;
+    width: var(--menu-width);
+    display: block;
+    margin: 0 auto;
+    line-height: 3.5rem;
+    text-indent: 0;
+    /* background-color: aliceblue; */
   }
   .nav__link{
+    display: block;
+    width: 100%;
     color: var(--second-color-alt);
     font-weight: var(--font-semi-bold);
     transition: color var(--transition-duration);
+    text-indent: 5rem;
+  }
+  .nav__link:hover{
+    color: var(--title-color);
+    transition: color var(--transition-duration);
+    background-color: var(--second-color);
+    border: 1px solid var(--second-color-alt);
+    border-radius: 1rem;
+  }
+  .nav__close,
+  .nav__img-1,
+  .nav__img-2{
+    position: absolute;
+  }
+  .nav__close{
+    top: 1rem;
+    right: 1.5rem;
+  }
+  .nav__img-1{
+    width: 120px;
+    top: 11rem;
+    right: 1rem;
+  }
+  .nav__img-2{
+    width: 120px;
+    bottom: auto;
+    left: auto;
   }
 }
 
