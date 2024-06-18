@@ -227,6 +227,13 @@ img {
     border: 1px solid var(--second-color-alt);
     border-radius: 1rem;
   }
+  .nav__link:active {
+    color: var(--second-color-alt);
+    transition: color var(--transition-duration);
+    background-color: var(--title-color);
+    border: 1px solid var(--second-color-alt);
+    border-radius: 1rem;
+  }
   .nav__close,
   .nav__img-1,
   .nav__img-2{
