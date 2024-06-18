@@ -1,36 +1,32 @@
-Sub Create_Tables()
+CREATE TABLE ingredient(
+   id_ingredient INT,
+   nom VARCHAR(50),
+   unite_mesure VARCHAR(50),
+   prix DECIMAL(15,2),
+   PRIMARY KEY(id_ingredient)
+);
 
-DoCmd.RunSQL "CREATE TABLE ingredient(" & _
-   "id_ingredient INT," & _
-   "nom VARCHAR(50)," & _
-   "unite_mesure VARCHAR(50)," & _
-   "prix DECIMAL(15,2)," & _
-   "PRIMARY KEY(id_ingredient)" & _
-");"   
+CREATE TABLE categorie(
+   id_categorie INT,
+   nom VARCHAR(50),
+   PRIMARY KEY(id_categorie)
+);
 
-DoCmd.RunSQL "CREATE TABLE categorie(" & _
-   "id_categorie INT," & _
-   "nom VARCHAR(50)," & _
-   "PRIMARY KEY(id_categorie)" & _
-");"   
+CREATE TABLE Recette(
+   id_recette INT,
+   nom VARCHAR(50),
+   temps_preparation INT,
+   instruction TEXT,
+   id_categorie INT NOT NULL,
+   PRIMARY KEY(id_recette),
+   FOREIGN KEY(id_categorie) REFERENCES categorie(id_categorie)
+);
 
-DoCmd.RunSQL "CREATE TABLE Recette(" & _
-   "id_recette INT," & _
-   "nom VARCHAR(50)," & _
-   "temps_preparation INT," & _
-   "instruction TEXT," & _
-   "id_categorie INT NOT NULL," & _
-   "PRIMARY KEY(id_recette)," & _
-   "FOREIGN KEY(id_categorie) REFERENCES categorie(id_categorie)" & _
-");"   
-
-DoCmd.RunSQL "CREATE TABLE Preparer(" & _
-   "id_recette INT," & _
-   "id_ingredient INT," & _
-   "quantite INT," & _
-   "PRIMARY KEY(id_recette, id_ingredient)," & _
-   "FOREIGN KEY(id_recette) REFERENCES Recette(id_recette)," & _
-   "FOREIGN KEY(id_ingredient) REFERENCES ingredient(id_ingredient)" & _
-");"   
-
-End Sub
+CREATE TABLE Preparer(
+   id_recette INT,
+   id_ingredient INT,
+   quantite INT,
+   PRIMARY KEY(id_recette, id_ingredient),
+   FOREIGN KEY(id_recette) REFERENCES Recette(id_recette),
+   FOREIGN KEY(id_ingredient) REFERENCES ingredient(id_ingredient)
+);
