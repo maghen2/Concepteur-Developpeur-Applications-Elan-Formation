@@ -89,8 +89,16 @@ SELECT *, SUM(preparer.quantite * ingredient.prix) AS `prix total` FROM preparer
 WHERE id_recette = 5 AND preparer.id_ingredient = ingredient.id_ingredient
 GROUP BY id_recette, preparer.id_ingredient
 
-
 -- 9- Afficher le détail de la recette n°5 (liste des ingrédients, quantités et prix)
+SELECT `ingredient`.`nom` AS `Nom de l'ingrédient`, 
+`preparer`.`quantite` AS `Qte`, 
+`ingredient`.`unite_mesure` AS `unite mèsure`,
+`ingredient`.`prix` AS `Prix Unitaire`, 
+SUM(preparer.quantite * ingredient.prix) AS `prix total` 
+FROM preparer, ingredient
+WHERE id_recette = 5 AND preparer.id_ingredient = ingredient.id_ingredient
+GROUP BY id_recette, preparer.id_ingredient
+
 -- 10- Ajouter un ingrédient en base de données : Poivre, unité : cuillère à café, prix : 2.5 €
 -- 11- Modifier le prix de l’ingrédient n°12 (prix à votre convenance)
 -- 12- Afficher le nombre de recettes par catégories : X entrées, Y plats, Z desserts
