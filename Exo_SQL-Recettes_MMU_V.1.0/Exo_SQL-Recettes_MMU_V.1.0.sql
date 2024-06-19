@@ -127,7 +127,8 @@ SELECT recette.nom AS `Recette`, ingredient.nom AS `Ingredient`
 FROM recette, preparer, ingredient
 WHERE recette.id_recette = preparer.id_recette AND preparer.id_ingredient = ingredient.id_ingredient AND ingredient.nom LIKE '%Poulet%'
 
--- 14- Mettez à jour toutes les recettes en diminuant leur temps de préparation de 5 minutes 
+-- 14- Mettez à jour toutes les recettes en diminuant leur temps de préparation de 5 minutes
+ 
 -- 15- Afficher les recettes qui ne nécessitent pas d’ingrédients coûtant plus de 2€ par unité de mesure
 -- 16- Afficher la / les recette(s) les plus rapides à préparer
 -- 17- Trouver les recettes qui ne nécessitent aucun ingrédient (par exemple la recette de la tasse d’eau chaude qui consiste à verser de l’eau chaude dans une tasse)
