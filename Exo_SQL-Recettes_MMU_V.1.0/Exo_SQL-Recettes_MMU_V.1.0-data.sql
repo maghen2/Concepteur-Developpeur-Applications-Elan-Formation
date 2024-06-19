@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS categorie(
    PRIMARY KEY(id_categorie)
 );
 
-CREATE TABLE IF NOT EXISTS Recette(
+CREATE TABLE IF NOT EXISTS recette(
    id_recette INT,
    nom VARCHAR(50),
    temps_preparation INT,
@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS Recette(
    FOREIGN KEY(id_categorie) REFERENCES categorie(id_categorie)
 );
 
-CREATE TABLE IF NOT EXISTS Preparer(
+CREATE TABLE IF NOT EXISTS preparer(
    id_recette INT,
    id_ingredient INT,
    quantite INT,

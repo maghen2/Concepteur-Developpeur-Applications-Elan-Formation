@@ -21,8 +21,9 @@ Vous mettrez en place la base de données sur HeidiSQL et vous l’alimenterez e
 au moins 10 recettes. Vous devrez ensuite définir les requêtes suivantes :
 */
 --1- Afficher toutes les recettes disponibles (nom de la recette, catégorie et temps de préparation) triées de façon décroissante sur la durée de réalisation
+select `Recette`.`nom` AS `Recette`, `categorie`.`nom` as `Categorie`, `Recette`.`temps_preparation` AS `Temps de préparation` from `Recette`, `categorie` where `categorie`.`id_categorie` = `Recette`.`id_categorie` order by `temps_preparation` desc
 
-2- En modifiant la requête précédente, faites apparaître le nombre d’ingrédients nécessaire par recette.
+--2- En modifiant la requête précédente, faites apparaître le nombre d’ingrédients nécessaire par recette.
 3- Afficher les recettes qui nécessitent au moins 30 min de préparation
 4- Afficher les recettes dont le nom contient le mot « Salade » (peu importe où est situé le mot en 
 question)
