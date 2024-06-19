@@ -79,6 +79,16 @@ DELETE FROM recette
 WHERE id_recette = 2
 LIMIT 1
 -- 8- Afficher le prix total de la recette n°5
+-- Afficher le prix total pour chaque recette ou juste le recette 5
+SELECT `Recette`.`id_recette` AS `N°`, `Recette`.`nom` AS `Recette`,  SUM(`ingredient`.`prix`*`preparer`.`quantite`) AS `Prix Total`
+FROM `Recette`, `preparer`, `ingredient` 
+WHERE /*`Preparer`.`id_recette` = 5 AND*/ `Preparer`.`id_recette`= `Recette`.`id_recette` AND `Preparer`.`id_ingredient`= `ingredient`.`id_ingredient` 
+GROUP BY `Recette`.`id_recette`
+-- Afficher les details du prix total d'une recette par exemple recette 5
+SELECT *, SUM(preparer.quantite * ingredient.prix) AS `prix total` FROM preparer, ingredient
+WHERE id_recette = 5 AND preparer.id_ingredient = ingredient.id_ingredient
+GROUP BY id_recette, preparer.id_ingredient
+
 
 -- 9- Afficher le détail de la recette n°5 (liste des ingrédients, quantités et prix)
 -- 10- Ajouter un ingrédient en base de données : Poivre, unité : cuillère à café, prix : 2.5 €
