@@ -45,6 +45,25 @@ FROM `Recette`
 WHERE `nom` LIKE '%Salade%'
 
 -- 5- Insérer une nouvelle recette : « Pâtes à la carbonara » dont la durée de réalisation est de 20 min avec les instructions de votre choix. Pensez à alimenter votre base de données en conséquence afin de pouvoir lister les détails de cette recettes (ingrédients)
+INSERT INTO `Recette`(id_recette,nom,temps_preparation,instruction,id_categorie)
+VALUES (21,'Pâtes à la carbonara',50,'instruction instruction instruction instruction instruction instruction instruction instruction instruction instruction instruction instruction instruction instruction instruction instruction instruction instruction instruction instruction instruction instruction instruction instruction instruction instruction instruction instruction instruction ',1);
+
+INSERT INTO preparer (id_recette,id_ingredient,quantite)
+VALUES(21,16,10),
+(21,1,10),
+(21,2,30),
+(21,3,40),
+(21,4,50),
+(21,5,20),
+(21,10,20),
+(21,12,20),
+(21,8,20),
+(21,9,10),
+(21,20,50),
+(21,19,42),
+(21,17,53),
+(21,11,124),
+(21,6,153);
 
 -- 6- Modifier le nom de la recette ayant comme identifiant id_recette = 3 (nom de la recette à votre 
 -- convenance)
