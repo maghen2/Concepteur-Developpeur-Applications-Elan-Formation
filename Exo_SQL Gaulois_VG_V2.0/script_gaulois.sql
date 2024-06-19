@@ -14,8 +14,15 @@ FROM lieu
 WHERE nom_lieu LIKE '%um'
 
 -- 2. Nombre de personnages par lieu (trié par nombre de personnages décroissant).
+SELECT lieu.nom_lieu AS Lieu, 
+COUNT(*) AS `Nbr de personnages`
+FROM personnage
+JOIN lieu ON lieu.id_lieu = personnage.id_lieu
+GROUP BY personnage.id_lieu
+ORDER BY COUNT(*) DESC
 
 -- 3. Nom des personnages + spécialité + adresse et lieu d'habitation, triés par lieu puis par nom de personnage.
+
 -- 4. Nom des spécialités avec nombre de personnages par spécialité (trié par nombre de personnages décroissant).
 -- 5. Nom, date et lieu des batailles, classées de la plus récente à la plus ancienne (dates affichées au format jj/mm/aaaa).
 -- 6. Nom des potions + coût de réalisation de la potion (trié par coût décroissant).
