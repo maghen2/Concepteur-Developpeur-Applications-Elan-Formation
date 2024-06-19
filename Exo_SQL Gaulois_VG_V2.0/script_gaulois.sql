@@ -9,7 +9,12 @@ A partir du script SQL Gaulois fourni par votre formateur, écrivez et exécutez
 */
 
 -- 1. Nom des lieux qui finissent par 'um'.
+SELECT * 
+FROM lieu
+WHERE nom_lieu LIKE '%um'
+
 -- 2. Nombre de personnages par lieu (trié par nombre de personnages décroissant).
+
 -- 3. Nom des personnages + spécialité + adresse et lieu d'habitation, triés par lieu puis par nom de personnage.
 -- 4. Nom des spécialités avec nombre de personnages par spécialité (trié par nombre de personnages décroissant).
 -- 5. Nom, date et lieu des batailles, classées de la plus récente à la plus ancienne (dates affichées au format jj/mm/aaaa).
