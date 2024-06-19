@@ -180,6 +180,19 @@ FROM recette
 JOIN preparer ON recette.id_recette = preparer.id_recette
 JOIN ingredient ON preparer.id_ingredient = ingredient.id_ingredient
 GROUP BY recette.id_recette
+HAVING SUM(ingredient.prix * preparer.quantite) >= ALL(
+ SELECT SUM(ingredient.prix * preparer.quantite)
+ FROM recette
+ JOIN preparer ON recette.id_recette = preparer.id_recette
+ JOIN ingredient ON preparer.id_ingredient = ingredient.id_ingredient
+ GROUP BY recette.id_recette
+)
+
+SELECT recette.nom AS `Recette`, SUM(ingredient.prix * preparer.quantite) AS `Prix total`
+FROM recette
+JOIN preparer ON recette.id_recette = preparer.id_recette
+JOIN ingredient ON preparer.id_ingredient = ingredient.id_ingredient
+GROUP BY recette.id_recette
 HAVING SUM(ingredient.prix * preparer.quantite) = (
    SELECT MAX(somme)
    FROM (
