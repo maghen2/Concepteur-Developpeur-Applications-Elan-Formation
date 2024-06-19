@@ -159,6 +159,19 @@ WHERE id_recette NOT IN (
 	SELECT DISTINCT id_recette 
 	FROM preparer
 )
+
 -- 18- Trouver les ingrédients qui sont utilisés dans au moins 3 recettes
+
+SELECT *,
+COUNT(*) AS `Nbr de recettes`
+FROM ingredient
+JOIN `preparer` ON `Preparer`.`id_ingredient`= `ingredient`.`id_ingredient`
+JOIN `recette` ON `Preparer`.`id_recette`= `Recette`.`id_recette`
+WHERE  
+GROUP BY `ingredient`.`id_ingredient`
+
 -- 19- Ajouter un nouvel ingrédient à une recette spécifique
+INSERT INTO preparer (id_recette,id_ingredient,quantite)
+VALUES ('22',8,10);
+
 -- 20- Bonus : Trouver la recette la plus coûteuse de la base de données (il peut y avoir des ex aequo, il est donc exclu d’utiliser la clause LIMIT);
