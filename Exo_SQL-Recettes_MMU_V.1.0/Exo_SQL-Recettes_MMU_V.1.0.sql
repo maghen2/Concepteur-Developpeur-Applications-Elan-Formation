@@ -161,13 +161,13 @@ WHERE id_recette NOT IN (
 )
 
 -- 18- Trouver les ingrédients qui sont utilisés dans au moins 3 recettes
-SELECT *,
+SELECT ingredient.nom AS `Ingredient`,
 COUNT(*) AS `Nbr de recettes`
 FROM ingredient
 JOIN `preparer` ON `Preparer`.`id_ingredient`= `ingredient`.`id_ingredient`
-JOIN `recette` ON `Preparer`.`id_recette`= `Recette`.`id_recette`
-WHERE  
+JOIN `recette` ON `Preparer`.`id_recette`= `Recette`.`id_recette` 
 GROUP BY `ingredient`.`id_ingredient`
+HAVING COUNT(*) >= 3;
 
 -- 19- Ajouter un nouvel ingrédient à une recette spécifique
 INSERT INTO preparer (id_recette,id_ingredient,quantite)
@@ -175,14 +175,18 @@ VALUES ('22',8,10);
 
 
 -- 20- Bonus : Trouver la recette la plus coûteuse de la base de données (il peut y avoir des ex aequo, il est donc exclu d’utiliser la clause LIMIT);
-SELECT `Recette`.`id_recette` AS `N°`, `Recette`.`nom` AS `Recette`,  SUM(`ingredient`.`prix`*`preparer`.`quantite`) AS `Prix Total`
-FROM `Recette`
-JOIN `preparer` ON `Preparer`.`id_recette`= `Recette`.`id_recette`
-JOIN `ingredient` ON  `Preparer`.`id_ingredient`= `ingredient`.`id_ingredient` 
-HAVING SUM(`ingredient`.`prix`*`preparer`.`quantite`) = (
- SELECT MAX(SUM(`ingredient`.`prix`*`preparer`.`quantite`))
- FROM `Recette`, `preparer`, `ingredient` 
- WHERE `Preparer`.`id_recette`= `Recette`.`id_recette` AND `Preparer`.`id_ingredient`= `ingredient`.`id_ingredient` 
- GROUP BY `Recette`.`id_recette`
+SELECT recette.nom AS `Recette`, SUM(ingredient.prix * preparer.quantite) AS `Prix total`
+FROM recette
+JOIN preparer ON recette.id_recette = preparer.id_recette
+JOIN ingredient ON preparer.id_ingredient = ingredient.id_ingredient
+GROUP BY recette.id_recette
+HAVING SUM(ingredient.prix * preparer.quantite) = (
+   SELECT MAX(somme)
+   FROM (
+      SELECT SUM(ingredient.prix * preparer.quantite) AS somme
+      FROM recette
+      JOIN preparer ON recette.id_recette = preparer.id_recette
+      JOIN ingredient ON preparer.id_ingredient = ingredient.id_ingredient
+      GROUP BY recette.id_recette
+   ) AS prix_total
 )
-GROUP BY `Recette`.`id_recette`
