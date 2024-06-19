@@ -65,9 +65,13 @@ VALUES(21,16,10),
 (21,11,124),
 (21,6,153);
 
--- 6- Modifier le nom de la recette ayant comme identifiant id_recette = 3 (nom de la recette à votre 
--- convenance)
+-- 6- Modifier le nom de la recette ayant comme identifiant id_recette = 3 (nom de la recette à votre convenance)
+UPDATE recette
+SET nom = 'Modifier le nom de la recette id_recette = 3'
+WHERE id_recette = 3
+
 -- 7- Supprimer la recette n°2 de la base de données
+
 -- 8- Afficher le prix total de la recette n°5
 -- 9- Afficher le détail de la recette n°5 (liste des ingrédients, quantités et prix)
 -- 10- Ajouter un ingrédient en base de données : Poivre, unité : cuillère à café, prix : 2.5 €
