@@ -116,6 +116,16 @@ WHERE recette.id_categorie = categorie.id_categorie
 GROUP BY recette.id_categorie
 
 -- 13- Afficher les recettes qui contiennent l’ingrédient « Poulet »
+SELECT recette.nom AS `Recette`, ingredient.nom AS `Ingredient`
+FROM recette
+JOIN preparer ON recette.id_recette = preparer.id_recette
+JOIN ingredient ON preparer.id_ingredient = ingredient.id_ingredient
+WHERE ingredient.nom LIKE '%Poulet%'
+
+-- 13- Afficher les recettes qui contiennent l’ingrédient « Poulet »
+SELECT recette.nom AS `Recette`, ingredient.nom AS `Ingredient`
+FROM recette, preparer, ingredient
+WHERE recette.id_recette = preparer.id_recette AND preparer.id_ingredient = ingredient.id_ingredient AND ingredient.nom LIKE '%Poulet%'
 
 -- 14- Mettez à jour toutes les recettes en diminuant leur temps de préparation de 5 minutes 
 -- 15- Afficher les recettes qui ne nécessitent pas d’ingrédients coûtant plus de 2€ par unité de mesure
