@@ -1,5 +1,9 @@
-/*CREATE TABLE*/
-CREATE TABLE ingredient(
+/*CREATION DE LA BASE DE DONNEES*/
+CREATE DATABASE IF NOT EXISTS `Maghen_Recette` /*!40100 DEFAULT CHARACTER SET latin1 */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `Maghen_Recette`;
+
+/*CREATE TABLE IF NOT EXISTS*/
+CREATE TABLE IF NOT EXISTS ingredient(
    id_ingredient INT,
    nom VARCHAR(50),
    unite_mesure VARCHAR(50),
@@ -7,13 +11,13 @@ CREATE TABLE ingredient(
    PRIMARY KEY(id_ingredient)
 );
 
-CREATE TABLE categorie(
+CREATE TABLE IF NOT EXISTS categorie(
    id_categorie INT,
    nom VARCHAR(50),
    PRIMARY KEY(id_categorie)
 );
 
-CREATE TABLE Recette(
+CREATE TABLE IF NOT EXISTS Recette(
    id_recette INT,
    nom VARCHAR(50),
    temps_preparation INT,
@@ -23,7 +27,7 @@ CREATE TABLE Recette(
    FOREIGN KEY(id_categorie) REFERENCES categorie(id_categorie)
 );
 
-CREATE TABLE Preparer(
+CREATE TABLE IF NOT EXISTS Preparer(
    id_recette INT,
    id_ingredient INT,
    quantite INT,
