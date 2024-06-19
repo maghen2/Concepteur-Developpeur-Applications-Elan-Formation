@@ -132,6 +132,15 @@ UPDATE recette
 SET temps_preparation = temps_preparation - 5;
 
 -- 15- Afficher les recettes qui ne nécessitent pas d’ingrédients coûtant plus de 2€ par unité de mesure
+SELECT `Recette`.`id_recette` AS `N°`, 
+`Recette`.`nom` AS `Recette`,  
+`ingredient`.`nom` AS `Ingredient`, 
+`ingredient`.`prix` AS `Prix Ingredient`
+FROM `Recette` 
+JOIN `preparer` ON `Preparer`.`id_recette`= `Recette`.`id_recette`
+JOIN `ingredient` ON `Preparer`.`id_ingredient`= `ingredient`.`id_ingredient`
+WHERE `ingredient`.`prix` <= 2
+GROUP BY `Preparer`.`id_recette`,  `Preparer`.`id_ingredient`
 
 -- 16- Afficher la / les recette(s) les plus rapides à préparer
 -- 17- Trouver les recettes qui ne nécessitent aucun ingrédient (par exemple la recette de la tasse d’eau chaude qui consiste à verser de l’eau chaude dans une tasse)
