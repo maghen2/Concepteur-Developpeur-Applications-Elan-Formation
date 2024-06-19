@@ -27,7 +27,7 @@ WHERE `categorie`.`id_categorie` = `Recette`.`id_categorie`
 ORDER BY `temps_preparation` DESC
 
 --2- En modifiant la requête précédente, faites apparaître le nombre d’ingrédients nécessaire par recette.
-SELECT `Recette`.`nom` AS `Recette`, `categorie`.`nom` AS `Categorie`, `Recette`.`temps_preparation` AS `Temps de préparation`, count(`Preparer`.`id_recette`) AS `Nbr d'ingrédients`
+SELECT `Recette`.`nom` AS `Recette`, `categorie`.`nom` AS `Categorie`, `Recette`.`temps_preparation` AS `Temps de préparation`, COUNT(`Preparer`.`id_recette`) AS `Nbr d'ingrédients`
 FROM `Recette`, `categorie`,`Preparer` 
 WHERE `categorie`.`id_categorie` = `Recette`.`id_categorie` AND `Preparer`.`id_recette`= `Recette`.`id_recette` 
 GROUP BY `Recette`.`id_recette` 
@@ -142,8 +142,23 @@ JOIN `ingredient` ON `Preparer`.`id_ingredient`= `ingredient`.`id_ingredient`
 WHERE `ingredient`.`prix` <= 2
 GROUP BY `Preparer`.`id_recette`,  `Preparer`.`id_ingredient`
 
--- 16- Afficher la / les recette(s) les plus rapides à préparer
+-- 16- Afficher la / les recette(s) les plus rapides à préparer MINUS
+SELECT *
+FROM recette
+WHERE temps_preparation = (
+	SELECT MIN(temps_preparation)
+	FROM recette
+	ORDER BY temps_preparation ASC
+	LIMIT 1
+)
+
 -- 17- Trouver les recettes qui ne nécessitent aucun ingrédient (par exemple la recette de la tasse d’eau chaude qui consiste à verser de l’eau chaude dans une tasse)
+SELECT * 
+FROM recette
+WHERE id_recette NOT IN (
+	SELECT DISTINCT id_recette 
+	FROM preparer
+)
 -- 18- Trouver les ingrédients qui sont utilisés dans au moins 3 recettes
 -- 19- Ajouter un nouvel ingrédient à une recette spécifique
 -- 20- Bonus : Trouver la recette la plus coûteuse de la base de données (il peut y avoir des ex aequo, il est donc exclu d’utiliser la clause LIMIT);
