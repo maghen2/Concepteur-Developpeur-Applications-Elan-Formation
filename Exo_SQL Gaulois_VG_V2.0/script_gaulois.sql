@@ -152,7 +152,19 @@ HAVING
     GROUP BY
         prendre_casque.id_bataille
 )
+
 -- 11. Combien existe-t-il de casques de chaque type et quel est leur coût total ? (classés par nombre décroissant)
+SELECT
+    type_casque.nom_type_casque,
+    COUNT(*) AS `Quantité`,
+    AVG(casque.cout_casque) AS `coût moyen`,
+    COUNT(*) * AVG(casque.cout_casque) AS `coût total`
+FROM
+    type_casque
+JOIN casque ON casque.id_type_casque = type_casque.id_type_casque
+GROUP BY
+    type_casque.id_type_casque
+    
 -- 12. Nom des potions dont un des ingrédients est le poisson frais.
 -- 13. Nom du / des lieu(x) possédant le plus d'habitants, en dehors du village gaulois.
 -- 14. Nom des personnages qui n'ont jamais bu aucune potion.
