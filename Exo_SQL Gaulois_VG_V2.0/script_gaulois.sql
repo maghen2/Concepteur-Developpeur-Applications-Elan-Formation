@@ -73,6 +73,23 @@ ORDER BY
 DESC
     
 -- 7. Nom des ingrédients + coût + quantité de chaque ingrédient qui composent la potion 'Santé'.
+SELECT
+    ingredient.nom_ingredient,
+    ingredient.cout_ingredient,
+    composer.qte,
+    SUM(
+        composer.qte * ingredient.cout_ingredient
+    ) AS `Prix Total`
+FROM
+    ingredient
+JOIN composer ON composer.id_ingredient = ingredient.id_ingredient
+JOIN potion ON potion.id_potion = composer.id_potion
+WHERE
+    potion.nom_potion = 'Santé'
+GROUP BY
+    composer.id_ingredient,
+    composer.id_potion
+    
 -- 8. Nom du ou des personnages qui ont pris le plus de casques dans la bataille 'Bataille du village gaulois'.
 -- 9. Nom des personnages et leur quantité de potion bue (en les classant du plus grand buveur au plus petit).
 -- 10. Nom de la bataille où le nombre de casques pris a été le plus important.
