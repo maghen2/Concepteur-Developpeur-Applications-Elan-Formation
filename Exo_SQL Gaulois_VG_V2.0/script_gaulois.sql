@@ -119,6 +119,20 @@ HAVING
 )
 
 -- 9. Nom des personnages et leur quantité de potion bue (en les classant du plus grand buveur au plus petit).
+SELECT
+    personnage.nom_personnage,
+    SUM(boire.dose_boire) AS `quantité de potion bue`
+FROM
+    personnage
+JOIN boire ON boire.id_personnage = personnage.id_personnage
+JOIN potion ON potion.id_potion = boire.id_potion
+    -- WHERE potion.nom_potion = 'blue'
+GROUP BY
+    boire.id_personnage
+ORDER BY
+    SUM(boire.dose_boire)
+DESC
+    
 -- 10. Nom de la bataille où le nombre de casques pris a été le plus important.
 -- 11. Combien existe-t-il de casques de chaque type et quel est leur coût total ? (classés par nombre décroissant)
 -- 12. Nom des potions dont un des ingrédients est le poisson frais.
