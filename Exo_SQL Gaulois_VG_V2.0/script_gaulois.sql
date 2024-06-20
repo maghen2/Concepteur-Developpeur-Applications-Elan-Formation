@@ -258,7 +258,20 @@ VALUES('Champdeblix', 'Ferme Hantassion', 6, 12)
 INSERT IGNORE
 INTO autoriser_boire(id_potion, id_personnage)
 VALUES(1, 12)
+
 -- C. Supprimez les casques grecs qui n'ont jamais été pris lors d'une bataille.
+DELETE
+FROM
+    casque
+WHERE
+    casque.id_type_casque = 2 AND casque.id_casque NOT IN(
+    SELECT DISTINCT
+        prendre_casque.id_casque
+    FROM
+        prendre_casque
+)
+
 -- D. Modifiez l'adresse de Zérozérosix : il a été mis en prison à Condate.
+
 -- E. La potion 'Soupe' ne doit plus contenir de persil.
 -- F. Obélix s'est trompé : ce sont 42 casques Weisenau, et non Ostrogoths, qu'il a pris lors de la bataille 'Attaque de la banque postale'. Corrigez son erreur !
