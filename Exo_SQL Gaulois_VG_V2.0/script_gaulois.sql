@@ -281,5 +281,11 @@ WHERE
 LIMIT 1
 
 -- E. La potion 'Soupe' ne doit plus contenir de persil.
+DELETE
+FROM
+    composer
+WHERE
+    composer.id_potion = 9 AND composer.id_ingredient = 19
+LIMIT 1
 
 -- F. Obélix s'est trompé : ce sont 42 casques Weisenau, et non Ostrogoths, qu'il a pris lors de la bataille 'Attaque de la banque postale'. Corrigez son erreur !
