@@ -41,8 +41,20 @@ FROM
 JOIN specialite ON specialite.id_specialite = personnage.id_specialite
 GROUP BY
     specialite.id_specialite;
-    
+
 -- 5. Nom, date et lieu des batailles, classées de la plus récente à la plus ancienne (dates affichées au format jj/mm/aaaa).
+-- 
+SELECT
+    bataille.nom_bataille,
+    bataille.date_bataille,
+    lieu.nom_lieu
+FROM
+    bataille
+JOIN lieu ON lieu.id_lieu = bataille.id_lieu
+ORDER BY
+    bataille.date_bataille
+DESC
+    
 -- 6. Nom des potions + coût de réalisation de la potion (trié par coût décroissant).
 -- 7. Nom des ingrédients + coût + quantité de chaque ingrédient qui composent la potion 'Santé'.
 -- 8. Nom du ou des personnages qui ont pris le plus de casques dans la bataille 'Bataille du village gaulois'.
