@@ -33,7 +33,15 @@ JOIN lieu ON lieu.id_lieu = personnage.id_lieu
 ORDER BY lieu.nom_lieu , personnage.nom_personnage
 
 -- 4. Nom des spécialités avec nombre de personnages par spécialité (trié par nombre de personnages décroissant).
-
+SELECT
+    specialite.nom_specialite AS `Spécialité`,
+    COUNT(personnage.id_personnage) AS `Nbr de personnages`
+FROM
+    personnage
+JOIN specialite ON specialite.id_specialite = personnage.id_specialite
+GROUP BY
+    specialite.id_specialite;
+    
 -- 5. Nom, date et lieu des batailles, classées de la plus récente à la plus ancienne (dates affichées au format jj/mm/aaaa).
 -- 6. Nom des potions + coût de réalisation de la potion (trié par coût décroissant).
 -- 7. Nom des ingrédients + coût + quantité de chaque ingrédient qui composent la potion 'Santé'.
