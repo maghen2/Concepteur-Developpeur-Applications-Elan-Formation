@@ -250,10 +250,14 @@ WHERE
 En écrivant toujours des requêtes SQL, modifiez la base de données comme suit :
 */
 -- A. Ajoutez le personnage suivant : Champdeblix, agriculteur résidant à la ferme Hantassion de Rotomagus.
-INSERT INTO personnage(`nom_personnage`, `adresse_personnage`, `id_lieu`,`id_specialite`)
+INSERT IGNORE
+INTO personnage(`nom_personnage`, `adresse_personnage`, `id_lieu`,`id_specialite`)
 VALUES('Champdeblix', 'Ferme Hantassion', 6, 12)
 
 -- B. Autorisez Bonemine à boire de la potion magique, elle est jalouse d'Iélosubmarine...
+INSERT IGNORE
+INTO autoriser_boire(id_potion, id_personnage)
+VALUES(1, 12)
 -- C. Supprimez les casques grecs qui n'ont jamais été pris lors d'une bataille.
 -- D. Modifiez l'adresse de Zérozérosix : il a été mis en prison à Condate.
 -- E. La potion 'Soupe' ne doit plus contenir de persil.
