@@ -289,3 +289,13 @@ WHERE
 LIMIT 1
 
 -- F. Obélix s'est trompé : ce sont 42 casques Weisenau, et non Ostrogoths, qu'il a pris lors de la bataille 'Attaque de la banque postale'. Corrigez son erreur !
+UPDATE prendre_casque
+SET id_casque = 10, 
+id_personnage = 5, 
+id_bataille = 9, 
+qte = 42
+WHERE
+    prendre_casque.id_personnage = 5 
+    AND prendre_casque.id_bataille = 9
+    AND prendre_casque.id_casque = 14
+LIMIT 1
