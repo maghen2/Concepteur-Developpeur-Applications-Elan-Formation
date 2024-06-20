@@ -272,6 +272,14 @@ WHERE
 )
 
 -- D. Modifiez l'adresse de Zérozérosix : il a été mis en prison à Condate.
+UPDATE
+    personnage
+SET
+    `adresse_personnage` = 'prison', `id_lieu` = 9
+WHERE
+    personnage.id_personnage = 23
+LIMIT 1
 
 -- E. La potion 'Soupe' ne doit plus contenir de persil.
+
 -- F. Obélix s'est trompé : ce sont 42 casques Weisenau, et non Ostrogoths, qu'il a pris lors de la bataille 'Attaque de la banque postale'. Corrigez son erreur !
