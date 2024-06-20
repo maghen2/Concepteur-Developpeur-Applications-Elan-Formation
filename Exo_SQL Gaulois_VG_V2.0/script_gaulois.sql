@@ -164,16 +164,95 @@ FROM
 JOIN casque ON casque.id_type_casque = type_casque.id_type_casque
 GROUP BY
     type_casque.id_type_casque
-    
+
 -- 12. Nom des potions dont un des ingrédients est le poisson frais.
+SELECT
+    potion.nom_potion
+FROM
+    potion
+JOIN composer ON composer.id_potion = potion.id_potion
+JOIN ingredient ON ingredient.id_ingredient = composer.id_ingredient
+WHERE
+    ingredient.nom_ingredient = 'Poisson frais'
+
 -- 13. Nom du / des lieu(x) possédant le plus d'habitants, en dehors du village gaulois.
+SELECT
+    lieu.nom_lieu,
+    COUNT(personnage.id_lieu) AS nbrHabitant
+FROM
+    lieu
+JOIN personnage ON personnage.id_lieu = lieu.id_lieu
+WHERE
+    lieu.nom_lieu != "Village gaulois"
+GROUP BY
+    personnage.id_lieu
+HAVING nbrHabitant = (
+    SELECT
+        COUNT(personnage.id_lieu) as  nbrHabitant
+    FROM
+        lieu
+    JOIN personnage ON personnage.id_lieu = lieu.id_lieu
+    WHERE
+        lieu.nom_lieu != "Village gaulois"
+    GROUP BY
+        personnage.id_lieu
+    ORDER BY
+        nbrHabitant
+    DESC
+LIMIT 1
+)
+
 -- 14. Nom des personnages qui n'ont jamais bu aucune potion.
+SELECT
+    personnage.nom_personnage,
+    SUM(boire.dose_boire) AS quantitePotionBue
+FROM
+    personnage
+JOIN boire ON boire.id_personnage = personnage.id_personnage
+JOIN potion ON potion.id_potion = boire.id_potion
+WHERE personnage.id_personnage NOT IN (
+SELECT DISTINCT boire.id_personnage
+    from boire
+)  
+GROUP BY
+    boire.id_personnage
+
+ -- 14. Nom des personnages qui n'ont jamais bu aucune potion.
+SELECT
+    personnage.nom_personnage,
+    SUM(boire.dose_boire) AS quantitePotionBue
+FROM
+    personnage
+JOIN boire ON boire.id_personnage = personnage.id_personnage
+JOIN potion ON potion.id_potion = boire.id_potion
+GROUP BY
+    boire.id_personnage
+HAVING quantitePotionBue = 0    
+   
 -- 15. Nom du / des personnages qui n'ont pas le droit de boire de la potion 'Magique'.
+SELECT
+    *
+FROM
+    personnage
+WHERE
+    personnage.id_personnage NOT IN(
+    SELECT
+        personnage.id_personnage
+    FROM
+        personnage
+    JOIN autoriser_boire ON autoriser_boire.id_personnage = personnage.id_personnage
+    JOIN potion ON potion.id_potion = autoriser_boire.id_potion
+    WHERE
+        potion.nom_potion = 'Magique'
+)
 
 /*_______________________________________________________________________________
 En écrivant toujours des requêtes SQL, modifiez la base de données comme suit :
 */
 -- A. Ajoutez le personnage suivant : Champdeblix, agriculteur résidant à la ferme Hantassion de Rotomagus.
+INSERT INTO personnage(`nom_personnage`, `adresse_personnage`, `id_lieu`,`id_specialite`)
+VALUES('Champdeblix', 'Ferme Hantassion', 6, 12)
+
 -- B. Autorisez Bonemine à boire de la potion magique, elle est jalouse d'Iélosubmarine...
 -- C. Supprimez les casques grecs qui n'ont jamais été pris lors d'une bataille.
 -- D. Modifiez l'adresse de Zérozérosix : il a été mis en prison à Condate.
