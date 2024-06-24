@@ -19,8 +19,15 @@ catch(Exception $error){
 
 (isset($_GET['id_potion']))? $id_potion = $_GET['id_potion'] : $id_potion = 0;
 
-$sql ="
-SELECT
+    $sql = "SELECT potion.nom_potion
+    FROM potion
+    WHERE potion.id_potion = $id_potion
+    LIMIT 1";
+    $query = $myPDO->prepare($sql);
+    $query->execute();
+    $recipe = $query->fetch();
+    $nom_potion = $recipe[0];
+$sql = "SELECT 
     ingredient.nom_ingredient,
     ingredient.cout_ingredient,
     composer.qte,
@@ -54,22 +61,30 @@ GROUP BY
         <h1>Exo_POO_PHP_Gaulois</h1>
     <div id="container">
     <table>
-    <caption><h2>liste des ingredients de potion</h2></caption>
+    <caption><h2>liste des ingredients de la potion <?php echo $nom_potion ?></h2></caption>
     <tr>
-    <th>Nom du personnage</th>
-    <th>Spécialité</th>
-    <th>Lieu</th>
+    <th>Nom ingrédient</th>
+    <th>Prix Unitaire</th>
+    <th>Qté</th>
+    <th>Prix Total</th>
     </tr>
-    
-        <?php
+    <?php
+        $prixToal=0;
         $tr="";
         foreach($recipes as $recipe){
+            $prixToal += $recipe[3];
             $tr .= "<tr>
             <td>".$recipe[0]."</td>
-            <td>".$recipe[1]."</td>
+            <td>".$recipe[1]." €</td>
             <td>".$recipe[2]."</td>
+            <td>".$recipe[3]." €</td>
             </tr>";
         }
+        $tr .= "<tr>
+        <th colspan=3>Coût Total</th><th>$prixToal €</th>
+        </tr>";
         echo $tr;
         ?>
     </table> 
+  </body>  
+    </html>
