@@ -575,11 +575,11 @@ INSERT IGNORE INTO film_genres(id_film, id_genre) VALUES
 (9,14),
 (9,6);
 
-/*j'ai des id_film allant de 1 à 28 et des id_acteur allant de 1 à 137. Sachant que entre 20 et 50 id_acteur doivent être associées aléatoirement à chaque id_film, complète la code sql ci-dessous :
+-- j'ai des id_film allant de 1 à 28 et des id_acteur allant de 1 à 137. Sachant que entre 20 et 50 id_acteur doivent être associées aléatoirement à chaque id_film, complète la code sql ci-dessous :
 INSERT INTO Casting (id_film, id_acteur) VALUES
-  (1, 23),
-  (1, 42),
-  (1, 108),*/
+(1, 23),
+(1, 42),
+(1, 108),
 
    
    
