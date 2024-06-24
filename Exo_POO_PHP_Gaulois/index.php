@@ -48,7 +48,8 @@ On fera les affichages suivants : </p>
 <li>-- si on clique sur une potion de la liste, on affiche une autre page avec les informations de la potions (nom de la potion) + liste de ses ingrédients. Comme dans appli_php il faudra faire passer un argument en GET dans l'URL (l'id de la potion afin de réaliser une requête préparée)</li>
 </ul>
 <p>Accédez aux données en PHP avec PDO. PHP permet de créer des sites dynamiques : blogs, forums, réseaux sociaux, espaces membres... Découvrez PHP associé à MySQL et créez votre premier site web !</p>
-<div id="container"><table>
+<div id="container">
+    <table>
     <caption><h2>liste des gaulois</h2></caption>
     <tr>
     <th>Nom du personnage</th>
@@ -67,6 +68,7 @@ On fera les affichages suivants : </p>
         }
         echo $tr;
         ?>
+    </table>       
 <table>
     <caption><h2>Liste des potions avec le nombre d'ingrédients</h2></caption>
     <tr>
