@@ -49,10 +49,10 @@ CREATE TABLE Role(
    PRIMARY KEY(id_role)
 );
 
-CREATE TABLE filmotheque(
+CREATE TABLE film_genres(
    id_film INT NOT NULL,
    id_genre INT NOT NULL,
-   PRIMARY KEY(id_film NOT NULL, id_genre) NOT NULL,
+   PRIMARY KEY(id_film, id_genre),
    FOREIGN KEY(id_film) REFERENCES Film(id_film),
    FOREIGN KEY(id_genre) REFERENCES Genre(id_genre)
 );
