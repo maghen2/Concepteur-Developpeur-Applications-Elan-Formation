@@ -29,4 +29,8 @@ catch(Exception $error){
     die('Erreur: '.$error->getMessage());
 }
 // liste des gaulois (nom + spécialité + lieu) dans un tableau HTML à 3 colonnes
-
+$sql ='-- liste des gaulois (nom + spécialité + lieu) dans un tableau HTML à 3 colonnes
+SELECT personnage.nom_personnage, specialite.nom_specialite, lieu.nom_lieu
+FROM personnage
+JOIN specialite ON personnage.id_specialite = specialite.id_specialite
+JOIN lieu ON personnage.id_lieu = lieu.id_lieu';
