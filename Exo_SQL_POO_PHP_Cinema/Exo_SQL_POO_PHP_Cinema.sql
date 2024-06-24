@@ -1,3 +1,6 @@
+CREATE DATABASE IF NOT EXISTS `maghen_cinema` DEFAULT CHARACTER SET utf8 COLLATE utf8_bin;
+USE `maghen_cinema`;
+
 CREATE TABLE Personne(
    id_personne INT AUTO_INCREMENT NOT NULL,
    prenom VARCHAR(255) NOT NULL,
@@ -46,7 +49,7 @@ CREATE TABLE Role(
    PRIMARY KEY(id_role)
 );
 
-CREATE TABLE genre_cine(
+CREATE TABLE filmotheque(
    id_film INT NOT NULL,
    id_genre INT NOT NULL,
    PRIMARY KEY(id_film NOT NULL, id_genre) NOT NULL,
