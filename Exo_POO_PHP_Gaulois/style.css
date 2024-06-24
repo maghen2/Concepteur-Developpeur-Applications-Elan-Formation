@@ -1,4 +1,4 @@
-body{
+div#container{
     display: flex;
 }
 .green .red {
@@ -18,11 +18,17 @@ body{
 
 table{
     display: inline-table;
+    margin: 0 15px;
     table-layout: fixed;
     width: 500px;
     border-collapse: collapse;
     border: 3px solid blue;
+    background-color: #CCF;
 }
-td{
+tr,th,td{
     border: 1px solid blue;
+    border-collapse: collapse;
+}
+caption{
+    color: blue;
 }
