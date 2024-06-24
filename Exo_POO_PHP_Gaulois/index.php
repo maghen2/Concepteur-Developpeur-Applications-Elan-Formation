@@ -26,15 +26,13 @@ JOIN lieu ON personnage.id_lieu = lieu.id_lieu';
 $query = $myPDO->prepare($sql);
 $query->execute();
 $recipes = $query->fetchAll();
-
-echo'<pre>';
-var_dump($recipes);
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Exo_POO_PHP_Gaulois</title>
 </head>
 <body>
@@ -48,8 +46,27 @@ On fera les affichages suivants : </p>
 <li>-- liste des gaulois (nom + spécialité + lieu) dans un tableau HTML à 3 colonnes</li>
 <li>-- liste des potions avec le nombre d'ingrédients dans chacune de ces potions dans un tableau HTML à 2 colonnes</li>
 <li>-- si on clique sur une potion de la liste, on affiche une autre page avec les informations de la potions (nom de la potion) + liste de ses ingrédients. Comme dans appli_php il faudra faire passer un argument en GET dans l'URL (l'id de la potion afin de réaliser une requête préparée)</li>
-
+</ul>
 <p>Accédez aux données en PHP avec PDO. PHP permet de créer des sites dynamiques : blogs, forums, réseaux sociaux, espaces membres... Découvrez PHP associé à MySQL et créez votre premier site web !</p>
-
+<table>
+    <caption><h2>liste des gaulois</h2></caption>
+    <tr>
+    <th>Nom du personnage</th>
+    <th>Spécialité</th>
+    <th>Lieu</th>
+    </tr>
+    
+        <?php
+        $tr="";
+        foreach($recipes as $recipe){
+            $tr .= "<tr>
+            <td>".$recipe[0]."</td>
+            <td>".$recipe[1]."</td>
+            <td>".$recipe[2]."</td>
+            </tr>";
+        }
+        echo $tr;
+        ?>
+</table>   
 </body>
 </html>
