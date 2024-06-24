@@ -75,7 +75,7 @@ On fera les affichages suivants : </p>
     </tr>
         <?php
         $sql ="-- liste des potions avec le nombre d'ingrédients dans chacune de ces potions dans un tableau HTML à 2 colonnes
-                SELECT potion.nom_potion, COUNT(*)
+                SELECT potion.nom_potion, COUNT(*), potion. id_potion
                 FROM potion
                 JOIN composer ON composer.id_potion = potion.id_potion
                 JOIN ingredient ON ingredient.id_ingredient = composer.id_ingredient
@@ -87,7 +87,7 @@ On fera les affichages suivants : </p>
         $tr="";
         foreach($recipes as $recipe){
             $tr .= "<tr>
-            <td>".$recipe[0]."</td>
+            <td><a href='potion.php?id_potion=".$recipe['id_potion']."'>".$recipe[0]."</a></td>
             <td>".$recipe[1]."</td>
             </tr>";
         }
