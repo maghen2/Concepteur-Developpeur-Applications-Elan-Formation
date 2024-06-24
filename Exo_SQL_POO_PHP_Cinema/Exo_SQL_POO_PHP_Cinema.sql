@@ -68,7 +68,7 @@ CREATE TABLE Casting(
 );
 
 -- Insertion des données
-INSERT INTO Personne(prenom, nom, sexe, date_naissance) VALUES
+INSERT IGNORE INTO Personne(prenom, nom, sexe, date_naissance) VALUES
 ('Johnny', 'Depp', 'M', '1963-06-09'),
 ('Tom', 'Cruise', 'M', '1962-07-03'),
 ('Angelina', 'Jolie', 'F', '1975-06-04'),
@@ -211,7 +211,7 @@ INSERT INTO Personne(prenom, nom, sexe, date_naissance) VALUES
 ('Jun', 'Matsumoto', 'M', '1983-08-30'),
 ('Shun', 'Oguri', 'M', '1982-12-26');
 
-INSERT INTO Realisateur(id_personne) VALUES
+INSERT IGNORE INTO Realisateur(id_personne) VALUES
 (4),
 (5),
 (6),
@@ -223,7 +223,7 @@ INSERT INTO Realisateur(id_personne) VALUES
 (23),
 (24);
 
-INSERT INTO Acteur(id_personne) VALUES
+INSERT IGNORE INTO Acteur(id_personne) VALUES
 (1),
 (2),
 (3),
@@ -362,7 +362,7 @@ INSERT INTO Acteur(id_personne) VALUES
 (140),
 (141);
 
-INSERT INTO Film(titre, date_sortie_fr_, duree, synopsis, id_realisateur_) VALUES
+INSERT IGNORE INTO Film(titre, date_sortie_fr_, duree, synopsis, id_realisateur_) VALUES
 ('Pirates des Caraïbes : La Malédiction du Black Pearl', '2003-07-13', 143, 'Le pirate Jack Sparrow part à la recherche du trésor du Black Pearl.', 1),
 ('Pirates des Caraïbes : Le Secret du coffre maudit', '2006-07-12', 150, 'Jack Sparrow est à la recherche du coffre de Davy Jones.', 1),
 ('Pirates des Caraïbes : Jusqu''au bout du monde', '2007-05-23', 168, 'Jack Sparrow et ses amis partent à la recherche de la Fontaine de Jouvence.', 1),
@@ -403,7 +403,7 @@ INSERT INTO Film(titre, date_sortie_fr_, duree, synopsis, id_realisateur_) VALUE
 ('Erin Brockovich', '2000-03-17', 131, 'Une mère célibataire se bat contre une compagnie d''énergie.', 13);
 
 
-INSERT INTO Genre(nom_genre) VALUES
+INSERT IGNORE INTO Genre(nom_genre) VALUES
 ('Action'),
 ('Aventure'),
 ('Comédie'),
