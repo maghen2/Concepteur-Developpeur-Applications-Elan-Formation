@@ -67,6 +67,33 @@ On fera les affichages suivants : </p>
         }
         echo $tr;
         ?>
+<table>
+    <caption><h2>Liste des potions avec le nombre d'ingrédients</h2></caption>
+    <tr>
+    <th>Nom Potion</th>
+    <th>Nbr d'ingredients</th>
+    </tr>
+        <?php
+        $sql ="-- liste des potions avec le nombre d'ingrédients dans chacune de ces potions dans un tableau HTML à 2 colonnes
+                SELECT potion.nom_potion, COUNT(*)
+                FROM potion
+                JOIN composer ON composer.id_potion = potion.id_potion
+                JOIN ingredient ON ingredient.id_ingredient = composer.id_ingredient
+                GROUP BY composer.id_potion";
+
+        $query = $myPDO->prepare($sql);
+        $query->execute();
+        $recipes = $query->fetchAll();
+        $tr="";
+        foreach($recipes as $recipe){
+            $tr .= "<tr>
+            <td>".$recipe[0]."</td>
+            <td>".$recipe[1]."</td>
+            </tr>";
+        }
+        echo $tr;
+        ?>
+</table>        
 </table>   
 </body>
 </html>
