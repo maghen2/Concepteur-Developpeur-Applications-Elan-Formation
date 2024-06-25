@@ -9,7 +9,7 @@ spl_autoload_register(function($class){
 // création de l'objet PDO pour la connexion à la base de données
 try{
     $myPDO = new PDO(
-        'mysql:host=localhost;dbname=gaulois;charset=utf8',
+        'mysql:host=localhost;dbname=cinema;charset=utf8',
         'root',
         ''
     );
@@ -17,6 +17,59 @@ try{
 catch(Exception $error){
     die('Erreur: '.$error->getMessage());
 }
+
+// GENERATION DES DONNEES POUR INSERT INTO Casting (id_film, id_acteur) VALUES
+$sql ='SELECT DISTINCT id_film
+FROM film
+ORDER BY id_film ASC';
+
+$query = $myPDO->prepare($sql);
+$query->execute();
+$recipes = $query->fetchAll();
+foreach ($recipes as $recipe){
+    $id_films[] = $recipe['id_film'];
+}
+
+// var_dump($id_films);
+
+$sql ='SELECT DISTINCT id_acteur
+FROM acteur
+ORDER BY id_acteur ASC';
+
+$query = $myPDO->prepare($sql);
+$query->execute();
+$recipes = $query->fetchAll();
+foreach ($recipes as $recipe){
+    $id_acteurs[] = $recipe['id_acteur'];
+}
+// var_dump($id_acteurs);
+
+$sql ='SELECT DISTINCT id_role
+FROM role
+ORDER BY id_role ASC';
+
+$query = $myPDO->prepare($sql);
+$query->execute();
+$recipes = $query->fetchAll();
+foreach ($recipes as $recipe){
+    $id_roles[] = $recipe['id_role'];
+}
+// var_dump($id_acteurs);
+
+$sql ='INSERT INTO Casting (id_film, id_acteur, id_role ) VALUES';
+$numbers_of_actor = count($id_acteurs);
+$numbers_of_role = count($id_roles);
+
+foreach ($id_films as $id_film){
+    $number_of_casting = rand(20, 60);
+    for ($i=0; $i<$number_of_casting; $i++){
+        $id_acteur = $id_acteurs[rand(0, $numbers_of_actor-1)];
+        $id_role = $id_roles[rand(0, $numbers_of_role-1)];
+        $sql .= "\n(".$id_film.', '.$id_acteur.', '.$id_role.'),';
+    }
+}
+echo('<pre>'.$sql.'</pre>');
+
 ?>
 <h1>Exercice Cinéma</h1> 
 <p>Vous travaillez au sein d'une web agency en tant que développeur-intégrateur web. Suite à la commande d’un client (dont le formateur interprétera le rôle), vous vous occupez de la conception d’un wiki de films, de genres cinématographiques et d’acteurs / actrices.  </p>
@@ -28,19 +81,19 @@ catch(Exception $error){
 <li>Réalisez le MCD d’une telle gestion des données. Vérifiez-le auprès du formateur. </li>
 <li>Créez et remplissez la base de données. </li>
 <li>Réalisez les requêtes SQL suivantes avec HeidiSQL ou PhpMyAdmin (rédigez les requêtes dans un fichier .sql afin de garder un historique de celles-ci) : entre parenthèses les champs servant de référence aux requêtes. </li>
-<li>Informations d’un film (id_film) : titre, année, durée (au format HH:MM) et réalisateur  </li>
-<ol>
-<li>Liste des films dont la durée excède 2h15 classés par durée (du + long au + court)  </li>
-<li>Liste des films d’un réalisateur (en précisant l’année de sortie)  </li>
-<li>Nombre de films par genre (classés dans l’ordre décroissant) </li>
-<li>Nombre de films par réalisateur (classés dans l’ordre décroissant) </li>
-<li>Casting d’un film en particulier (id_film) : nom, prénom des acteurs + sexe </li>
-<li>Films tournés par un acteur en particulier (id_acteur) avec leur rôle et l’année de sortie (du film le plus récent au plus ancien) </li>
-<li>Liste des personnes qui sont à la fois acteurs et réalisateurs </li>
-<li>Liste des films qui ont moins de 5 ans (classés du plus récent au plus ancien) </li>
-<li>Nombre d’hommes et de femmes parmi les acteurs </li>
-<li>Liste des acteurs ayant plus de 50 ans (âge révolu et non révolu) </li>
-<li>Acteurs ayant joué dans 3 films ou plus </li>
+<ol type="a">
+    <li>Informations d’un film (id_film) : titre, année, durée (au format HH:MM) et réalisateur  </li>
+    <li>Liste des films dont la durée excède 2h15 classés par durée (du + long au + court)  </li>
+    <li>Liste des films d’un réalisateur (en précisant l’année de sortie)  </li>
+    <li>Nombre de films par genre (classés dans l’ordre décroissant) </li>
+    <li>Nombre de films par réalisateur (classés dans l’ordre décroissant) </li>
+    <li>Casting d’un film en particulier (id_film) : nom, prénom des acteurs + sexe </li>
+    <li>Films tournés par un acteur en particulier (id_acteur) avec leur rôle et l’année de sortie (du film le plus récent au plus ancien) </li>
+    <li>Liste des personnes qui sont à la fois acteurs et réalisateurs </li>
+    <li>Liste des films qui ont moins de 5 ans (classés du plus récent au plus ancien) </li>
+    <li>Nombre d’hommes et de femmes parmi les acteurs </li>
+    <li>Liste des acteurs ayant plus de 50 ans (âge révolu et non révolu) </li>
+    <li>Acteurs ayant joué dans 3 films ou plus </li>
 </ol>
 <li>Grâce à un outil de maquettage (type figma), réalisez un mockup de la page d’accueil, puis un wireframe des écrans principaux de l’application permettant de gérer les différentes entités de la base de données : affichage, insertion / modification / suppression (apportez un soin particulier à l’ergonomie de l’application pour garder une navigation cohérente). </li>
 </ol>
