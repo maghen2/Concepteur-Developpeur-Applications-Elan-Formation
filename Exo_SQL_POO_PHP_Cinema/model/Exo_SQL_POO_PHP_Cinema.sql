@@ -1923,3 +1923,8 @@ WHERE film.duree > 2*60+15
 ORDER BY film.duree DESC;
 
 -- Liste des films d’un réalisateur (en précisant l’année de sortie)
+SELECT film.titre, DATE_FORMAT(film.date_sortie_fr, "%Y") AS `Année`, CONCAT(personne.prenom, " ", personne.nom) AS `realisateur`
+FROM film
+JOIN realisateur on film.id_realisateur = realisateur.id_realisateur
+JOIN personne ON personne.id_personne = realisateur.id_personne
+WHERE realisateur.id_realisateur = 1;
