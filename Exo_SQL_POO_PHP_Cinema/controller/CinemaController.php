@@ -9,9 +9,13 @@ class CinemaController{
 
     public function listFilms(){
         $pdo = Connect::seConnecter();
-        $sql = "SELECT * FROM film";
+        $sql = "SELECT film.titre, DATE_FORMAT(film.date_sortie_fr, '%d/%m/%Y') AS `Date`, SEC_TO_TIME(film.duree*60) AS `Durée`, film.synopsis, CONCAT(personne.prenom, ' ', personne.nom) AS `realisateur`
+                FROM film
+                JOIN realisateur on film.id_realisateur = realisateur.id_realisateur
+                JOIN personne ON personne.id_personne = realisateur.id_personne;
+        ";
         $query = $pdo->query($sql);
-        require_once("View/listFims.php");
+        require_once("View/Film/listFims.php");
         }
         
     }
