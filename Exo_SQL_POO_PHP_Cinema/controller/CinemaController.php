@@ -58,7 +58,16 @@ class CinemaController{
         public function detailFilm(){
 
         }
-        
+
+        // au clic sur un acteur, on affiche les infos de l'acteur + filmographie (films + rôles)
+        public function detailActeur(){
+
+        }
+
+        // au clic sur un réalisateur, on affiche les infos du réalisateur + liste des films réalisés
+        public function detailRealisateur(){
+
+        }
     }
 
 
