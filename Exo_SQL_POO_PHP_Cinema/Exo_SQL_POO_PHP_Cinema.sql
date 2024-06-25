@@ -1918,3 +1918,8 @@ JOIN personne ON personne.id_personne = realisateur.id_personne;
 
 -- Liste des films dont la durée excède 2h15 classés par durée (du + long au + court)
 SELECT film.titre, SEC_TO_TIME(film.duree*60) AS `Durée`
+FROM film
+WHERE film.duree > 2*60+15
+ORDER BY film.duree DESC;
+
+-- Liste des films d’un réalisateur (en précisant l’année de sortie)
