@@ -6,7 +6,7 @@
     <thead>
         <tr>
             <th>Titre</th>
-            <th>Année de sortie</th>
+            <th>Date de sortie</th>
             <th>Durée</th>
             <th>Synopsis</th>
             <th>Réalisateur</th>
