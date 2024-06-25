@@ -16,7 +16,7 @@ class CinemaController{
                 JOIN personne ON personne.id_personne = realisateur.id_personne;
         ";
         $query = $this->pdo->query($sql);
-        require_once("View/Film/listFims.php");
+        require_once("View/Film/listFilms.php");
         }
 
         // Lister les acteurs
