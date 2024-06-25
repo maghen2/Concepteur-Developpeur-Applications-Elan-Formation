@@ -1928,3 +1928,28 @@ FROM film
 JOIN realisateur on film.id_realisateur = realisateur.id_realisateur
 JOIN personne ON personne.id_personne = realisateur.id_personne
 WHERE realisateur.id_realisateur = 1;
+
+--  casting du film (acteurs + rôles)  
+SELECT
+    CONCAT(
+        personne.prenom,
+        ' ',
+        personne.nom
+    ) AS acteur,
+    personne.sexe,
+    DATE_FORMAT(
+        personne.date_naissance,
+        '%d/%m/%Y'
+    ) AS `date_naissance`,
+    role.nom_personnage
+FROM
+    personne
+JOIN acteur ON personne.id_personne = acteur.id_personne
+JOIN casting ON casting.id_acteur = acteur.id_acteur
+JOIN role ON role.id_role = casting.id_role
+WHERE
+    casting.`id_film` = 1
+ORDER BY
+    `acteur`
+DESC
+    

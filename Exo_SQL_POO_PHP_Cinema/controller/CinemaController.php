@@ -69,6 +69,32 @@ class CinemaController{
             $query = $pdo->query($sql);
             $film = $query->fetch();
             
+            // casting du film (acteurs + rôles)   
+            $sql = "SELECT
+                        CONCAT(
+                            personne.prenom,
+                            ' ',
+                            personne.nom
+                        ) AS acteur,
+                        personne.sexe,
+                        DATE_FORMAT(
+                            personne.date_naissance,
+                            '%d/%m/%Y'
+                        ) AS `date_naissance`,
+                        role.nom_personnage
+                FROM
+                    personne
+                JOIN acteur ON personne.id_personne = acteur.id_personne
+                JOIN casting ON casting.id_acteur = acteur.id_acteur
+                JOIN role ON role.id_role = casting.id_role
+                WHERE
+                    casting.`id_film` = 1
+                ORDER BY
+                    `acteur`
+                DESC
+           ";
+            $query = $pdo->query($sql);
+            $casting = $query->fetchAll();
             
             require_once("View/film/detailFilm.php");
 
