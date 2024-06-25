@@ -8,7 +8,7 @@ spl_autoload_register(function($class){
 
 // implementation du CinemaController
 use Controller\CinemaController;
-$ctrCinema = new CinemaController():
+$ctrCinema = new CinemaController();
 
 if(isset($_GET["action"])){
     switch($_GET["action"]){
