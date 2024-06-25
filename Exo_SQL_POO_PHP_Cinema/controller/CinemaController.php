@@ -53,7 +53,11 @@ class CinemaController{
                 $query = $pdo->query($sql);
                 require_once("View/realisateur/listRealisateurs.php");
             }
-            
+        
+        // au clic sur un film, on affiche les infos du films + casting du film (acteurs + rôles)    
+        public function detailFilm(){
+
+        }
         
     }
 
