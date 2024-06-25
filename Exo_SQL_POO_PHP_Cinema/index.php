@@ -6,7 +6,19 @@ spl_autoload_register(function($class){
   require_once("class/".$class.".php");
 });
 
+// implementation du CinemaController
 use Controller\CinemaController;
+$ctrCinema = new CinemaController():
+
+if(isset($_GET["action"])){
+    switch($_GET["action"]){
+        case 'listFilms' : $ctrCinema->listFilms(); 
+        break;
+        case 'listActeurs' : $ctrCinema->listActeurs(); 
+        break;
+        default :  $ctrCinema->listFilms();
+    }
+}
 
 
 ?>
