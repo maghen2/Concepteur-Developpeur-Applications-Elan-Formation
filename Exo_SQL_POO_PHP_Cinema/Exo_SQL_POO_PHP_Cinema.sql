@@ -847,6 +847,7 @@ INSERT IGNORE INTO Role(nom_personnage) VALUES
 ('Julia Meade');
 
 -- code sql généré par le code le programme php insertIntoCasting.php
+insertINSERT IGNORE INTO Casting (id_film, id_acteur, id_role ) VALUES
 (1, 95, 268),
 (1, 51, 154),
 (1, 27, 128),

@@ -56,7 +56,7 @@ foreach ($recipes as $recipe){
 }
 // var_dump($id_acteurs);
 
-$sql ='INSERT INTO Casting (id_film, id_acteur, id_role ) VALUES';
+$sql ='INSERT IGNORE INTO Casting (id_film, id_acteur, id_role ) VALUES';
 $numbers_of_actor = count($id_acteurs);
 $numbers_of_role = count($id_roles);
 
