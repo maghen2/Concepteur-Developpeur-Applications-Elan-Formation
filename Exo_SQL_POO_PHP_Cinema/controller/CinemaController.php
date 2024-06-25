@@ -38,25 +38,35 @@ class CinemaController{
         
         // Lister les réalisateurs
         public function listRealisateurs(){
-            // on crée un nouveau PDO pour la connexion à la base de données
-            $pdo = Connect::seConnecter();
-                $sql = "SELECT CONCAT(personne.prenom, ' ', personne.nom) AS realisateur, 
-                personne.sexe, 
-                DATE_FORMAT(personne.date_naissance, '%d/%m/%Y') AS `date_naissance`, 
-                COUNT(film.id_film) AS `Nombre_films`
-                        FROM personne
-                        JOIN realisateur ON personne.id_personne = realisateur.id_personne
-                        JOIN film ON film.id_realisateur = realisateur.id_realisateur
-                        GROUP by film.id_realisateur
-                        ORDER by `Nombre_films` DESC
-                ";
+           
+            $pdo = Connect::seConnecter();  // on crée un nouveau PDO pour la connexion à la base de données
+            $id_film = (int) $_GET['id_film'];
+
+            $sql = "SELECT film.titre, DATE_FORMAT(film.date_sortie_fr, '%d/%m/%Y') AS `Date`, SEC_TO_TIME(film.duree*60) AS `Duree`, film.synopsis, CONCAT(personne.prenom, ' ', personne.nom) AS `realisateur`
+            FROM film
+            JOIN realisateur on film.id_realisateur = realisateur.id_realisateur
+            JOIN personne ON personne.id_personne = realisateur.id_personne
+            WHERE film.id_film = $id_film
+            ";
                 $query = $pdo->query($sql);
                 require_once("View/realisateur/listRealisateurs.php");
             }
         
         // au clic sur un film, on affiche les infos du films + casting du film (acteurs + rôles)    
         public function detailFilm(){
-
+            $pdo = Connect::seConnecter();
+            $sql = "SELECT CONCAT(personne.prenom, ' ', personne.nom) AS realisateur, 
+            personne.sexe, 
+            DATE_FORMAT(personne.date_naissance, '%d/%m/%Y') AS `date_naissance`, 
+            COUNT(film.id_film) AS `Nombre_films`
+                    FROM personne
+                    JOIN realisateur ON personne.id_personne = realisateur.id_personne
+                    JOIN film ON film.id_realisateur = realisateur.id_realisateur
+                    GROUP by film.id_realisateur
+                    ORDER by `Nombre_films` DESC
+            ";
+            $query = $pdo->query($sql);
+            require_once("View/realisateur/listRealisateurs.php");
         }
 
         // au clic sur un acteur, on affiche les infos de l'acteur + filmographie (films + rôles)
