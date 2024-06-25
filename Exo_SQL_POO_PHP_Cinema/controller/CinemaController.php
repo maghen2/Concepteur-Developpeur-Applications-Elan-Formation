@@ -5,22 +5,25 @@ use Model\Connect;
 
 
 class CinemaController{
-    // on crée un nouveau PDO pour la connexion à la base de données
-    private $pdo = Connect::seConnecter();
+
 
     // Lister les films
     public function listFilms(){
+            // on crée un nouveau PDO pour la connexion à la base de données
+        $pdo = Connect::seConnecter();
         $sql = "SELECT film.titre, DATE_FORMAT(film.date_sortie_fr, '%d/%m/%Y') AS `Date`, SEC_TO_TIME(film.duree*60) AS `Duree`, film.synopsis, CONCAT(personne.prenom, ' ', personne.nom) AS `realisateur`
                 FROM film
                 JOIN realisateur on film.id_realisateur = realisateur.id_realisateur
                 JOIN personne ON personne.id_personne = realisateur.id_personne;
         ";
-        $query = $this->pdo->query($sql);
+        $query = $pdo->query($sql);
         require_once("View/Film/listFilms.php");
         }
 
         // Lister les acteurs
         public function listActeurs(){
+        // on crée un nouveau PDO pour la connexion à la base de données
+        $pdo = Connect::seConnecter();
             $sql = "SELECT CONCAT(personne.prenom, ' ', personne.nom) AS acteur, personne.sexe, DATE_FORMAT(personne.date_naissance, '%d/%m/%Y') AS `date_naissance`, COUNT(casting.id_film) AS `Nombre_films`
                     FROM personne
                     JOIN acteur ON personne.id_personne = acteur.id_personne
@@ -28,9 +31,29 @@ class CinemaController{
                     GROUP by casting.id_acteur
                     ORDER by `Nombre_films` DESC
             ";
-            $query = $this->pdo->query($sql);
+            $query = $pdo->query($sql);
             require_once("View/Acteur/listActeurs.php");
         }
+
+        
+        // Lister les réalisateurs
+        public function listRealisateurs(){
+            // on crée un nouveau PDO pour la connexion à la base de données
+            $pdo = Connect::seConnecter();
+                $sql = "SELECT CONCAT(personne.prenom, ' ', personne.nom) AS realisateur, 
+                personne.sexe, 
+                DATE_FORMAT(personne.date_naissance, '%d/%m/%Y') AS `date_naissance`, 
+                COUNT(film.id_film) AS `Nombre_films`
+                        FROM personne
+                        JOIN realisateur ON personne.id_personne = realisateur.id_personne
+                        JOIN film ON film.id_realisateur = realisateur.id_realisateur
+                        GROUP by film.id_realisateur
+                        ORDER by `Nombre_films` DESC
+                ";
+                $query = $pdo->query($sql);
+                require_once("View/realisateur/listRealisateurs.php");
+            }
+            
         
     }
 

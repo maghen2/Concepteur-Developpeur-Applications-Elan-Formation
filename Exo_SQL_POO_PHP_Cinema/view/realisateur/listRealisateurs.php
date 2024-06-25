@@ -1,11 +1,11 @@
 <?php ob_start(); ?>
 <p>
-    Il y'a <?= $query->rowCount(); ?> acteurs dans la base de données
+    Il y'a <?= $query->rowCount(); ?> réalisateurs dans la base de données
 </p>
 <table>
     <thead>
         <tr>
-            <th>Acteurs</th>
+            <th>Réalisateurs</th>
             <th>Sexe</th>
             <th>Date de Naissance</th>
             <th>Nombre de films</th>
@@ -14,7 +14,7 @@
     <tbody>
         <?php foreach($query->fetchAll() as $acteur){?>
             <tr>
-                <td><?= $acteur['acteur'] ?></td>
+                <td><?= $acteur['realisateur'] ?></td>
                 <td><?= $acteur['sexe'] ?></td>
                 <td><?= $acteur['date_naissance'] ?></td>
                 <td><?= $acteur['Nombre_films'] ?></td>
@@ -24,6 +24,6 @@
 </table>
 
 <?php 
-$title = $title2 ="Liste des acteurs";
+$title = $title2 ="Liste des réalisateurs";
 $content = ob_get_clean();
 require_once("View/template.php");
