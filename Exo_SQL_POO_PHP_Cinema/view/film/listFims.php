@@ -15,10 +15,10 @@
     <tbody>
         <?php foreach($query->fetchAll() as $film){?>
             <tr>
-                <td><?= $film['film.titre'] ?></td>
+                <td><?= $film['titre'] ?></td>
                 <td><?= $film['Date'] ?></td>
                 <td><?= $film['Duree'] ?></td>
-                <td><?= $film['film.synopsis'] ?></td>
+                <td><?= $film['synopsis'] ?></td>
                 <td><?= $film['realisateur'] ?></td>
             </tr>
         <?php }; ?>
@@ -28,4 +28,4 @@
 <?php 
 $title = $title2 ="Liste des films";
 $content = ob_get_clean();
-require_once("View\template.php");
+require_once("View/template.php");

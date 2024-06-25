@@ -3,7 +3,7 @@ declare(strict_types=1);
 error_reporting(E_ALL);
 setlocale(LC_TIME, ['fr', 'fra', 'fr_FR']);
 spl_autoload_register(function($class){
-  require_once("class/".$class.".php");
+  require_once($class.".php");
 });
 
 // implementation du CinemaController
