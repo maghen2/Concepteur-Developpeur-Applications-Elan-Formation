@@ -5,17 +5,31 @@ use Model\Connect;
 
 
 class CinemaController{
-    // Lister les films
+    // on crée un nouveau PDO pour la connexion à la base de données
+    private $pdo = Connect::seConnecter();
 
+    // Lister les films
     public function listFilms(){
-        $pdo = Connect::seConnecter();
         $sql = "SELECT film.titre, DATE_FORMAT(film.date_sortie_fr, '%d/%m/%Y') AS `Date`, SEC_TO_TIME(film.duree*60) AS `Duree`, film.synopsis, CONCAT(personne.prenom, ' ', personne.nom) AS `realisateur`
                 FROM film
                 JOIN realisateur on film.id_realisateur = realisateur.id_realisateur
                 JOIN personne ON personne.id_personne = realisateur.id_personne;
         ";
-        $query = $pdo->query($sql);
+        $query = $this->pdo->query($sql);
         require_once("View/Film/listFims.php");
+        }
+
+        // Lister les acteurs
+        public function listActeurs(){
+            $sql = "SELECT CONCAT(personne.prenom, ' ', personne.nom) AS acteur, personne.sexe, DATE_FORMAT(personne.date_naissance, '%d/%m/%Y') AS `date_naissance`, COUNT(casting.id_film) AS `Nombre_films`
+                    FROM personne
+                    JOIN acteur ON personne.id_personne = acteur.id_personne
+                    JOIN casting ON casting.id_acteur = acteur.id_acteur
+                    GROUP by casting.id_acteur
+                    ORDER by `Nombre_films` DESC
+            ";
+            $query = $this->pdo->query($sql);
+            require_once("View/Acteur/listActeurs.php");
         }
         
     }

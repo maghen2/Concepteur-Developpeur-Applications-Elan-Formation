@@ -16,6 +16,8 @@ if(isset($_GET["action"])){
         break;
         case 'listActeurs' : $ctrCinema->listActeurs(); 
         break;
+        case 'listRealisateurs' : $ctrCinema->listRealisateurs(); 
+        break;
         default :  $ctrCinema->listFilms();
     }
 }
