@@ -9,7 +9,7 @@ class CinemaController{
 
     public function listFilms(){
         $pdo = Connect::seConnecter();
-        $sql = "SELECT film.titre, DATE_FORMAT(film.date_sortie_fr, '%d/%m/%Y') AS `Date`, SEC_TO_TIME(film.duree*60) AS `Durée`, film.synopsis, CONCAT(personne.prenom, ' ', personne.nom) AS `realisateur`
+        $sql = "SELECT film.titre, DATE_FORMAT(film.date_sortie_fr, '%d/%m/%Y') AS `Date`, SEC_TO_TIME(film.duree*60) AS `Duree`, film.synopsis, CONCAT(personne.prenom, ' ', personne.nom) AS `realisateur`
                 FROM film
                 JOIN realisateur on film.id_realisateur = realisateur.id_realisateur
                 JOIN personne ON personne.id_personne = realisateur.id_personne;
