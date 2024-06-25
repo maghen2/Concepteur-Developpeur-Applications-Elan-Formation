@@ -6,17 +6,8 @@ spl_autoload_register(function($class){
   require_once("class/".$class.".php");
 });
 
-// création de l'objet PDO pour la connexion à la base de données
-try{
-    $myPDO = new PDO(
-        'mysql:host=localhost;dbname=cinema;charset=utf8',
-        'root',
-        ''
-    );
-}
-catch(Exception $error){
-    die('Erreur: '.$error->getMessage());
-}
+use Controller\CinemaController;
+
 
 ?>
 <!DOCTYPE html>
