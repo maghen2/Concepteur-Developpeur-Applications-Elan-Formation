@@ -28,9 +28,9 @@ CREATE TABLE Acteur(
 );
 
 CREATE TABLE Realisateur(
-   id_realisateur_ INT AUTO_INCREMENT NOT NULL,
+   id_realisateur INT AUTO_INCREMENT NOT NULL,
    id_personne INT NOT NULL,
-   PRIMARY KEY(id_realisateur_),
+   PRIMARY KEY(id_realisateur),
    UNIQUE(id_personne),
    FOREIGN KEY(id_personne) REFERENCES Personne(id_personne)
 );
@@ -38,12 +38,12 @@ CREATE TABLE Realisateur(
 CREATE TABLE Film(
    id_film INT AUTO_INCREMENT NOT NULL,
    titre VARCHAR(255) NOT NULL,
-   date_sortie_fr_ DATE NOT NULL,
+   date_sortie_fr DATE NOT NULL,
    duree INT NOT NULL,
    synopsis TEXT NOT NULL,
-   id_realisateur_ INT NOT NULL,
+   id_realisateur INT NOT NULL,
    PRIMARY KEY(id_film),
-   FOREIGN KEY(id_realisateur_) REFERENCES Realisateur(id_realisateur_)
+   FOREIGN KEY(id_realisateur) REFERENCES Realisateur(id_realisateur)
 );
 
 CREATE TABLE Genre(
@@ -371,7 +371,7 @@ INSERT IGNORE INTO Acteur(id_personne) VALUES
 (140),
 (141);
 
-INSERT IGNORE INTO Film(titre, date_sortie_fr_, duree, synopsis, id_realisateur_) VALUES
+INSERT IGNORE INTO Film(titre, date_sortie_fr, duree, synopsis, id_realisateur) VALUES
 ('Pirates des Caraïbes : La Malédiction du Black Pearl', '2003-07-13', 143, 'Le pirate Jack Sparrow part à la recherche du trésor du Black Pearl.', 1),
 ('Pirates des Caraïbes : Le Secret du coffre maudit', '2006-07-12', 150, 'Jack Sparrow est à la recherche du coffre de Davy Jones.', 1),
 ('Pirates des Caraïbes : Jusqu''au bout du monde', '2007-05-23', 168, 'Jack Sparrow et ses amis partent à la recherche de la Fontaine de Jouvence.', 1),
@@ -1886,35 +1886,3 @@ INSERT IGNORE INTO Casting (id_film, id_acteur, id_role ) VALUES
 
    
    
-/*Exo_SQL_POO_PHP_Cinema
-Vous travaillez au sein d'une web agency en tant que développeur-intégrateur web. Suite à la commande d’un client (dont le formateur interprétera le rôle), vous vous occupez de la conception d’un wiki de films, de genres cinématographiques et d’acteurs / actrices.
-Les films seront identifiés par un identifiant unique, leur titre, leur année de sortie en France, leur durée (en minutes) ainsi que leur réalisateur (unique). Un résumé du film (synopsis) pourra éventuellement être renseigné, une note (sur 5) ainsi qu’une affiche du film.
-Chaque film pourra posséder un ou plusieurs genres cinématographiques (science-fiction, aventure, action, …) identifiés par un numéro unique et un libellé.
-Votre base de données devra recenser également les acteurs de chacun des films. On désire connaître le nom, le prénom, le sexe et la date de naissance de l’acteur ainsi que le rôle (nom du personnage) joué par l’acteur dans le(s) film(s) concerné(s).
-Travail à réaliser :
-1.	Réalisez le MCD d’une telle gestion des données. Vérifiez-le auprès du formateur.
-2.	Créez et remplissez la base de données.
-3.	Réalisez les requêtes SQL suivantes avec HeidiSQL ou PhpMyAdmin (rédigez les requêtes dans un fichier .sql afin de garder un historique de celles-ci) : entre parenthèses les champs servant de référence aux requêtes.
-a.	Informations d’un film (id_film) : titre, année, durée (au format HH:MM) et réalisateur
-b.	Liste des films dont la durée excède 2h15 classés par durée (du + long au + court)
-c.	Liste des films d’un réalisateur (en précisant l’année de sortie)
-d.	Nombre de films par genre (classés dans l’ordre décroissant)
-e.	Nombre de films par réalisateur (classés dans l’ordre décroissant)
-f.	Casting d’un film en particulier (id_film) : nom, prénom des acteurs + sexe
-g.	Films tournés par un acteur en particulier (id_acteur) avec leur rôle et l’année de sortie (du film le plus récent au plus ancien)
-h.	Liste des personnes qui sont à la fois acteurs et réalisateurs
-i.	Liste des films qui ont moins de 5 ans (classés du plus récent au plus ancien)
-j.	Nombre d’hommes et de femmes parmi les acteurs
-k.	Liste des acteurs ayant plus de 50 ans (âge révolu et non révolu)
-l.	Acteurs ayant joué dans 3 films ou plus
-4.	Grâce à un outil de maquettage (type figma), réalisez un mockup de la page d’accueil, puis un wireframe des écrans principaux de l’application permettant de gérer les différentes entités de la base de données : affichage, insertion / modification / suppression (apportez un soin particulier à l’ergonomie de l’application pour garder une navigation cohérente).
-*/
-
--- Liste les informations d’un film (id_film) : titre, année, durée (au format HH:MM) et réalisateur
-SELECT film.titre, DATE_FORMAT(film.date_sortie_fr, "%d/%m/%Y") AS `Date`, SEC_TO_TIME(film.duree*60) AS `Durée`, film.synopsis, CONCAT(personne.prenom, " ", personne.nom) AS `realisateur`
-FROM film
-JOIN realisateur on film.id_realisateur = realisateur.id_realisateur
-JOIN personne ON personne.id_personne = realisateur.id_personne;
-
--- Liste des films dont la durée excède 2h15 classés par durée (du + long au + court)
-SELECT film.titre, SEC_TO_TIME(film.duree*60) AS `Durée`

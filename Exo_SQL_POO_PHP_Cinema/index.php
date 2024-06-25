@@ -19,7 +19,15 @@ catch(Exception $error){
 }
 
 ?>
-<h1>Exercice Cinéma</h1> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exo_SQL_POO_PHP_Cinema</title>
+</head>
+<body>   
+<h1>Exo_SQL_POO_PHP_Cinema</h1> 
 <p>Vous travaillez au sein d'une web agency en tant que développeur-intégrateur web. Suite à la commande d’un client (dont le formateur interprétera le rôle), vous vous occupez de la conception d’un wiki de films, de genres cinématographiques et d’acteurs / actrices.  </p>
 <p>Les films seront identifiés par un identifiant unique, leur titre, leur année de sortie en France, leur durée (en minutes) ainsi que leur réalisateur (unique). Un résumé du film (synopsis) pourra éventuellement être renseigné, une note (sur 5) ainsi qu’une affiche du film.  </p>
 <p>Chaque film pourra posséder un ou plusieurs genres cinématographiques (science-fiction, aventure, action, …) identifiés par un numéro unique et un libellé.  </p>
@@ -45,3 +53,5 @@ catch(Exception $error){
 </ol>
 <li>Grâce à un outil de maquettage (type figma), réalisez un mockup de la page d’accueil, puis un wireframe des écrans principaux de l’application permettant de gérer les différentes entités de la base de données : affichage, insertion / modification / suppression (apportez un soin particulier à l’ergonomie de l’application pour garder une navigation cohérente). </li>
 </ol>
+</body>
+</html>
