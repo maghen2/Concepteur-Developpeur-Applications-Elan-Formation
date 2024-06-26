@@ -39,7 +39,7 @@ switch($_GET["action"]){
   break;
   case 'detailRealisateur' : $ctrCinema->detailRealisateur($id_realisateur); // au clic sur un réalisateur, on affiche les infos du réalisateur + liste des films réalisés
   break;
-  case 'addGenre' : $ctrCinema->addGenre(); // Créer une vue pour ajouter un nouveau genre cinématographique dans ta base de données 
+  case 'addGenre' : $ctrCinema->addGenre($nom_genre); // Créer une vue pour ajouter un nouveau genre cinématographique dans ta base de données 
   break; 
   default :  $ctrCinema->listFilms();
 }

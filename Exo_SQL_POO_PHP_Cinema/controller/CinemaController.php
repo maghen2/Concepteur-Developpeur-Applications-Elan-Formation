@@ -75,8 +75,13 @@ class CinemaController{
             }
             
             // Créer une vue pour ajouter un nouveau genre cinématographique dans ta base de données 
-            public function addGenre(){
-                    
+            public function addGenre($nom_genre){
+                $sql ="INSERT INTO genre(`nom_genre`) 
+                VALUES (:nom_genre)
+                ";                
+            $query = $this->pdo->prepare($sql);
+            $query->execute(["nom_genre" => $nom_genre]);
+            header('?action=listGenres');
             }
 
         // au clic sur un film, on affiche les infos du films + casting du film (acteurs + rôles)    
