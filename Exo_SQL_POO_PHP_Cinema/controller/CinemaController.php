@@ -73,7 +73,12 @@ class CinemaController{
             $this->data['film_genres'] = $query->fetchAll(PDO::FETCH_ASSOC);
             require_once("View/genre/listGenres.php");
             }
-    
+            
+            // Créer une vue pour ajouter un nouveau genre cinématographique dans ta base de données 
+            public function addGenre(){
+                    
+            }
+
         // au clic sur un film, on affiche les infos du films + casting du film (acteurs + rôles)    
         public function detailFilm($id_film){
             // infos du film
