@@ -20,7 +20,8 @@ class CinemaController{
         $sql = "SELECT film.id_film, film.titre, DATE_FORMAT(film.date_sortie_fr, '%d/%m/%Y') AS `Date`, SEC_TO_TIME(film.duree*60) AS `Duree`, film.synopsis, CONCAT(personne.prenom, ' ', personne.nom) AS `realisateur`
                 FROM film
                 JOIN realisateur on film.id_realisateur = realisateur.id_realisateur
-                JOIN personne ON personne.id_personne = realisateur.id_personne;
+                JOIN personne ON personne.id_personne = realisateur.id_personne
+                ORDER BY film.date_sortie_fr DESC
         ";
         $query = $pdo->query($sql);
         require_once("View/Film/listFilms.php");
