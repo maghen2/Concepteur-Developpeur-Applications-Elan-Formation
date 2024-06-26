@@ -11,8 +11,9 @@ $filmographies = $this->data['filmographie'];
     </ul>
     <table>
         <thead>
-        <h3>filmographie du acteur « <?=$acteur['acteur']?> »</h3>
+        <h3>filmographie de l'acteur « <?=$acteur['acteur']?> »</h3>
             <tr>
+            <th>Personnage</th>
             <th>Titre du film</th>
             <th>Date de sortie</th>
             <th>Durée</th>
@@ -24,6 +25,7 @@ $filmographies = $this->data['filmographie'];
             
         <?php foreach($filmographies as $filmographie){ ?>
             <tr>
+            <td><?=$filmographie["nom_personnage"]?></td>   
             <td><?=$filmographie["titre"]?></td>
             <td><?=$filmographie["Date"]?></td>
             <td><?=$filmographie["Duree"]?></td>
