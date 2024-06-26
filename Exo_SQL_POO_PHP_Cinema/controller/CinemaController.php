@@ -60,7 +60,20 @@ class CinemaController{
                 $query = $pdo->query($sql);
                 require_once("View/realisateur/listRealisateurs.php");
             }
-        
+
+            // Lister les genres
+            public function listGenres(){
+                      // Genres du film
+                      $sql ="SELECT genre.nom_genre 
+                      FROM `genre`
+                      JOIN film_genres ON film_genres.id_genre = genre.id_genre
+                      ORDER BY genre.nom_genre
+                      ";                
+            $query = $this->pdo->query($sql);
+            $this->data['film_genres'] = $query->fetchAll(PDO::FETCH_ASSOC);
+            require_once("View/genre/listGenres.php");
+            }
+    
         // au clic sur un film, on affiche les infos du films + casting du film (acteurs + rôles)    
         public function detailFilm($id_film){
             // infos du film

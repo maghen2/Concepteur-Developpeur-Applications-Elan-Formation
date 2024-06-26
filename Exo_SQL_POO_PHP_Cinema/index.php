@@ -28,6 +28,8 @@ switch($_GET["action"]){
   case 'listActeurs' : $ctrCinema->listActeurs(); // Affichage de la liste des acteurs
   break;
   case 'listRealisateurs' : $ctrCinema->listRealisateurs(); // Affichage de la liste des réalisateurs
+  break;  
+  case 'listGenres' : $ctrCinema->listGenres(); // Affichage de la liste des genres
   break;
   case 'detailFilm' : $ctrCinema->detailFilm($id_film); // au clic sur un film, on affiche les infos du films + casting du film (acteurs + rôles)
   break;
