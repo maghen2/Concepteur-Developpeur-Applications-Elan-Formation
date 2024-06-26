@@ -20,7 +20,7 @@ $id_acteur = filter_var($id_acteur, FILTER_VALIDATE_INT);
 $id_realisateur = (isset($_GET['id_realisateur']))? (int) $_GET['id_realisateur'] : 1;
 $id_realisateur = filter_var($id_realisateur, FILTER_VALIDATE_INT);
 
-$nom_genre = (isset($_POST['nom_genre']))? $_GET['nom_genre'] : "";
+$nom_genre = (isset($_POST['nom_genre']))? $_POST['nom_genre'] : "";
 $nom_genre = htmlspecialchars($nom_genre);
 
 if(!isset($_GET["action"]))  $_GET["action"]=""; // Si aucune précision on éxecute l'action par défaut

@@ -64,9 +64,8 @@ class CinemaController{
             // Lister les genres
             public function listGenres(){
                       // Genres du film
-                      $sql ="SELECT DISTINCT genre.nom_genre 
+                      $sql ="SELECT genre.nom_genre 
                       FROM `genre`
-                      JOIN film_genres ON film_genres.id_genre = genre.id_genre
                       ORDER BY genre.nom_genre
                       ";                
             $query = $this->pdo->query($sql);
@@ -76,12 +75,14 @@ class CinemaController{
             
             // Créer une vue pour ajouter un nouveau genre cinématographique dans ta base de données 
             public function addGenre($nom_genre){
-                $sql ="INSERT INTO genre(`nom_genre`) 
-                VALUES (:nom_genre)
-                ";                
-            $query = $this->pdo->prepare($sql);
-            $query->execute(["nom_genre" => $nom_genre]);
-            header('?action=listGenres');
+                if(!empty($nom_genre)){
+                    $sql ="INSERT INTO genre(`nom_genre`) 
+                    VALUES (:nom_genre)
+                    ";                
+                    $query = $this->pdo->prepare($sql);
+                    $query->execute(["nom_genre" => $nom_genre]);
+                }    
+                header('Location:?action=listGenres');
             }
 
         // au clic sur un film, on affiche les infos du films + casting du film (acteurs + rôles)    
