@@ -62,8 +62,6 @@ class CinemaController{
         
         // au clic sur un film, on affiche les infos du films + casting du film (acteurs + rôles)    
         public function detailFilm(){
-            (isset($_GET['id_film']))? $id_film = (int) $_GET['id_film'] : $_GET['id_film'] = 1;
-
             // infos du film
             $sql = "SELECT film.titre, DATE_FORMAT(film.date_sortie_fr, '%d/%m/%Y') AS `Date`, SEC_TO_TIME(film.duree*60) AS `Duree`, film.synopsis, CONCAT(personne.prenom, ' ', personne.nom) AS `realisateur`
                     FROM film

@@ -10,6 +10,7 @@ spl_autoload_register(function($class){
 use Controller\CinemaController;
 $ctrCinema = new CinemaController();
 
+$id_film = (isset($_GET['id_film']))? (int) $_GET['id_film'] : 1;
 
 if(isset($_GET["action"])){
     switch($_GET["action"]){
