@@ -73,6 +73,17 @@ class CinemaController{
             $query->execute(["id_film" => $id_film]);
             $this->data["film"] = $query->fetch(PDO::FETCH_ASSOC);
             
+            // Genres du film
+            $sql ="SELECT genre.nom_genre 
+                    FROM `genre`
+                    JOIN film_genres ON film_genres.id_genre = genre.id_genre
+                    JOIN film ON film.id_film = film_genres.id_film
+                    WHERE film.id_film = :id_film
+                    ";
+             $query = $this->pdo->prepare($sql);
+             $query->execute(["id_film" => $id_film]);
+             $this->data["film_genres"] = $query->fetchAll(PDO::FETCH_ASSOC);
+
             // casting du film (acteurs + rôles)   
             $sql = "SELECT
                         CONCAT(

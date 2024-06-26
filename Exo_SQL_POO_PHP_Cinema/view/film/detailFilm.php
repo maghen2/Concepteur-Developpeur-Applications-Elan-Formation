@@ -1,6 +1,7 @@
 <?php ob_start(); 
 $film = $this->data['film'];
 $castings = $this->data['casting'];
+$film_genres = $this->data['film_genres'];
 ?>
 <ul>
     <?php foreach($film as $key=>$value){?>
@@ -8,6 +9,15 @@ $castings = $this->data['casting'];
             <b style="text-transform: capitalize;"><?=$key?> :</b> <?=$value?>
         </li>
     <?php };?>
+    <li><b>Liste des genres du film</b>
+        <ul>
+            <?php foreach($film_genres as $film_genre){?> 
+             <li>
+                <?=$film_genre['nom_genre']?>
+             </li>
+        <?php }?>
+        </ul>
+    </li>
     </ul>
     <table>
         <thead>
