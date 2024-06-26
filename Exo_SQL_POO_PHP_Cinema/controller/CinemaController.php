@@ -64,7 +64,7 @@ class CinemaController{
             // Lister les genres
             public function listGenres(){
                       // Genres du film
-                      $sql ="SELECT genre.nom_genre 
+                      $sql ="SELECT DISTINCT genre.nom_genre 
                       FROM `genre`
                       JOIN film_genres ON film_genres.id_genre = genre.id_genre
                       ORDER BY genre.nom_genre

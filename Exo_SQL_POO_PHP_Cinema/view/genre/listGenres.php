@@ -2,7 +2,7 @@
 $film_genres = $this->data['film_genres'];
 ?>
 <p>
-    Il y'a <?= count($genres); ?> genres cinématographique dans la base de données
+    Il y'a <?= count($film_genres); ?> genres cinématographique dans la base de données
 </p>    
 <ul><b>Liste des genres de film</b>
         
@@ -14,6 +14,6 @@ $film_genres = $this->data['film_genres'];
         </ul>
 
 <?php 
-$title = $title2 ="Liste des films";
+$title = $title2 ="Liste des genres de film en base de donnée";
 $content = ob_get_clean();
 require_once("View/template.php");
