@@ -10,13 +10,18 @@ spl_autoload_register(function($class){
 use Controller\CinemaController;
 $ctrCinema = new CinemaController();
 
+// Reception des ID envoyés par l'utilisateur
 $id_film = (isset($_GET['id_film']))? (int) $_GET['id_film'] : 1;
 $id_film = filter_var($id_film, FILTER_VALIDATE_INT);
 
-if(!isset($_GET["action"])){
-  $_GET["action"]="";
-}
+$id_acteur = (isset($_GET['id_acteur']))? (int) $_GET['id_acteur'] : 1;
+$id_acteur = filter_var($id_acteur, FILTER_VALIDATE_INT);
 
+$id_realisateur = (isset($_GET['id_realisateur']))? (int) $_GET['id_realisateur'] : 1;
+$id_realisateur = filter_var($id_realisateur, FILTER_VALIDATE_INT);
+
+
+if(!isset($_GET["action"]))  $_GET["action"]=""; // Si aucune précision on éxecute l'action par défaut
 switch($_GET["action"]){
   case 'listFilms' : $ctrCinema->listFilms(); // Affichage de la liste des films
   break;
