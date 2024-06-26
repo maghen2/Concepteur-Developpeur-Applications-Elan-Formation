@@ -31,9 +31,9 @@ switch($_GET["action"]){
   break;
   case 'detailFilm' : $ctrCinema->detailFilm($id_film); // au clic sur un film, on affiche les infos du films + casting du film (acteurs + rôles)
   break;
-  case 'detailActeur' : $ctrCinema->detailActeur(); // au clic sur un acteur, on affiche les infos de l'acteur + filmographie (films + rôles)
+  case 'detailActeur' : $ctrCinema->detailActeur($id_acteur); // au clic sur un acteur, on affiche les infos de l'acteur + filmographie (films + rôles)
   break;
-  case 'detailRealisateur' : $ctrCinema->detailRealisateur(); // au clic sur un réalisateur, on affiche les infos du réalisateur + liste des films réalisés
+  case 'detailRealisateur' : $ctrCinema->detailRealisateur($id_realisateur); // au clic sur un réalisateur, on affiche les infos du réalisateur + liste des films réalisés
   break;
   default :  $ctrCinema->listFilms();
 }

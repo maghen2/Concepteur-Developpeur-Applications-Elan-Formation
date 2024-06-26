@@ -104,15 +104,57 @@ class CinemaController{
             require_once("View/film/detailFilm.php");
 
         }
+        
 
-
-        // au clic sur un acteur, on affiche les infos de l'acteur + filmographie (films + rôles)
-        public function detailActeur(){
-
-        }
-
+        // au clic sur un acteur, on affiche les infos de l'acteur + acteurographie (acteurs + rôles)
+        public function detailActeur($id_acteur){
+            // infos de l'acteur
+            $sql = "SELECT CONCAT(personne.prenom, ' ', personne.nom) AS acteur, personne.sexe, DATE_FORMAT(personne.date_naissance, '%d/%m/%Y') AS `date_naissance`, COUNT(casting.id_acteur) AS `Nombre_acteurs`
+            FROM personne
+            JOIN acteur ON personne.id_personne = acteur.id_personne
+            JOIN casting ON casting.id_acteur = acteur.id_acteur
+            WHERE acteur.id_acteur = :id_acteur;
+            GROUP by casting.id_acteur
+            ORDER by `Nombre_acteurs` DESC
+              ";
+ 
+    $query = $this->pdo->prepare($sql);
+    $query->execute(["id_acteur" => $id_acteur]);
+    $this->data["acteur"] = $query->fetch(PDO::FETCH_ASSOC);
+    
+    // filmographie de l'acteur(rôles / films)   
+    $sql = "SELECT
+                film.titre,
+                DATE_FORMAT(film.date_sortie_fr, '%d/%m/%Y') AS `Date`,
+                SEC_TO_TIME(film.duree * 60) AS `Duree`,
+                film.synopsis,
+                CONCAT(
+                    personne.prenom,
+                    ' ',
+                    personne.nom
+                ) AS `realisateur`
+            FROM
+                film
+            JOIN realisateur ON film.id_realisateur = realisateur.id_realisateur
+            JOIN personne ON personne.id_personne = realisateur.id_personne
+            JOIN casting ON casting.id_film = film.id_film
+            WHERE
+                casting.`id_acteur` = :id_acteur
+            ORDER BY
+                film.titre
+            DESC
+   ";
+    $query = $this->pdo->prepare($sql);
+    $query->execute(["id_acteur" => $id_acteur]);
+    $this->data["filmographie"] = $query->fetchAll(PDO::FETCH_ASSOC);
+    
+    require_once("View/acteur/detailActeur.php");
+ 
+         }
+ 
+ 
         // au clic sur un réalisateur, on affiche les infos du réalisateur + liste des films réalisés
-        public function detailRealisateur(){
+        public function detailRealisateur($id_realisateur){
 
         }
     }
