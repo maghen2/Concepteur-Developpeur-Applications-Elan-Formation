@@ -160,7 +160,7 @@ class CinemaController{
             WHERE
                 casting.`id_acteur` = :id_acteur
             ORDER BY
-                film.titre
+                film.date_sortie_fr
             DESC
    ";
     $query = $this->pdo->prepare($sql);
@@ -203,7 +203,7 @@ class CinemaController{
            WHERE
                film.`id_realisateur` = :id_realisateur
            ORDER BY
-               film.titre
+               film.date_sortie_fr
            DESC
   ";
    $query = $this->pdo->prepare($sql);
