@@ -113,8 +113,8 @@ class CinemaController{
     }
 
 
-/*
-    public function listFilms(){
+
+    function listFilms(){
         $pdo = Connect::seConnecter();
         $sql = "SELECT * FROM film";
         $query = $pdo->prepare($sql);
@@ -123,9 +123,7 @@ class CinemaController{
         foreach($films as $film){
             echo $film['titre']."<br>";
         }
-*/
 
-/*
 
 class CinemaController{
     // Lister les films
@@ -148,4 +146,3 @@ class CinemaController{
         $this->view->listActeurs($acteurs);
     }
 }
-*/
