@@ -177,14 +177,14 @@ class CinemaController{
                        // infos de l'realisateur
                        $sql = "SELECT CONCAT(personne.prenom, ' ', personne.nom) AS realisateur, 
                        personne.sexe, 
-                       DATE_FORMAT(personne.date_naissance, '%d/%m/%Y') AS `date_naissance`, 
-                       COUNT(film.id_film) AS `Nombre_films`
+                       DATE_FORMAT(personne.date_naissance, '%d/%m/%Y') AS `date de naissance`, 
+                       COUNT(film.id_film) AS `Nombre de films`
                                FROM personne
                                JOIN realisateur ON personne.id_personne = realisateur.id_personne
                                JOIN film ON film.id_realisateur = realisateur.id_realisateur
-                               WHERE realisateur.id_realisateur = 
-                               GROUP by film.id_realisateur = :id_realisateur
-                               ORDER by `Nombre_films` DESC
+                               WHERE realisateur.id_realisateur = :id_realisateur
+                               GROUP by film.id_realisateur
+                               ORDER by `Nombre de films` DESC
                        ";
 
    $query = $this->pdo->prepare($sql);
