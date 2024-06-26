@@ -12,12 +12,12 @@
         </tr>
     </thead>
     <tbody>
-        <?php foreach($query->fetchAll() as $acteur){?>
+        <?php foreach($query->fetchAll() as $realisateur){?>
             <tr>
-                <td><?= $acteur['realisateur'] ?></td>
-                <td><?= $acteur['sexe'] ?></td>
-                <td><?= $acteur['date_naissance'] ?></td>
-                <td><?= $acteur['Nombre_films'] ?></td>
+            <td><a href='?action=detailRealisateur&id_realisateur=<?= $realisateur['id_realisateur'] ?>'><?= $realisateur['realisateur'] ?></a></td>
+                <td><?= $realisateur['sexe'] ?></td>
+                <td><?= $realisateur['date_naissance'] ?></td>
+                <td><?= $realisateur['Nombre_films'] ?></td>
             </tr>
         <?php }; ?>
     </tbody>

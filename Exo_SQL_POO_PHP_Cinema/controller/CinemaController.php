@@ -17,7 +17,7 @@ class CinemaController{
     public function listFilms(){
             // on crée un nouveau PDO pour la connexion à la base de données
         $pdo = Connect::seConnecter();
-        $sql = "SELECT film.titre, DATE_FORMAT(film.date_sortie_fr, '%d/%m/%Y') AS `Date`, SEC_TO_TIME(film.duree*60) AS `Duree`, film.synopsis, CONCAT(personne.prenom, ' ', personne.nom) AS `realisateur`
+        $sql = "SELECT film.id_film, film.titre, DATE_FORMAT(film.date_sortie_fr, '%d/%m/%Y') AS `Date`, SEC_TO_TIME(film.duree*60) AS `Duree`, film.synopsis, CONCAT(personne.prenom, ' ', personne.nom) AS `realisateur`
                 FROM film
                 JOIN realisateur on film.id_realisateur = realisateur.id_realisateur
                 JOIN personne ON personne.id_personne = realisateur.id_personne;
@@ -30,7 +30,7 @@ class CinemaController{
         public function listActeurs(){
         // on crée un nouveau PDO pour la connexion à la base de données
         $pdo = Connect::seConnecter();
-            $sql = "SELECT CONCAT(personne.prenom, ' ', personne.nom) AS acteur, personne.sexe, DATE_FORMAT(personne.date_naissance, '%d/%m/%Y') AS `date_naissance`, COUNT(casting.id_film) AS `Nombre_films`
+            $sql = "SELECT acteur.id_acteur, CONCAT(personne.prenom, ' ', personne.nom) AS acteur, personne.sexe, DATE_FORMAT(personne.date_naissance, '%d/%m/%Y') AS `date_naissance`, COUNT(casting.id_film) AS `Nombre_films`
                     FROM personne
                     JOIN acteur ON personne.id_personne = acteur.id_personne
                     JOIN casting ON casting.id_acteur = acteur.id_acteur
@@ -46,7 +46,7 @@ class CinemaController{
         public function listRealisateurs(){
             // on crée un nouveau PDO pour la connexion à la base de données
             $pdo = Connect::seConnecter();
-                $sql = "SELECT CONCAT(personne.prenom, ' ', personne.nom) AS realisateur, 
+                $sql = "SELECT realisateur.id_realisateur, CONCAT(personne.prenom, ' ', personne.nom) AS realisateur, 
                 personne.sexe, 
                 DATE_FORMAT(personne.date_naissance, '%d/%m/%Y') AS `date_naissance`, 
                 COUNT(film.id_film) AS `Nombre_films`
@@ -106,7 +106,6 @@ class CinemaController{
                     casting.`id_film` = :id_film
                 ORDER BY
                     `acteur`
-                DESC
            ";
             $query = $this->pdo->prepare($sql);
             $query->execute(["id_film" => $id_film]);
