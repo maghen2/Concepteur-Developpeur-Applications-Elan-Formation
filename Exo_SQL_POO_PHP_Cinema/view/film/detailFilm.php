@@ -2,12 +2,37 @@
 $film = $this->data['film'];
 $castings = $this->data['casting'];
 ?>
-<h2>Détails du film <?=$film['titre']?></h2>
 <ul>
-    <?= $film?>
-    <ul></ul>
+    <?php foreach($film as $key=>$value){?>
+        <li>
+            <b style="text-transform: capitalize;"><?=$key?> :</b> <?=$value?>
+        </li>
+    <?php };?>
+    </ul>
+    <table>
+        <thead>
+        <h3>Casting du film « <?=$film['titre']?> »</h3>
+            <tr>
+            <th>Acteur</th>
+            <th>Sexe</th>
+            <th>Date de naissance</th>
+            <th>Personnage</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+        <?php foreach($castings as $casting){ ?>
+            <tr>
+            <td><?=$casting["acteur"]?></td>
+            <td><?=$casting["sexe"]?></td>
+            <td><?=$casting["date_naissance"]?></td>
+            <td><?=$casting["nom_personnage"]?></td>
+            </tr>
+        <?php } ?>
+        </tbody>
+    </table>
 
-<?php foreach($castings as $casting){ 
-    }
-    ?>
-</ul>
+<?php 
+$title = $title2 ="Détails du film « ".$film['titre']." »";
+$content = ob_get_clean();
+require_once("View/template.php");

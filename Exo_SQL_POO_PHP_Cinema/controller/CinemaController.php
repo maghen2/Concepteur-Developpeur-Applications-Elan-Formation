@@ -61,9 +61,9 @@ class CinemaController{
             }
         
         // au clic sur un film, on affiche les infos du films + casting du film (acteurs + rôles)    
-        public function detailFilm(){
+        public function detailFilm($id_film){
             // infos du film
-            $sql = "SELECT film.titre, DATE_FORMAT(film.date_sortie_fr, '%d/%m/%Y') AS `Date`, SEC_TO_TIME(film.duree*60) AS `Duree`, film.synopsis, CONCAT(personne.prenom, ' ', personne.nom) AS `realisateur`
+            $sql = "SELECT film.titre, DATE_FORMAT(film.date_sortie_fr, '%d/%m/%Y') AS `Date de sortie`, SEC_TO_TIME(film.duree*60) AS `Duree`, film.synopsis, CONCAT(personne.prenom, ' ', personne.nom) AS `realisateur`
                     FROM film
                     JOIN realisateur on film.id_realisateur = realisateur.id_realisateur
                     JOIN personne ON personne.id_personne = realisateur.id_personne
@@ -71,7 +71,7 @@ class CinemaController{
             ";
             $query = $this->pdo->prepare($sql);
             $query->execute(["id_film" => $id_film]);
-            $this->data["film"] = $query->fetch();
+            $this->data["film"] = $query->fetch(PDO::FETCH_ASSOC);
             
             // casting du film (acteurs + rôles)   
             $sql = "SELECT
@@ -99,7 +99,7 @@ class CinemaController{
            ";
             $query = $this->pdo->prepare($sql);
             $query->execute(["id_film" => $id_film]);
-            $this->data["casting"] = $query->fetchAll();
+            $this->data["casting"] = $query->fetchAll(PDO::FETCH_ASSOC);
             
             require_once("View/film/detailFilm.php");
 

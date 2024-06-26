@@ -11,6 +11,7 @@ use Controller\CinemaController;
 $ctrCinema = new CinemaController();
 
 $id_film = (isset($_GET['id_film']))? (int) $_GET['id_film'] : 1;
+$id_film = filter_var($id_film, FILTER_VALIDATE_INT);
 
 if(!isset($_GET["action"])){
   $_GET["action"]="";
@@ -23,7 +24,7 @@ switch($_GET["action"]){
   break;
   case 'listRealisateurs' : $ctrCinema->listRealisateurs(); // Affichage de la liste des réalisateurs
   break;
-  case 'detailFilm' : $ctrCinema->detailFilm(); // au clic sur un film, on affiche les infos du films + casting du film (acteurs + rôles)
+  case 'detailFilm' : $ctrCinema->detailFilm($id_film); // au clic sur un film, on affiche les infos du films + casting du film (acteurs + rôles)
   break;
   case 'detailActeur' : $ctrCinema->detailActeur(); // au clic sur un acteur, on affiche les infos de l'acteur + filmographie (films + rôles)
   break;
