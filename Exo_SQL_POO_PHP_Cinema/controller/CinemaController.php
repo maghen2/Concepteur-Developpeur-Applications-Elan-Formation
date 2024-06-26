@@ -109,13 +109,30 @@ class CinemaController{
         // au clic sur un acteur, on affiche les infos de l'acteur + acteurographie (acteurs + rôles)
         public function detailActeur($id_acteur){
             // infos de l'acteur
-            $sql = "SELECT CONCAT(personne.prenom, ' ', personne.nom) AS acteur, personne.sexe, DATE_FORMAT(personne.date_naissance, '%d/%m/%Y') AS `date_naissance`, COUNT(casting.id_acteur) AS `Nombre_acteurs`
-            FROM personne
-            JOIN acteur ON personne.id_personne = acteur.id_personne
-            JOIN casting ON casting.id_acteur = acteur.id_acteur
-            WHERE acteur.id_acteur = :id_acteur;
-            GROUP by casting.id_acteur
-            ORDER by `Nombre_acteurs` DESC
+            $sql = "SELECT
+                        CONCAT(
+                            personne.prenom,
+                            ' ',
+                            personne.nom
+                        ) AS acteur,
+                        personne.sexe,
+                        DATE_FORMAT(
+                            personne.date_naissance,
+                            '%d/%m/%Y'
+                        ) AS `date de naissance`,
+                        COUNT(casting.id_film) AS `Nombre de films`
+                    FROM
+                        personne
+                    JOIN acteur ON personne.id_personne = acteur.id_personne
+                    JOIN casting ON casting.id_acteur = acteur.id_acteur
+                    WHERE
+                        acteur.id_acteur = :id_acteur;
+                    GROUP BY
+                        casting.id_acteur
+                    ORDER BY
+                        `Nombre_acteurs`
+                    DESC
+    
               ";
  
     $query = $this->pdo->prepare($sql);

@@ -1,17 +1,17 @@
 <?php ob_start(); 
-$film = $this->data['film'];
-$castings = $this->data['casting'];
+$acteur = $this->data['acteur'];
+$filmographies = $this->data['filmographie'];
 ?>
 <ul>
-    <?php foreach($film as $key=>$value){?>
+    <?php foreach($acteur as $key=>$value){?>
         <li>
             <b style="text-transform: capitalize;"><?=$key?> :</b> <?=$value?>
         </li>
-    <?php };?>
+    <?php }; var_dump($filmographie[0]);?>
     </ul>
     <table>
         <thead>
-        <h3>Casting du film « <?=$film['titre']?> »</h3>
+        <h3>filmographie du acteur « <?=$acteur['titre']?> »</h3>
             <tr>
             <th>Acteur</th>
             <th>Sexe</th>
@@ -21,18 +21,18 @@ $castings = $this->data['casting'];
         </thead>
         <tbody>
             
-        <?php foreach($castings as $casting){ ?>
+        <?php foreach($filmographies as $filmographie){ ?>
             <tr>
-            <td><?=$casting["acteur"]?></td>
-            <td><?=$casting["sexe"]?></td>
-            <td><?=$casting["date_naissance"]?></td>
-            <td><?=$casting["nom_personnage"]?></td>
+            <td><?=$filmographie["acteur"]?></td>
+            <td><?=$filmographie["sexe"]?></td>
+            <td><?=$filmographie["date_naissance"]?></td>
+            <td><?=$filmographie["nom_personnage"]?></td>
             </tr>
         <?php } ?>
         </tbody>
     </table>
 
 <?php 
-$title = $title2 ="Détails du film « ".$film['titre']." »";
+$title = $title2 ="Détails du acteur « ".$acteur['titre']." »";
 $content = ob_get_clean();
 require_once("View/template.php");
