@@ -2,10 +2,16 @@
 // CinemaController.php
 namespace Controller;
 use Model\Connect;
-
+use PDO;
 
 class CinemaController{
+        private \PDO $pdo;
+        private array $data;
 
+        public function __construct(){
+            $this->pdo = Connect::seConnecter();
+            $this->data = [];
+        }
 
     // Lister les films
     public function listFilms(){
@@ -56,7 +62,6 @@ class CinemaController{
         
         // au clic sur un film, on affiche les infos du films + casting du film (acteurs + rôles)    
         public function detailFilm(){
-            $pdo = Connect::seConnecter();  // on crée un nouveau PDO pour la connexion à la base de données
             (isset($_GET['id_film']))? $id_film = (int) $_GET['id_film'] : $_GET['id_film'] = 1;
 
             // infos du film
@@ -64,10 +69,11 @@ class CinemaController{
                     FROM film
                     JOIN realisateur on film.id_realisateur = realisateur.id_realisateur
                     JOIN personne ON personne.id_personne = realisateur.id_personne
-                    WHERE film.id_film = $id_film;
+                    WHERE film.id_film = :id_film;
             ";
-            $query = $pdo->query($sql);
-            $film = $query->fetch();
+            $query = $this->pdo->prepare($sql);
+            $query->execute(["id_film" => $id_film]);
+            $this->data["film"] = $query->fetch();
             
             // casting du film (acteurs + rôles)   
             $sql = "SELECT
@@ -88,13 +94,14 @@ class CinemaController{
                 JOIN casting ON casting.id_acteur = acteur.id_acteur
                 JOIN role ON role.id_role = casting.id_role
                 WHERE
-                    casting.`id_film` = 1
+                    casting.`id_film` = :id_film
                 ORDER BY
                     `acteur`
                 DESC
            ";
-            $query = $pdo->query($sql);
-            $casting = $query->fetchAll();
+            $query = $this->pdo->prepare($sql);
+            $query->execute(["id_film" => $id_film]);
+            $this->data["casting"] = $query->fetchAll();
             
             require_once("View/film/detailFilm.php");
 
@@ -113,7 +120,7 @@ class CinemaController{
     }
 
 
-
+/*
     function listFilms(){
         $pdo = Connect::seConnecter();
         $sql = "SELECT * FROM film";
@@ -146,3 +153,4 @@ class CinemaController{
         $this->view->listActeurs($acteurs);
     }
 }
+*/
