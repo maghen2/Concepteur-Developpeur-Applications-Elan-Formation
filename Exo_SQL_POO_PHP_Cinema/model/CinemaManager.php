@@ -88,15 +88,17 @@ class CinemaManager{
                 if(empty($id_film)){
                     $where = '';
                     $data = [];
+                    $join = '';
                 }
                 else {
                     $where = 'WHERE `film_genres`.id_film = :id_film';
                     $data = ["id_film" => $id_film];
+                    $join = 'JOIN `film_genres` ON `film_genres`.id_genre = `genre`.id_genre';
                 } 
     
-                      $sql ="SELECT genre.nom_genre 
+                      $sql ="SELECT DISTINCT genre.nom_genre 
                       FROM `genre`
-                      JOIN `film_genres` ON `film_genres`.id_genre = `genre`.id_genre
+                      $join
                       $where
                       ORDER BY genre.nom_genre
                       ";                
@@ -177,78 +179,55 @@ class CinemaManager{
 
         // au clic sur un acteur, on affiche les infos de l'acteur + acteurographie (acteurs + rôles)
         public function getFilmographies($id_acteur="", $id_realisateur=""){
-    // filmographie de l'acteur(rôles / films)   
-    $sql = "SELECT
-                role.nom_personnage,
+            
+            if(!empty($id_acteur)){ // filmographie de l'acteur(rôles / films)   
+                $sql = "SELECT
+                        role.nom_personnage,
+                        film.titre,
+                        DATE_FORMAT(film.date_sortie_fr, '%d/%m/%Y') AS `Date`,
+                        SEC_TO_TIME(film.duree * 60) AS `Duree`,
+                        film.synopsis,
+                        CONCAT(
+                            personne.prenom,
+                            ' ',
+                            personne.nom
+                        ) AS `realisateur`
+                    FROM
+                        film
+                    JOIN realisateur ON film.id_realisateur = realisateur.id_realisateur
+                    JOIN personne ON personne.id_personne = realisateur.id_personne
+                    JOIN casting ON casting.id_film = film.id_film
+                    JOIN role ON role.id_role = casting.id_role
+                    WHERE
+                        casting.`id_acteur` = :id_acteur
+                    ORDER BY
+                        film.date_sortie_fr
+                    DESC
+             ";
+                $query = $this->pdo->prepare($sql);
+                $query->execute(["id_acteur" => $id_acteur]);
+                return $query->fetchAll(PDO::FETCH_ASSOC);
+        }     
+        elseif(!empty($id_realisateur)){   // filmographie du realisateur(rôles / films) 
+            $sql = "SELECT
                 film.titre,
                 DATE_FORMAT(film.date_sortie_fr, '%d/%m/%Y') AS `Date`,
                 SEC_TO_TIME(film.duree * 60) AS `Duree`,
-                film.synopsis,
-                CONCAT(
-                    personne.prenom,
-                    ' ',
-                    personne.nom
-                ) AS `realisateur`
-            FROM
+                film.synopsis
+                FROM
                 film
-            JOIN realisateur ON film.id_realisateur = realisateur.id_realisateur
-            JOIN personne ON personne.id_personne = realisateur.id_personne
-            JOIN casting ON casting.id_film = film.id_film
-            JOIN role ON role.id_role = casting.id_role
-            WHERE
-                casting.`id_acteur` = :id_acteur
-            ORDER BY
+                JOIN realisateur ON film.id_realisateur = realisateur.id_realisateur
+                WHERE
+                film.`id_realisateur` = :id_realisateur
+                ORDER BY
                 film.date_sortie_fr
-            DESC
-   ";
-    $query = $this->pdo->prepare($sql);
-    $query->execute(["id_acteur" => $id_acteur]);
-    return $query->fetchAll(PDO::FETCH_ASSOC);
-    
-    require_once("View/acteur/detailActeur.php");
+                DESC
+            ";
+            $query = $this->pdo->prepare($sql);
+            $query->execute(["id_realisateur" => $id_realisateur]);
+            return $query->fetchAll(PDO::FETCH_ASSOC);
+        }
+        require_once("View/acteur/detailActeur.php");
  
          }
- 
- 
-        // au clic sur un réalisateur, on affiche les infos du réalisateur + gete des films réalisés
-        public function detailRealisateur($id_realisateur){
-                       // infos de l'realisateur
-                       $sql = "SELECT CONCAT(personne.prenom, ' ', personne.nom) AS realisateur, 
-                       personne.sexe, 
-                       DATE_FORMAT(personne.date_naissance, '%d/%m/%Y') AS `date de naissance`, 
-                       COUNT(film.id_film) AS `Nombre de films`
-                               FROM personne
-                               JOIN realisateur ON personne.id_personne = realisateur.id_personne
-                               JOIN film ON film.id_realisateur = realisateur.id_realisateur
-                               WHERE realisateur.id_realisateur = :id_realisateur
-                               GROUP by film.id_realisateur
-                               ORDER by `Nombre de films` DESC
-                       ";
-
-   $query = $this->pdo->prepare($sql);
-   $query->execute(["id_realisateur" => $id_realisateur]);
-   return $query->fetchAll(PDO::FETCH_ASSOC);
-   
-   // filmographie du realisateur(rôles / films)   
-   $sql = "SELECT
-               film.titre,
-               DATE_FORMAT(film.date_sortie_fr, '%d/%m/%Y') AS `Date`,
-               SEC_TO_TIME(film.duree * 60) AS `Duree`,
-               film.synopsis
-           FROM
-               film
-           JOIN realisateur ON film.id_realisateur = realisateur.id_realisateur
-           WHERE
-               film.`id_realisateur` = :id_realisateur
-           ORDER BY
-               film.date_sortie_fr
-           DESC
-  ";
-   $query = $this->pdo->prepare($sql);
-   $query->execute(["id_realisateur" => $id_realisateur]);
-   return $query->fetchAll(PDO::FETCH_ASSOC);
-
-        }
-
-        }
-
+    }

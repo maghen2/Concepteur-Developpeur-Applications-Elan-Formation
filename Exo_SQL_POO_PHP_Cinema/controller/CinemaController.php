@@ -83,80 +83,12 @@ class CinemaController{
  
         // au clic sur un réalisateur, on affiche les infos du réalisateur + liste des films réalisés
         public function detailRealisateur($id_realisateur){
-                       // infos de l'realisateur
-                       $sql = "SELECT CONCAT(personne.prenom, ' ', personne.nom) AS realisateur, 
-                       personne.sexe, 
-                       DATE_FORMAT(personne.date_naissance, '%d/%m/%Y') AS `date de naissance`, 
-                       COUNT(film.id_film) AS `Nombre de films`
-                               FROM personne
-                               JOIN realisateur ON personne.id_personne = realisateur.id_personne
-                               JOIN film ON film.id_realisateur = realisateur.id_realisateur
-                               WHERE realisateur.id_realisateur = :id_realisateur
-                               GROUP by film.id_realisateur
-                               ORDER by `Nombre de films` DESC
-                       ";
-
-   $query = $this->pdo->prepare($sql);
-   $query->execute(["id_realisateur" => $id_realisateur]);
-   $this->data["realisateur"] = $query->fetch(PDO::FETCH_ASSOC);
-   
-   // filmographie du realisateur(rôles / films)   
-   $sql = "SELECT
-               film.titre,
-               DATE_FORMAT(film.date_sortie_fr, '%d/%m/%Y') AS `Date`,
-               SEC_TO_TIME(film.duree * 60) AS `Duree`,
-               film.synopsis
-           FROM
-               film
-           JOIN realisateur ON film.id_realisateur = realisateur.id_realisateur
-           WHERE
-               film.`id_realisateur` = :id_realisateur
-           ORDER BY
-               film.date_sortie_fr
-           DESC
-  ";
-   $query = $this->pdo->prepare($sql);
-   $query->execute(["id_realisateur" => $id_realisateur]);
-   $this->data["filmographie"] = $query->fetchAll(PDO::FETCH_ASSOC);
+            $realisateurs = $this->cinemaManager->getRealisateurs($id_realisateur);
+            $realisateur = $realisateurs[0];
+            $filmographies  = $this->cinemaManager->getFilmographies(null, $id_realisateur);
    
    require_once("View/realisateur/detailRealisateur.php");
 
         }
 
         }
-
-
-/*
-    function listFilms(){
-        $pdo = Connect::seConnecter();
-        $sql = "SELECT * FROM film";
-        $query = $pdo->prepare($sql);
-        $query->execute();
-        $films = $query>fetchAll();
-        foreach($films as $film){
-            echo $film['titre']."<br>";
-        }
-
-
-class CinemaController{
-    // Lister les films
-    private $model;
-    private $view;
-
-
-    public function __construct(){
-        $this->model = new CinemaModel();
-        $this->view = new CinemaView();
-    }
-
-    public function listFilms(){
-        $films = $this->model->getFilms();
-        $this->view->listFilms($films);
-    }
-
-    public function listActeurs(){
-        $acteurs = $this->model->getActeurs();
-        $this->view->listActeurs($acteurs);
-    }
-}
-*/
