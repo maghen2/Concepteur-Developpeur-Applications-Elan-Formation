@@ -83,15 +83,26 @@ class CinemaManager{
              return $query->fetchAll(PDO::FETCH_ASSOC);
             }
 
-            // Lister les genres
-            public function getGenres(): array{
-                      // Genres du film
+            // Lister les genres de film
+            public function getGenres($id_genre = ""): array{
+                if(empty($id_genre)){
+                    $where = '';
+                    $data = [];
+                }
+                else {
+                    $where = 'WHERE genre.id_genre = :id_genre';
+                    $data = ["id_genre" => $id_genre];
+                } 
+    
                       $sql ="SELECT genre.nom_genre 
                       FROM `genre`
+                      $where
                       ORDER BY genre.nom_genre
                       ";                
-            $query = $this->pdo->query($sql);
-            return $query->fetchAll(PDO::FETCH_ASSOC);
+
+                    $query = $this->pdo->prepare($sql);
+                    $query->execute($data);
+                    return $query->fetchAll(PDO::FETCH_ASSOC);
             }
             
             // ajouter un nouveau genre cinématographique dans ta base de données 

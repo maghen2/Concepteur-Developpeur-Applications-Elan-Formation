@@ -34,13 +34,7 @@ class CinemaController{
 
             // Lister les genres
             public function listGenres(){
-                      // Genres du film
-                      $sql ="SELECT genre.nom_genre 
-                      FROM `genre`
-                      ORDER BY genre.nom_genre
-                      ";                
-            $query = $this->pdo->query($sql);
-            $this->data['film_genres'] = $query->fetchAll(PDO::FETCH_ASSOC);
+            $genres = $this->cinemaManager->getGenres();
             require_once("View/genre/listGenres.php");
             }
             

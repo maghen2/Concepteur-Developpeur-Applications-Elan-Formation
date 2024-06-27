@@ -1,6 +1,6 @@
 <?php ob_start(); ?>
 <p>
-    Il y'a <?= count($realisateurs); ?> réalisateurs dans la base de données
+    Il y'a <b><?= count($realisateurs); ?> réalisateurs </b>dans la base de données
 </p>
 <table>
     <thead>

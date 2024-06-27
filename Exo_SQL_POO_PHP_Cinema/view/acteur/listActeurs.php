@@ -1,6 +1,6 @@
 <?php ob_start(); ?>
 <p>
-    Il y'a <?= $query->rowCount(); ?> acteurs dans la base de données
+    Il y'a <b> <?= count($acteurs); ?> acteurs </b>dans la base de données
 </p>
 <table>
     <thead>
@@ -12,7 +12,7 @@
         </tr>
     </thead>
     <tbody>
-        <?php foreach($query->fetchAll() as $acteur){?>
+        <?php foreach($acteurs as $acteur){?>
             <tr>
                 <td><a href='?action=detailActeur&id=<?= $acteur['id_acteur'] ?>'><?= $acteur['acteur'] ?></a></td>
                 <td><?= $acteur['sexe'] ?></td>
