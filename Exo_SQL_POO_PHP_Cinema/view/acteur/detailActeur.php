@@ -1,6 +1,6 @@
 <?php ob_start(); 
 $acteur = $this->data['acteur'];
-$filmographies = $this->data['filmographie'];
+ = $this->data['filmographie'];
 ?>
 <ul>
     <?php foreach($acteur as $key=>$value){?>
