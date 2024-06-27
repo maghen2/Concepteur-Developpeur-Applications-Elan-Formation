@@ -82,7 +82,8 @@ class CinemaController{
                     $query = $this->pdo->prepare($sql);
                     $query->execute(["nom_genre" => $nom_genre]);
                 }    
-                header('Location:?action=listGenres');
+                require_once("View/genre/addGenre.php");
+                // header('Location:?action=listGenres');
             }
 
         // au clic sur un film, on affiche les infos du films + casting du film (acteurs + rôles)    

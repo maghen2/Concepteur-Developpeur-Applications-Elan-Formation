@@ -61,7 +61,7 @@ $numbers_of_actor = count($id_acteurs);
 $numbers_of_role = count($id_roles);
 
 foreach ($id_films as $id_film){
-    $number_of_casting = rand(20, 60);
+    $number_of_casting = rand(10, 30    );
     for ($i=0; $i<$number_of_casting; $i++){
         $id_acteur = $id_acteurs[rand(0, $numbers_of_actor-1)];
         $id_role = $id_roles[rand(0, $numbers_of_role-1)];
