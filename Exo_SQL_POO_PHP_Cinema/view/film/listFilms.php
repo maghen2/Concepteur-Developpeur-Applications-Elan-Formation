@@ -15,7 +15,7 @@
     <tbody>
         <?php foreach($query->fetchAll() as $film){?>
             <tr>
-            <td><a href='?action=detailFilm&id_film=<?= $film['id_film'] ?>'><?= $film['titre'] ?></a></td>
+            <td><a href='?action=detailFilm&id=<?= $film['id_film'] ?>'><?= $film['titre'] ?></a></td>
                 <td><?= $film['Date'] ?></td>
                 <td><?= $film['Duree'] ?></td>
                 <td><?= $film['synopsis'] ?></td>

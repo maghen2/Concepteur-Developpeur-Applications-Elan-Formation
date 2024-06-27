@@ -14,7 +14,7 @@
     <tbody>
         <?php foreach($query->fetchAll() as $realisateur){?>
             <tr>
-            <td><a href='?action=detailRealisateur&id_realisateur=<?= $realisateur['id_realisateur'] ?>'><?= $realisateur['realisateur'] ?></a></td>
+            <td><a href='?action=detailRealisateur&id=<?= $realisateur['id_realisateur'] ?>'><?= $realisateur['realisateur'] ?></a></td>
                 <td><?= $realisateur['sexe'] ?></td>
                 <td><?= $realisateur['date_naissance'] ?></td>
                 <td><?= $realisateur['Nombre_films'] ?></td>
