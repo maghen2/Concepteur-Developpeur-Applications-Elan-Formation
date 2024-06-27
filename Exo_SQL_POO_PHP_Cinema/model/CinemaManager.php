@@ -2,7 +2,7 @@
 // CinemaManager.php
 namespace Model;
 use Model\Connect;
-use PDO;
+use \PDO;
 
 class CinemaManager{
         private \PDO $pdo;
@@ -34,21 +34,39 @@ class CinemaManager{
         }
 
         // Lister les acteurs
-        public function getActeurs() : array{
+        public function getActeurs($id_acteur = "") : array{
+            if(empty($id_acteur )){
+                $where = '';
+                $data = [];
+            }
+            else {
+                $where = 'WHERE acteur.id_acteur = :id_acteur';
+                $data = ["id_acteur" => $id_acteur];
+            }           
             $sql = "SELECT acteur.id_acteur, CONCAT(personne.prenom, ' ', personne.nom) AS acteur, personne.sexe, DATE_FORMAT(personne.date_naissance, '%d/%m/%Y') AS `date_naissance`, COUNT(casting.id_film) AS `Nombre_films`
                     FROM personne
                     JOIN acteur ON personne.id_personne = acteur.id_personne
                     JOIN casting ON casting.id_acteur = acteur.id_acteur
+                    $where
                     GROUP by casting.id_acteur
                     ORDER by `Nombre_films` DESC
             ";
-            $query = $this->pdo->query($sql);
-            return $query->fetchAll(PDO::FETCH_ASSOC);
+             $query = $this->pdo->prepare($sql);
+             $query->execute($data);
+             return $query->fetchAll(PDO::FETCH_ASSOC);
         }
 
         
         // Lister les réalisateurs
-        public function getRealisateurs() : array{
+        public function getRealisateurs($id_realisateur = "") : array{
+            if(empty($id_realisateur)){
+                $where = '';
+                $data = [];
+            }
+            else {
+                $where = 'WHERE realisateur.id_realisateur = :id_realisateur';
+                $data = ["id_realisateur" => $id_realisateur];
+            } 
                 $sql = "SELECT realisateur.id_realisateur, CONCAT(personne.prenom, ' ', personne.nom) AS realisateur, 
                 personne.sexe, 
                 DATE_FORMAT(personne.date_naissance, '%d/%m/%Y') AS `date_naissance`, 
@@ -56,11 +74,13 @@ class CinemaManager{
                         FROM personne
                         JOIN realisateur ON personne.id_personne = realisateur.id_personne
                         JOIN film ON film.id_realisateur = realisateur.id_realisateur
+                        $where
                         GROUP by film.id_realisateur
                         ORDER by `Nombre_films` DESC
                 ";
-                $query = $this->pdo->query($sql);
-                return $query->fetchAll(PDO::FETCH_ASSOC);
+             $query = $this->pdo->prepare($sql);
+             $query->execute($data);
+             return $query->fetchAll(PDO::FETCH_ASSOC);
             }
 
             // Lister les genres

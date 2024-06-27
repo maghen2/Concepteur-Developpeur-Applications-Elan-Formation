@@ -1,6 +1,6 @@
 <?php ob_start(); ?>
 <p>
-    Il y'a <?= $query->rowCount(); ?> réalisateurs dans la base de données
+    Il y'a <?= count($realisateurs); ?> réalisateurs dans la base de données
 </p>
 <table>
     <thead>
@@ -12,7 +12,7 @@
         </tr>
     </thead>
     <tbody>
-        <?php foreach($query->fetchAll() as $realisateur){?>
+        <?php foreach($realisateurs as $realisateur){?>
             <tr>
             <td><a href='?action=detailRealisateur&id=<?= $realisateur['id_realisateur'] ?>'><?= $realisateur['realisateur'] ?></a></td>
                 <td><?= $realisateur['sexe'] ?></td>

@@ -2,7 +2,7 @@
 // CinemaController.php
 namespace Controller;
 
-use Manager\CinemaManager;
+use Model\CinemaManager;
 use Model\Connect;
 use \PDO;
 
@@ -21,35 +21,14 @@ class CinemaController{
 
         // Lister les acteurs
         public function listActeurs(){
-        // on crée un nouveau PDO pour la connexion à la base de données
-        $pdo = Connect::seConnecter();
-            $sql = "SELECT acteur.id_acteur, CONCAT(personne.prenom, ' ', personne.nom) AS acteur, personne.sexe, DATE_FORMAT(personne.date_naissance, '%d/%m/%Y') AS `date_naissance`, COUNT(casting.id_film) AS `Nombre_films`
-                    FROM personne
-                    JOIN acteur ON personne.id_personne = acteur.id_personne
-                    JOIN casting ON casting.id_acteur = acteur.id_acteur
-                    GROUP by casting.id_acteur
-                    ORDER by `Nombre_films` DESC
-            ";
-            $query = $pdo->query($sql);
+            $acteurs = $this->cinemaManager->getActeurs();
             require_once("View/Acteur/listActeurs.php");
         }
 
         
         // Lister les réalisateurs
         public function listRealisateurs(){
-            // on crée un nouveau PDO pour la connexion à la base de données
-            $pdo = Connect::seConnecter();
-                $sql = "SELECT realisateur.id_realisateur, CONCAT(personne.prenom, ' ', personne.nom) AS realisateur, 
-                personne.sexe, 
-                DATE_FORMAT(personne.date_naissance, '%d/%m/%Y') AS `date_naissance`, 
-                COUNT(film.id_film) AS `Nombre_films`
-                        FROM personne
-                        JOIN realisateur ON personne.id_personne = realisateur.id_personne
-                        JOIN film ON film.id_realisateur = realisateur.id_realisateur
-                        GROUP by film.id_realisateur
-                        ORDER by `Nombre_films` DESC
-                ";
-                $query = $pdo->query($sql);
+            $realisateurs = $this->cinemaManager->getRealisateurs();
                 require_once("View/realisateur/listRealisateurs.php");
             }
 
