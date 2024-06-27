@@ -1,26 +1,21 @@
 <?php
 // CinemaController.php
 namespace Controller;
+
+use Manager\CinemaManager;
 use Model\Connect;
-use PDO;
+use \PDO;
 
 class CinemaController{
-
+      private CinemaManager $cinemaManager;
         public function __construct(){
-
+            $this->cinemaManager = new CinemaManager();
         }
 
     // Lister les films
     public function listFilms(){
             // on crée un nouveau PDO pour la connexion à la base de données
-        $pdo = Connect::seConnecter();
-        $sql = "SELECT film.id_film, film.titre, DATE_FORMAT(film.date_sortie_fr, '%d/%m/%Y') AS `Date`, SEC_TO_TIME(film.duree*60) AS `Duree`, film.synopsis, CONCAT(personne.prenom, ' ', personne.nom) AS `realisateur`
-                FROM film
-                JOIN realisateur on film.id_realisateur = realisateur.id_realisateur
-                JOIN personne ON personne.id_personne = realisateur.id_personne
-                ORDER BY film.date_sortie_fr DESC
-        ";
-        $query = $pdo->query($sql);
+        $films = $this->cinemaManager->getFilms();
         require_once("View/Film/listFilms.php");
         }
 

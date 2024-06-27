@@ -1,6 +1,6 @@
 <?php ob_start(); ?>
 <p>
-    Il y'a <?= $query->rowCount(); ?> films dans la base de données
+    Il y'a <?= count($films); ?> films dans la base de données
 </p>
 <table>
     <thead>
@@ -13,7 +13,7 @@
         </tr>
     </thead>
     <tbody>
-        <?php foreach($query->fetchAll() as $film){?>
+        <?php foreach($films as $film){?>
             <tr>
             <td><a href='?action=detailFilm&id=<?= $film['id_film'] ?>'><?= $film['titre'] ?></a></td>
                 <td><?= $film['Date'] ?></td>
