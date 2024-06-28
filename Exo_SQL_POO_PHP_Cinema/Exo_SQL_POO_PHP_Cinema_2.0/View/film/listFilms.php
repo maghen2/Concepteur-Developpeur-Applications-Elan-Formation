@@ -1,6 +1,8 @@
 <?php ob_start(); 
 ?>
 <form action="?action=addFilm" method="post">
+<fieldset>
+        <legend><h3>Créer un nouveau film</h3></legend>
     <label for="titre">Titre du film</label><input type="text" name="titre" id="titre" placeholder="Titre du film" required>
     <label for="date_sortie_fr">Date de sortie en France</label><input type="date" name="date_sortie_fr" id="date_sortie_fr" title="Date de sortie en France" required>
     <label for="duree">Durée du film</label><input type="time" name="duree" id="duree" itle="Durée du film" required>
@@ -11,6 +13,7 @@
         <?php }?>    
     </select>
     <input type="submit" value="Créer un nouveau film">
+</fieldset>
 </form>
 <p>
     Il y'a <b><?= count($films); ?> films </b>dans la base de données

@@ -114,4 +114,47 @@ class PersonneManager{
         require_once("View/acteur/detailActeur.php");
  
          }
+
+    // ajouter une nouvelle personne dans ta base de données 
+    public function addPersonne($prenom, $nom, $sexe, $date_naissance, $fonction) : bool{
+        $sql ="INSERT INTO personne(`prenom`,`nom`,`sexe`,`date_naissance`)
+        VALUES(:prenom, :nom, :sexe, :date_naissance)
+        ";  
+        $data = [
+            'prenom'=>$prenom,
+            'nom'=>$nom,
+            'sexe'=>$sexe,
+            'date_naissance'=>$date_naissance
+        ];
+        $query = $this->pdo->prepare($sql);
+        if($query->execute($data))
+            $id_personne = $this->pdo->lastInsertId();
+
+            if(isset($id_personne) and !empty($id_personne)){
+            if($fonction == "acteur"){
+                $sql = "INSERT INTO `acteur`(`id_personne`)
+                VALUES(:id_personne)
+                ";
+            }
+            elseif ($fonction == "realisateur"){
+                $sql = "INSERT INTO `realisateur`(`id_personne`)
+                VALUES(:id_personne)
+                ";
+            }
+            else{
+                $sql = "INSERT INTO `acteur`(`id_personne`)
+                VALUES(:id_personne);
+                INSERT INTO `realisateur`(`id_personne`)
+                VALUES(:id_personne)
+                ";
+            }
+            $data = [
+                'id_personne' => $id_personne
+            ];
+            $query = $this->pdo->prepare($sql);
+            return $query->execute($data);
+        }    
+    }    
+    
+
     }

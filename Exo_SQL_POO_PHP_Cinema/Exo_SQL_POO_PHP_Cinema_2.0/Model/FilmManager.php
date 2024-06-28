@@ -49,23 +49,6 @@ class FilmManager{
                 $query = $this->pdo->prepare($sql);
                 return $query->execute($data);
             }    
-
-            // ajouter une nouvelle personne dans ta base de données 
-            public function addPersonne($prenom, $nom, $sexe, $date_naissance) : bool{
-                $sql ="INSERT INTO personne(`prenom`,`nom`,`sexe`,`date_naissance`)
-                VALUES(:prenom, :nom, :sexe, :date_naissance)
-                ";  
-                $data = [
-                    'prenom'=>$prenom,
-                    'nom'=>$nom,
-                    'duree'=>$duree,
-                    'sexe'=>$sexe,
-                    'date_naissance'=>$date_naissance
-                ];
-                $query = $this->pdo->prepare($sql);
-                return $query->execute($data);
-            }    
-
             // Lister les genres de film
             public function getGenres($id_film = ""): array{
                 if(empty($id_film)){
