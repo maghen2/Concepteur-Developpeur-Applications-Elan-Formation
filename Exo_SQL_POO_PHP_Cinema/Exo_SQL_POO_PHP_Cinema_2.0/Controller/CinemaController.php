@@ -64,6 +64,35 @@ class CinemaController{
                     header('Location:?action=listGenres');
                 }                   
             }
+            // Créer une vue pour ajouter un nouveau genre cinématographique dans ta base de données 
+            public function addFilm(){
+                if(!empty($this->nom_genre)){
+                    if($this->filmManager->addGenre($this->nom_genre)) // si addGenre s'effectue correctement on redirige l'utilisateur
+                    header('Location:?action=listGenres');
+                }                   
+            }
+            // Créer une vue pour ajouter un nouveau genre cinématographique dans ta base de données 
+            public function addPersonne(){
+                if(!empty($this->nom_genre)){
+                    if($this->filmManager->addGenre($this->nom_genre)) // si addGenre s'effectue correctement on redirige l'utilisateur
+                    header('Location:?action=listGenres');
+                }                   
+            }
+
+            // Créer une vue pour ajouter un nouveau genre cinématographique dans ta base de données 
+            public function addActeur(){
+                if(!empty($this->nom_genre)){
+                    if($this->filmManager->addGenre($this->nom_genre)) // si addGenre s'effectue correctement on redirige l'utilisateur
+                    header('Location:?action=listGenres');
+                }                   
+            }
+            // Créer une vue pour ajouter un nouveau genre cinématographique dans ta base de données 
+            public function addRealisateur(){
+                if(!empty($this->nom_genre)){
+                    if($this->filmManager->addGenre($this->nom_genre)) // si addGenre s'effectue correctement on redirige l'utilisateur
+                    header('Location:?action=listGenres');
+                }                   
+            }
 
         // au clic sur un film, on affiche les infos du films + casting du film (acteurs + rôles)    
         public function detailFilm($id_film){

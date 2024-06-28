@@ -33,6 +33,13 @@ switch($_GET["action"]){
   break;
   case 'addGenre' : $cinemaController->addGenre(); // Créer une vue pour ajouter un nouveau genre cinématographique dans ta base de données 
   break; 
+  case 'addFilm' : $cinemaController->addFilm(); // Créer une vue pour ajouter un nouveau genre cinématographique dans ta base de données 
+  break; 
+  case 'addActeur' : $cinemaController->addActeur(); // Créer une vue pour ajouter un nouveau genre cinématographique dans ta base de données 
+  break; 
+  case 'addRealisateur' : $cinemaController->addRealisateur(); // Créer une vue pour ajouter un nouveau genre cinématographique dans ta base de données 
+  break; 
+  
   default :  $cinemaController->listFilms();
 }
 

@@ -31,6 +31,14 @@ class FilmManager{
              $query->execute($data);
              return $query->fetchAll(PDO::FETCH_ASSOC);
         }
+            // ajouter un nouveau film dans ta base de données 
+            public function addFilm($nom_genre) : bool{
+                $sql ="INSERT INTO genre(`nom_genre`) 
+                VALUES (:nom_genre)
+                ";                
+                $query = $this->pdo->prepare($sql);
+                return $query->execute(["nom_genre" => $nom_genre]);
+            }    
 
             // Lister les genres de film
             public function getGenres($id_film = ""): array{
