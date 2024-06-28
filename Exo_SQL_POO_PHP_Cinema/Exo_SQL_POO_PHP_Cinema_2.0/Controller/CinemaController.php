@@ -27,14 +27,14 @@ class CinemaController{
         $this->id_realisateur = (isset($_GET['id_realisateur']))? (int) $_GET['id_realisateur'] : 1;
         $this->id_realisateur = filter_var($this->id_realisateur, FILTER_VALIDATE_INT);
 
-        $this->nom_genre = (isset($_POST['nom_genre']))? $_POST['nom_genre'] : "";
-        $this->nom_genre = htmlspecialchars($this->nom_genre);
+
     }
 
     // Lister les films
     public function listFilms(){
             // on crée un nouveau PDO pour la connexion à la base de données
         $films = $this->filmManager->getFilms();
+        $realisateurs = $this->personneManager->getRealisateurs();
         require_once("View/Film/listFilms.php");
         }
 
@@ -59,19 +59,33 @@ class CinemaController{
             
             // Créer une vue pour ajouter un nouveau genre cinématographique dans ta base de données 
             public function addGenre(){
+                $this->nom_genre = (isset($_POST['nom_genre']))? $_POST['nom_genre'] : "";
+                $this->nom_genre = htmlspecialchars($this->nom_genre);
                 if(!empty($this->nom_genre)){
                     if($this->filmManager->addGenre($this->nom_genre)) // si addGenre s'effectue correctement on redirige l'utilisateur
                     header('Location:?action=listGenres');
                 }                   
             }
-            // Créer une vue pour ajouter un nouveau genre cinématographique dans ta base de données 
+            // Créer une vue pour ajouter un nouveau film dans ta base de données 
             public function addFilm(){
+                // Récupération des variables envoyée via le formulaire
+                $titre = (isset($_POST['titre']))? $_POST['titre'] : "";
+                $titre = htmlspecialchars($titre);
+                $date_sortie_fr = (isset($_POST['date_sortie_fr']))? $_POST['date_sortie_fr'] : "";
+                $date_sortie_fr = filter_var($date_sortie_fr, FILTER_VALIDATE_DATE);
+                $duree = (isset($_POST['duree']))? $_POST['duree'] : "";
+                $duree = htmlspecialchars($duree);
+                $synopsis = (isset($_POST['synopsis']))? $_POST['synopsis'] : "";
+                $synopsis = htmlspecialchars($synopsis);
+                $id_realisteur = (isset($_POST['id_realisteur']))? (int)$_POST['id_realisteur'] : "";
+                $id_realisteur = filter_var($id_realisteur, FILTER_VALIDATE_INT);
+
                 if(!empty($this->nom_genre)){
-                    if($this->filmManager->addGenre($this->nom_genre)) // si addGenre s'effectue correctement on redirige l'utilisateur
-                    header('Location:?action=listGenres');
+                    if($this->filmManager->addFilm($titre,$date_sortie_fr,$duree,$synopsis,$id_realisteur)) // si addGenre s'effectue correctement on redirige l'utilisateur
+                    header('Location:?action=listFilms');
                 }                   
             }
-            // Créer une vue pour ajouter un nouveau genre cinématographique dans ta base de données 
+            // Créer une vue pour ajouter un nouveau personne cinématographique dans ta base de données 
             public function addPersonne(){
                 if(!empty($this->nom_genre)){
                     if($this->filmManager->addGenre($this->nom_genre)) // si addGenre s'effectue correctement on redirige l'utilisateur
@@ -79,14 +93,14 @@ class CinemaController{
                 }                   
             }
 
-            // Créer une vue pour ajouter un nouveau genre cinématographique dans ta base de données 
+            // Créer une vue pour ajouter un nouveau acteur cinématographique dans ta base de données 
             public function addActeur(){
                 if(!empty($this->nom_genre)){
                     if($this->filmManager->addGenre($this->nom_genre)) // si addGenre s'effectue correctement on redirige l'utilisateur
                     header('Location:?action=listGenres');
                 }                   
             }
-            // Créer une vue pour ajouter un nouveau genre cinématographique dans ta base de données 
+            // Créer une vue pour ajouter un nouveau realisateur cinématographique dans ta base de données 
             public function addRealisateur(){
                 if(!empty($this->nom_genre)){
                     if($this->filmManager->addGenre($this->nom_genre)) // si addGenre s'effectue correctement on redirige l'utilisateur
