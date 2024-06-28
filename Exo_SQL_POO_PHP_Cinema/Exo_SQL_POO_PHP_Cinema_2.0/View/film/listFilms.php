@@ -1,6 +1,6 @@
 <?php ob_start(); 
 ?>
-<form action="?action=addFilm">
+<form action="?action=addFilm" method="post">
     <label for="titre">Titre du film</label><input type="text" name="titre" id="titre" placeholder="Titre du film" required>
     <label for="date_sortie_fr">Date de sortie en France</label><input type="date" name="date_sortie_fr" id="date_sortie_fr" title="Date de sortie en France" required>
     <label for="duree">Durée du film</label><input type="time" name="duree" id="duree" itle="Durée du film" required>

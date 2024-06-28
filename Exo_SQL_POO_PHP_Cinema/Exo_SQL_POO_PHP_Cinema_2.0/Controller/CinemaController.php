@@ -72,24 +72,17 @@ class CinemaController{
                 $titre = (isset($_POST['titre']))? $_POST['titre'] : "";
                 $titre = htmlspecialchars($titre);
                 $date_sortie_fr = (isset($_POST['date_sortie_fr']))? $_POST['date_sortie_fr'] : "";
-                $date_sortie_fr = filter_var($date_sortie_fr, FILTER_VALIDATE_DATE);
+                $date_sortie_fr = htmlspecialchars($date_sortie_fr);
                 $duree = (isset($_POST['duree']))? $_POST['duree'] : "";
                 $duree = htmlspecialchars($duree);
                 $synopsis = (isset($_POST['synopsis']))? $_POST['synopsis'] : "";
                 $synopsis = htmlspecialchars($synopsis);
-                $id_realisteur = (isset($_POST['id_realisteur']))? (int)$_POST['id_realisteur'] : "";
+                $id_realisteur = (isset($_POST['id_realisteur']))? $_POST['id_realisteur'] : 0;
                 $id_realisteur = filter_var($id_realisteur, FILTER_VALIDATE_INT);
 
-                if(!empty($this->nom_genre)){
+                if(!empty($titre) or !empty($date_sortie_fr) or !empty($duree) or !empty($synopsis) or !empty($id_realisteur)){
                     if($this->filmManager->addFilm($titre,$date_sortie_fr,$duree,$synopsis,$id_realisteur)) // si addGenre s'effectue correctement on redirige l'utilisateur
                     header('Location:?action=listFilms');
-                }                   
-            }
-            // Créer une vue pour ajouter un nouveau personne cinématographique dans ta base de données 
-            public function addPersonne(){
-                if(!empty($this->nom_genre)){
-                    if($this->filmManager->addGenre($this->nom_genre)) // si addGenre s'effectue correctement on redirige l'utilisateur
-                    header('Location:?action=listGenres');
                 }                   
             }
 

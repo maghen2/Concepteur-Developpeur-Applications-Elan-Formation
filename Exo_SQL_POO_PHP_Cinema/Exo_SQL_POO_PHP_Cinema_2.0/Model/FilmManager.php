@@ -32,12 +32,38 @@ class FilmManager{
              return $query->fetchAll(PDO::FETCH_ASSOC);
         }
             // ajouter un nouveau film dans ta base de données 
-            public function addFilm($nom_genre) : bool{
-                $sql ="INSERT INTO genre(`nom_genre`) 
-                VALUES (:nom_genre)
-                ";                
+            public function addFilm($titre,$date_sortie_fr,$duree,$synopsis,$id_realisteur) : bool{
+                $sql ="INSERT INTO film (`titre`,`date_sortie_fr`,`duree`,`synopsis`,`id_realisateur`)
+                VALUES(:titre, :date_sortie_fr, :duree, :synopsis, :id_realisateur)
+                ";  
+                   
+                $durees = explode(":",$duree);
+                $duree = $durees[0]*60+$durees[1];
+                $data = [
+                    'titre'=>$titre,
+                    'date_sortie_fr'=>$date_sortie_fr,
+                    'duree'=>$duree,
+                    'synopsis'=>$synopsis,
+                    'id_realisateur'=>$id_realisteur
+                ];
                 $query = $this->pdo->prepare($sql);
-                return $query->execute(["nom_genre" => $nom_genre]);
+                return $query->execute($data);
+            }    
+
+            // ajouter une nouvelle personne dans ta base de données 
+            public function addPersonne($prenom, $nom, $sexe, $date_naissance) : bool{
+                $sql ="INSERT INTO personne(`prenom`,`nom`,`sexe`,`date_naissance`)
+                VALUES(:prenom, :nom, :sexe, :date_naissance)
+                ";  
+                $data = [
+                    'prenom'=>$prenom,
+                    'nom'=>$nom,
+                    'duree'=>$duree,
+                    'sexe'=>$sexe,
+                    'date_naissance'=>$date_naissance
+                ];
+                $query = $this->pdo->prepare($sql);
+                return $query->execute($data);
             }    
 
             // Lister les genres de film
