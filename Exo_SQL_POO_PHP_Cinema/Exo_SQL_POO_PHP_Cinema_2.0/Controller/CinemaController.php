@@ -91,9 +91,18 @@ class CinemaController{
 
             // Créer une vue pour ajouter un nouveau acteur cinématographique dans ta base de données 
             public function addActeur(){
-                
-                if(!empty($this->nom_genre)){
-                    if($this->filmManager->addGenre($this->nom_genre)) // si addGenre s'effectue correctement on redirige l'utilisateur
+                $prenom = (isset($_POST['prenom']))? $_POST['prenom'] : ""; 
+                $prenom = htmlspecialchars();
+                $nom = (isset($_POST['nom']))? $_POST['nom'] : ""; 
+                $nom = htmlspecialchars();
+                $sexe = (isset($_POST['sexe']))? $_POST['sexe'] : ""; 
+                $sexe = htmlspecialchars();
+                $date_naissance = (isset($_POST['date_naissance']))? $_POST['date_naissance'] : "";
+                $date_naissance = htmlspecialchars(); 
+                $fonction = (isset($_POST['fonction']))? $_POST['fonction'] : ""; 
+                $fonction = htmlspecialchars();
+                if(!empty($prenom) and !empty($nom) and !empty($sexe) and !empty($date_naissance) and !empty($fonction)){
+                    if($this->personneManager->addPersonne($prenom, $nom, $sexe, $date_naissance, $fonction)) // si addGenre s'effectue correctement on redirige l'utilisateur
                     header('Location:?action=listActeurs');
                 }                   
             }

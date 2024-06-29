@@ -148,9 +148,7 @@ class PersonneManager{
                 VALUES(:id_personne)
                 ";
             }
-            $data = [
-                'id_personne' => $id_personne
-            ];
+            $data = ['id_personne' => $id_personne];
             $query = $this->pdo->prepare($sql);
             return $query->execute($data);
         }    
