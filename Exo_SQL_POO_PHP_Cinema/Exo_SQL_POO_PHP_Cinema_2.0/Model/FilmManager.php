@@ -32,7 +32,7 @@ class FilmManager{
              return $query->fetchAll(PDO::FETCH_ASSOC);
         }
             // ajouter un nouveau film dans ta base de données 
-            public function addFilm($titre,$date_sortie_fr,$duree,$synopsis,$id_realisteur) : bool{
+            public function addFilm($titre,$date_sortie_fr,$duree,$synopsis,$id_realisteur, $id_genre) : bool{
                 $sql ="INSERT INTO film (`titre`,`date_sortie_fr`,`duree`,`synopsis`,`id_realisateur`)
                 VALUES(:titre, :date_sortie_fr, :duree, :synopsis, :id_realisateur)
                 ";  
@@ -47,7 +47,10 @@ class FilmManager{
                     'id_realisateur'=>$id_realisteur
                 ];
                 $query = $this->pdo->prepare($sql);
-                return $query->execute($data);
+                 if($query->execute($data)){ // si addFilm s'effectue correctement on ajoute également le genre de film
+                    $id_film = $this->pdo->lastInsertId();
+                    return $this->addGenre($id_genre, $id_film);
+                 }
             }    
             // Lister les genres de film
             public function getGenres($id_film = ""): array{
@@ -62,7 +65,7 @@ class FilmManager{
                     $join = 'JOIN `film_genres` ON `film_genres`.id_genre = `genre`.id_genre';
                 } 
     
-                      $sql ="SELECT DISTINCT genre.nom_genre 
+                      $sql ="SELECT DISTINCT genre.id_genre, genre.nom_genre 
                       FROM `genre`
                       $join
                       $where
@@ -74,13 +77,29 @@ class FilmManager{
                     return $query->fetchAll(PDO::FETCH_ASSOC);
             }
             
-            // ajouter un nouveau genre cinématographique dans ta base de données 
-            public function addGenre($nom_genre) : bool{
-                    $sql ="INSERT INTO genre(`nom_genre`) 
-                    VALUES (:nom_genre)
-                    ";                
-                    $query = $this->pdo->prepare($sql);
-                    return $query->execute(["nom_genre" => $nom_genre]);
+            // Méthode d'ajout de genres
+            public function addGenre($nom_genre,  $id_genres=[]) : bool{
+                    if(empty($id_genres)){   // ajouter un nouveau genre cinématographique dans ta base de données 
+                        $sql ="INSERT INTO genre(`nom_genre`) 
+                        VALUES (:nom_genre)
+                        ";                
+                        $query = $this->pdo->prepare($sql);
+                        return $query->execute(["nom_genre" => $nom_genre]);
+                    }
+                    else{  // ajouter des genres cinématographiques à un film 
+                        $id_film = $nom_genre; 
+                        $sql ="INSERT INTO `film_genres`(`id_film`,`id_genre`)
+                            ";
+                        for($i=0; $i< count($genres)-1; $i++){
+                            $sql .= "VALUES(:id_film$i, :id_genre$i)\n";
+                            $data["id_film$i"] = $id_film;
+                            $data["id_genre$i"] = $id_genres[$i];  
+                        }
+                           
+                        $query = $this->pdo->prepare($sql);
+                        $query->execute($data);
+                        return $query->fetchAll(PDO::FETCH_ASSOC);
+                    }    
                 }    
 
 

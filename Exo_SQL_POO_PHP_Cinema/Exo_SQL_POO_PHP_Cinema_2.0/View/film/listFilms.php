@@ -12,6 +12,11 @@
         <option value="<?=$realisateur['id_realisateur']?>"><?=$realisateur['realisateur']?></option>
         <?php }?>    
     </select>
+    <label for="id_genres">Genre</label><select name="id_genres[]" id="id_genres" size=8 multiple required>
+        <?php foreach($genres as $genre){?>
+        <option value="<?=$genre['id_genre']?>"><?=$genre['nom_genre']?></option>
+        <?php }?>    
+    </select>
     <input type="submit" value="Créer un nouveau film">
 </fieldset>
 </form>
