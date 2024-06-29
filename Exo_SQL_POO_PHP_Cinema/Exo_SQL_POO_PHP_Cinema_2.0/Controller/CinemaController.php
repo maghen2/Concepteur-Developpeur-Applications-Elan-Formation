@@ -81,10 +81,10 @@ class CinemaController{
                 $id_realisteur = (isset($_POST['id_realisteur']))? $_POST['id_realisteur'] : 0;
                 $id_realisteur = filter_var($id_realisteur, FILTER_VALIDATE_INT);
                 $id_genres = (isset($_POST['id_genres']))? $_POST['id_genres'] : "";
-                $id_genres = htmlspecialchars($id_genres);
-                
+                $id_genres = filter_var_array($id_genres, FILTER_VALIDATE_INT);
+                var_dump($id_genres);
                 if(!empty($titre) or !empty($date_sortie_fr) or !empty($duree) or !empty($synopsis) or !empty($id_realisteur)){
-                    if($this->filmManager->addFilm($titre,$date_sortie_fr,$duree,$synopsis,$id_realisteur,$id_genre)) // si addFilm s'effectue correctement on redirige l'utilisateur
+                    if($this->filmManager->addFilm($titre,$date_sortie_fr,$duree,$synopsis,$id_realisteur,$id_genres)) // si addFilm s'effectue correctement on redirige l'utilisateur
                     header('Location:?action=listFilms');
                 }                   
             }

@@ -32,7 +32,7 @@ class FilmManager{
              return $query->fetchAll(PDO::FETCH_ASSOC);
         }
             // ajouter un nouveau film dans ta base de données 
-            public function addFilm($titre,$date_sortie_fr,$duree,$synopsis,$id_realisteur, $id_genre) : bool{
+            public function addFilm($titre,$date_sortie_fr,$duree,$synopsis,$id_realisteur, $id_genres) : bool{
                 $sql ="INSERT INTO film (`titre`,`date_sortie_fr`,`duree`,`synopsis`,`id_realisateur`)
                 VALUES(:titre, :date_sortie_fr, :duree, :synopsis, :id_realisateur)
                 ";  
@@ -49,7 +49,7 @@ class FilmManager{
                 $query = $this->pdo->prepare($sql);
                  if($query->execute($data)){ // si addFilm s'effectue correctement on ajoute également le genre de film
                     $id_film = $this->pdo->lastInsertId();
-                    return $this->addGenre($id_genre, $id_film);
+                    return $this->addGenre($id_film, $id_genres);
                  }
             }    
             // Lister les genres de film
@@ -89,16 +89,17 @@ class FilmManager{
                     else{  // ajouter des genres cinématographiques à un film 
                         $id_film = $nom_genre; 
                         $sql ="INSERT INTO `film_genres`(`id_film`,`id_genre`)
-                            ";
-                        for($i=0; $i< count($genres)-1; $i++){
-                            $sql .= "VALUES(:id_film$i, :id_genre$i)\n";
-                            $data["id_film$i"] = $id_film;
-                            $data["id_genre$i"] = $id_genres[$i];  
+                            VALUES";
+                        for($i=0; $i< count($id_genres); $i++){
+                            $j = $i+1;
+                            $sql .= "(:id_film$j, :id_genre$j),\n";
+                            $data["id_film$j"] = $id_film;
+                            $data["id_genre$j"] = $id_genres[$i];  
                         }
-                           
+                        
+                        $sql = rtrim($sql, ",\n");
                         $query = $this->pdo->prepare($sql);
-                        $query->execute($data);
-                        return $query->fetchAll(PDO::FETCH_ASSOC);
+                        return $query->execute($data);
                     }    
                 }    
 
