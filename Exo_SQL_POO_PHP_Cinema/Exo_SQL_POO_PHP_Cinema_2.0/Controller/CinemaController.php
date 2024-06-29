@@ -90,7 +90,7 @@ class CinemaController{
             }
 
             // Créer une vue pour ajouter un nouveau acteur cinématographique dans ta base de données 
-            public function addActeur(){
+            public function addActeur($realisateur = false){
                 $prenom = (isset($_POST['prenom']))? $_POST['prenom'] : ""; 
                 $prenom = htmlspecialchars($prenom);
                 $nom = (isset($_POST['nom']))? $_POST['nom'] : ""; 
@@ -102,16 +102,15 @@ class CinemaController{
                 $fonction = (isset($_POST['fonction']))? $_POST['fonction'] : ""; 
                 $fonction = htmlspecialchars($fonction);
                 if(!empty($prenom) and !empty($nom) and !empty($sexe) and !empty($date_naissance) and !empty($fonction)){
-                    if($this->personneManager->addPersonne($prenom, $nom, $sexe, $date_naissance, $fonction)) // si addGenre s'effectue correctement on redirige l'utilisateur
-                    header('Location:?action=listActeurs');
+                    if($this->personneManager->addPersonne($prenom, $nom, $sexe, $date_naissance, $fonction) and $realisateur == false) // si addGenre s'effectue correctement on redirige l'utilisateur
+                        header('Location:?action=listActeurs');
+                    else return true;
                 }                   
             }
             // Créer une vue pour ajouter un nouveau realisateur cinématographique dans ta base de données 
             public function addRealisateur(){
-                if(!empty($this->nom_genre)){
-                    if($this->filmManager->addGenre($this->nom_genre)) // si addGenre s'effectue correctement on redirige l'utilisateur
-                    header('Location:?action=listRealisateurs');
-                }                   
+                    if($this->addActeur(true)) // si addActeur s'effectue correctement on redirige l'utilisateur
+                    header('Location:?action=listRealisateurs');                  
             }
 
         // au clic sur un film, on affiche les infos du films + casting du film (acteurs + rôles)    
