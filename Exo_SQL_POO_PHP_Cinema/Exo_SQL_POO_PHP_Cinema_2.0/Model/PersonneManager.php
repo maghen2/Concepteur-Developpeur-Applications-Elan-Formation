@@ -24,9 +24,9 @@ class PersonneManager{
             $sql = "SELECT acteur.id_acteur, CONCAT(personne.prenom, ' ', personne.nom) AS acteur, personne.sexe, DATE_FORMAT(personne.date_naissance, '%d/%m/%Y') AS `date_naissance`, COUNT(casting.id_film) AS `Nombre_films`
                     FROM personne
                     JOIN acteur ON personne.id_personne = acteur.id_personne
-                    JOIN casting ON casting.id_acteur = acteur.id_acteur
+                    LEFT JOIN casting ON casting.id_acteur = acteur.id_acteur
                     $where
-                    GROUP by casting.id_acteur
+                    GROUP by acteur.id_acteur
                     ORDER by `Nombre_films` DESC
             ";
              $query = $this->pdo->prepare($sql);
@@ -51,9 +51,9 @@ class PersonneManager{
                 COUNT(film.id_film) AS `Nombre_films`
                         FROM personne
                         JOIN realisateur ON personne.id_personne = realisateur.id_personne
-                        JOIN film ON film.id_realisateur = realisateur.id_realisateur
+                        LEFT JOIN film ON film.id_realisateur = realisateur.id_realisateur
                         $where
-                        GROUP by film.id_realisateur
+                        GROUP by realisateur.id_realisateur
                         ORDER by `Nombre_films` DESC
                 ";
              $query = $this->pdo->prepare($sql);
