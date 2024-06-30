@@ -104,7 +104,8 @@ class CinemaController{
                 if(!empty($prenom) and !empty($nom) and !empty($sexe) and !empty($date_naissance) and !empty($fonction)){
                     if($this->personneManager->addPersonne($prenom, $nom, $sexe, $date_naissance, $fonction) and $realisateur == false) // si addGenre s'effectue correctement on redirige l'utilisateur
                         header('Location:?action=listActeurs');
-                    else return true;
+                    else 
+                        return true;
                 }                   
             }
             // Créer une vue pour ajouter un nouveau realisateur cinématographique dans ta base de données 
