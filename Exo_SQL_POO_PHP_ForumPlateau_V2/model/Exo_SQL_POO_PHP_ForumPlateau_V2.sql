@@ -13,7 +13,7 @@ USE `maghen_forummvc_v2`;
 
 
 CREATE TABLE IF NOT EXISTS user(
- id_user INT NOT NULL,
+ id_user INT AUTO_INCREMENT NOT NULL,
  pseudo VARCHAR(255) NOT NULL,
  password VARCHAR(255) NOT NULL,
  email VARCHAR(255) NOT NULL,
@@ -23,29 +23,29 @@ CREATE TABLE IF NOT EXISTS user(
 );
 
 CREATE TABLE IF NOT EXISTS category(
- id_category INT NOT NULL,
+ id_category INT AUTO_INCREMENT NOT NULL,
  name VARCHAR(255) NOT NULL,
  PRIMARY KEY(id_category)
 );
 
 CREATE TABLE IF NOT EXISTS topic(
- id_topic INT NOT NULL,
+ id_topic INT AUTO_INCREMENT NOT NULL,
  title VARCHAR(255) NOT NULL,
  dateCreation DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
- closed LOGICAL NOT NULL,
- id_category INT NOT NULL,
- id_user INT NOT NULL,
+ closed TINYINT(1) NOT NULL DEFAULT 0,
+ category_id INT NOT NULL,
+ user_id INT NOT NULL,
  PRIMARY KEY(id_topic),
  FOREIGN KEY(category_id) REFERENCES category(id_category),
  FOREIGN KEY(user_id) REFERENCES user(id_user)
 );
 
 CREATE TABLE IF NOT EXISTS post(
- id_post INT NOT NULL,
+ id_post INT AUTO_INCREMENT NOT NULL,
  comment TEXT NOT NULL,
  dateCreation DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
- id_topic INT NOT NULL,
- id_user INT NOT NULL,
+ topic_id INT NOT NULL,
+ user_id INT NOT NULL,
  PRIMARY KEY(id_post),
  FOREIGN KEY(topic_id) REFERENCES topic(id_topic),
  FOREIGN KEY(user_id) REFERENCES user(id_user)
