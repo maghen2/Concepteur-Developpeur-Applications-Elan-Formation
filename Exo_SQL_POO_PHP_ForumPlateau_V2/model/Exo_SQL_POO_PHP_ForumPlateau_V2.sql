@@ -1,51 +1,52 @@
-/*Exo_SQL_POO_PHP_Cinema
-Vous travaillez au sein d'une web agency en tant que développeur-intégrateur web. Suite à la commande d’un client (dont le formateur interprétera le rôle) NOT NULL, vous vous occupez de la conception d’un wiki de films NOT NULL, de genres cinématographiques et d’acteurs / actrices.
-Les films seront identifiés par un identifiant unique NOT NULL, leur titre NOT NULL, leur année de sortie en France NOT NULL, leur durée (en minutes) ainsi que leur réalisateur (unique). Un résumé du film (synopsis) pourra éventuellement être renseigné NOT NULL, une note (sur 5) ainsi qu’une affiche du film.
-Chaque film pourra posséder un ou plusieurs genres cinématographiques (science-fiction NOT NULL, aventure NOT NULL, action NOT NULL, …) identifiés par un numéro unique et un libellé.
-Votre base de données devra recenser également les acteurs de chacun des films. On désire connaître le nom NOT NULL, le prénom NOT NULL, le sexe et la date de naissance de l’acteur ainsi que le rôle (nom du personnage) joué par l’acteur dans le(s) film(s) concerné(s).
-Travail à réaliser :
-1.	Réalisez le MCD d’une telle gestion des données. Vérifiez-le auprès du formateur.
-2.	Créez et remplissez la base de données.
+/*Exo_SQL_POO_PHP_ForumPlateau_V2
+Il est nécessaire, en amont de la conception technique, de fournir deux documents d'analyse afin d'évaluer le respect des contraintes exprimées et la bonne direction du projet.
+Un schéma entités-relations de la base de données (créé avec looping par exemple), à mettre en place selon les contraintes suivantes :
+  · Les visiteurs sont identifiés par un numéro unique, possèdent un pseudonyme et un mot de passe. Leur date d'inscription est automatiquement renseignée à la création de leur compte dans la base de données.
+  · Le forum est constitué de sujets (titre, auteur et date de création) auxquels sont rattachés des messages (texte, auteur et date de création).
+  · Sujets et messages sont identifiés dans la base de données par un numéro unique. Leurs dates de création sont automatiquement renseignées lors de leur création.
+  · Lorsqu'un sujet est visualisé, la liste des messages est présentée dans l'ordre chronologique. Chaque message est accompagné du nom de son auteur et de sa date de création.
+  · Toute information enregistrable dans la base de données en relation avec le forum devra comporter une solution de modération (la solution étant laissée à l'initiative du concepteur)
 */
+
 CREATE DATABASE IF NOT EXISTS `maghen_forummvc_v2` DEFAULT CHARACTER SET utf8 COLLATE utf8_bin;
 USE `maghen_forummvc_v2`;
 
 
 CREATE TABLE IF NOT EXISTS user(
-  id_user INT NOT NULL,
-  pseudo VARCHAR(255) NOT NULL,
-  password VARCHAR(255) NOT NULL,
-  email VARCHAR(255) NOT NULL,
-  role VARCHAR(255) NOT NULL,
-  dateInscription DATETIME NOT NULL DEFAULT  CURRENT_TIMESTAMP,
-  PRIMARY KEY(id_user)
+ id_user INT NOT NULL,
+ pseudo VARCHAR(255) NOT NULL,
+ password VARCHAR(255) NOT NULL,
+ email VARCHAR(255) NOT NULL,
+ role VARCHAR(255) NOT NULL,
+ dateInscription DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+ PRIMARY KEY(id_user)
 );
 
 CREATE TABLE IF NOT EXISTS category(
-  id_category INT NOT NULL,
-  name VARCHAR(255) NOT NULL,
-  PRIMARY KEY(id_category)
+ id_category INT NOT NULL,
+ name VARCHAR(255) NOT NULL,
+ PRIMARY KEY(id_category)
 );
 
 CREATE TABLE IF NOT EXISTS topic(
-  id_topic INT NOT NULL,
-  title VARCHAR(255) NOT NULL,
-  dateCreation DATETIME NOT NULL DEFAULT  CURRENT_TIMESTAMP,
-  closed LOGICAL NOT NULL,
-  id_category INT NOT NULL,
-  id_user INT NOT NULL,
-  PRIMARY KEY(id_topic) NOT NULL,
-  FOREIGN KEY(id_category) REFERENCES category(id_category) NOT NULL,
-  FOREIGN KEY(id_user) REFERENCES user_(id_user)
+ id_topic INT NOT NULL,
+ title VARCHAR(255) NOT NULL,
+ dateCreation DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+ closed LOGICAL NOT NULL,
+ id_category INT NOT NULL,
+ id_user INT NOT NULL,
+ PRIMARY KEY(id_topic),
+ FOREIGN KEY(category_id) REFERENCES category(id_category),
+ FOREIGN KEY(user_id) REFERENCES user(id_user)
 );
 
 CREATE TABLE IF NOT EXISTS post(
-  id_post INT NOT NULL,
-  comment TEXT NOT NULL,
-  dateCreation DATETIME NOT NULL DEFAULT  CURRENT_TIMESTAMP,
-  id_topic INT NOT NULL,
-  id_user INT NOT NULL,
-  PRIMARY KEY(id_post) NOT NULL,
-  FOREIGN KEY(id_topic) REFERENCES topic(id_topic) NOT NULL,
-  FOREIGN KEY(id_user) REFERENCES user_(id_user)
+ id_post INT NOT NULL,
+ comment TEXT NOT NULL,
+ dateCreation DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+ id_topic INT NOT NULL,
+ id_user INT NOT NULL,
+ PRIMARY KEY(id_post),
+ FOREIGN KEY(topic_id) REFERENCES topic(id_topic),
+ FOREIGN KEY(user_id) REFERENCES user(id_user)
 );
