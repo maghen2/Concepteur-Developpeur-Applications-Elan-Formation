@@ -19,8 +19,8 @@ $date = new DateTime();  // programmation orientée objet (POO)
 
 // AFFICHAGE
 echo "Test<br>";
-echo $chaineDeCaracteres."<br>";   // mon texte
-echo $chaineDeCaracteres3." ".$entier." euros<br>";  // Mon prix est de 50 euros
+echo $chaineDeCaracteres . "<br>";   // mon texte
+echo $chaineDeCaracteres3 . " " . $entier . " euros<br>";  // Mon prix est de 50 euros
 echo "$chaineDeCaracteres3 $entier euros<br>"; // Mon prix est de 50 euros
 
 
@@ -29,12 +29,12 @@ echo "$chaineDeCaracteres3 $entier euros<br>"; // Mon prix est de 50 euros
 // Compter le nombre de caractères (espaces inclus !)
 $nbCaracteres = strlen($chaineDeCaracteres);
 echo "La phrase contient $nbCaracteres caractères<br>";
-echo "La phrase contient ".strlen($chaineDeCaracteres)." caractères<br>";
+echo "La phrase contient " . strlen($chaineDeCaracteres) . " caractères<br>";
 
 // Convertir une chaîne en majuscules
 $chaineMajuscules = strtoupper($chaineDeCaracteres);
-echo $chaineMajuscules."<br>";
-echo mb_strtoupper($chaineDeCaracteres2)."<br>";  // prend en compte les caractères accentués
+echo $chaineMajuscules . "<br>";
+echo mb_strtoupper($chaineDeCaracteres2) . "<br>";  // prend en compte les caractères accentués
 
 // Compter le nombre de mots
 $nbMots = str_word_count($chaineDeCaracteres);
@@ -45,10 +45,10 @@ echo "La phrase contient $nbMots mots<br>";
 // Compter le nombre d'éléments présents dans un tableau
 $tailleTableau1 = count($tableau1);
 echo "Le tableau 1 contient $tailleTableau1 éléments<br>";
-echo "Le tableau 2 contient ".count($tableau2)." éléments<br>";
+echo "Le tableau 2 contient " . count($tableau2) . " éléments<br>";
 
 // Accéder à la première valeur du tableau (attention 1er élément à l'indice 0 !)
-echo $tableau1[0]."<br>";
+echo $tableau1[0] . "<br>";
 
 $notes = [12, 14, 9, 8, 19, 17.25];
 $nbNotes = count($notes);
@@ -72,8 +72,8 @@ $totalTTC2 = $nbArticles * $prixHT * (1 + $tauxTVA);
 echo "Le total TTC est de $totalTTC €<br>";
 
 $texte = "Texte";
-$calcul = $texte - 5;
-echo $calcul."<br>";
+$calcul = $texte . ' - 5';  // Texte - 5
+echo $calcul . "<br>";
 
 // Renvoie le type de la variable spécifiée en paramètre
 echo gettype($tableau1);
@@ -87,7 +87,7 @@ var_dump($tableau1);
 $prenom = "Georges";
 $age = 22.5;
 
-if($age >= 18) {
+if ($age >= 18) {
     $resultat = "majeur";
 } else {
     $resultat = "mineur";
@@ -98,7 +98,7 @@ echo "$prenom est $resultat<br>";
 // Ternaire
 $result = $age >= 18 ? "majeur" : "mineur";
 echo "$prenom est $result<br>";
-echo "$prenom est ".($age >= 18 ? "majeur" : "mineur")."<br>";
+echo "$prenom est " . ($age >= 18 ? "majeur" : "mineur") . "<br>";
 
 // En fonction de l'âge, afficher une catégorie
 /*
@@ -107,15 +107,15 @@ echo "$prenom est ".($age >= 18 ? "majeur" : "mineur")."<br>";
     sinon JUNIOR
 */
 
-if(gettype($age) == "double" || gettype($age) == "integer" ) {
-    if($age >= 30) {
+if (gettype($age) == "double" || gettype($age) == "integer") {
+    if ($age >= 30) {
         $resultat = "Senior";
-    } elseif($age >= 20) {
+    } elseif ($age >= 20) {
         $resultat = "Cadet";
     } else {
         $resultat = "Junior";
     }
-    
+
     echo "La personne qui a $age ans est : $resultat<br>";
 } else {
     echo "Veuillez saisir un âge numérique !<br>";
@@ -128,19 +128,29 @@ if(gettype($age) == "double" || gettype($age) == "integer" ) {
 */
 
 $valeur = 99;
-switch($valeur) {
-    case 0: echo "KO !<br>"; break;
-    case 1: echo "OK !<br>"; break;
-    default: echo "Valeur non gérée !<br>";
+switch ($valeur) {
+    case 0:
+        echo "KO !<br>";
+        break;
+    case 1:
+        echo "OK !<br>";
+        break;
+    default:
+        echo "Valeur non gérée !<br>";
 }
 
 $age = 18;
 
-if(gettype($age) == "double" || gettype($age) == "integer" ) {
-    switch(true) {
-        case $age >= 30: echo "Senior<br>"; break;
-        case $age >= 20: echo "Cadet<br>"; break;
-        default: echo "Junior<br>";
+if (gettype($age) == "double" || gettype($age) == "integer") {
+    switch (true) {
+        case $age >= 30:
+            echo "Senior<br>";
+            break;
+        case $age >= 20:
+            echo "Cadet<br>";
+            break;
+        default:
+            echo "Junior<br>";
     }
 } else {
     echo "Veuillez saisir un âge numérique !<br>";
@@ -153,47 +163,47 @@ if(gettype($age) == "double" || gettype($age) == "integer" ) {
 // FOR (pour)
 // $i++  -->   $i = $i + 1
 
-for($i = 1; $i <= 10; $i++) {
-    echo $i." ";
+for ($i = 1; $i <= 10; $i++) {
+    echo $i . " ";
 }
 
 // WHILE (tant que)
 
 $j = 1;
-while($j <= 10) {
-    echo $j." ";
+while ($j <= 10) {
+    echo $j . " ";
     $j++;
 }
 
 // FOREACH
 
-$range = range(1,10);
+$range = range(1, 10);
 var_dump($range);
 
-foreach(range(1,10) as $v) { 
-    echo $v." "; 
+foreach (range(1, 10) as $v) {
+    echo $v . " ";
 }
 
-echo "<br>";
+echo "<br><pre>";
 
 $marques = ["Mercedes", "BMW", "Toyota", "Tesla"];
 $nbMarques = count($marques);
 
 echo "<h3>Méthode for</h3>";
-for ($i = 0; $i < $nbMarques; $i++) { 
-    echo $marques[$i]."<br>";
+for ($i = 0; $i < $nbMarques; $i++) {
+    echo $marques[$i] . "<br>";
 }
 
 echo "<h3>Méthode while</h3>";
 $i = 0;
-while($i < $nbMarques) {
-    echo $marques[$i]."<br>";
+while ($i < $nbMarques) {
+    echo $marques[$i] . "<br>";
     $i++;
 }
 
 echo "<h3>Méthode foreach</h3>";
-foreach($marques as $marque) {
-    echo $marque."<br>";
+foreach ($marques as $marque) {
+    echo $marque . "<br>";
 }
 
 
@@ -216,8 +226,8 @@ var_dump($formateurs);
 
 ksort($formateurs);
 
-foreach($formateurs as $prenom => $ville) {
-    echo ucfirst($prenom)." habite ".mb_strtoupper($ville)."<br>";
+foreach ($formateurs as $prenom => $ville) {
+    echo ucfirst($prenom) . " habite " . mb_strtoupper($ville) . "<br>";
 }
 
 
@@ -240,17 +250,18 @@ $clients = [
 var_dump($clients);
 // echo $clients["virgile"]["cp"]." ".$clients["virgile"]["ville"];
 
-foreach($clients as $prenom => $coordonnees) {
-    echo ucfirst($prenom)." habite ".
-                $coordonnees["adresse"]." ".$coordonnees["cp"]." ".$coordonnees["ville"]." et a comme n° de téléphone : ".$coordonnees["tel"]."<br>";
+foreach ($clients as $prenom => $coordonnees) {
+    echo ucfirst($prenom) . " habite " .
+        $coordonnees["adresse"] . " " . $coordonnees["cp"] . " " . $coordonnees["ville"] . " et a comme n° de téléphone : " . $coordonnees["tel"] . "<br>";
 }
 
 
 // FONCTIONS
 
-echo afficherMessage(); 
+echo afficherMessage();
 
-function afficherMessage() : string {
+function afficherMessage(): string
+{
     $message = "Voici mon message<br>";
     return $message;
 }
@@ -259,29 +270,31 @@ echo calculerCarre(3);  // 9
 echo calculerCarre("test");  // Erreur !
 // echo pow(9, 3);
 
-function calculerCarre($nombre) {
-    if(gettype($nombre) == "integer") {
+function calculerCarre($nombre)
+{
+    if (gettype($nombre) == "integer") {
         $resultat = $nombre * $nombre;
-        return $resultat."<br>";
+        return $resultat . "<br>";
     } else {
         return "Erreur: la valeur doit être un entier !<br>";
     }
 }
 
 
-echo calculerMoyenne([9, 10.5, 11, 18, 12])."<br>";
-echo calculerMoyenne([19, 10, 3, 8, 19])."<br>";
+echo calculerMoyenne([9, 10.5, 11, 18, 12]) . "<br>";
+echo calculerMoyenne([19, 10, 3, 8, 19]) . "<br>";
 
 $eleves = [
     "cindy" => [12, 9, 19, 17, 12, 13],
     "pascal" => [8, 9, 12, 10, 17]
 ];
 
-foreach($eleves as $prenom => $notes) {
-    echo "La moyenne de $prenom est : ".calculerMoyenne($notes)."<br>";
+foreach ($eleves as $prenom => $notes) {
+    echo "La moyenne de $prenom est : " . calculerMoyenne($notes) . "<br>";
 }
 
-function calculerMoyenne(array $notes) : float {
+function calculerMoyenne(array $notes): float
+{
     $nbNotes = count($notes);
     $sommeNotes = array_sum($notes);
     $moyenne = round($sommeNotes / $nbNotes, 2);
@@ -292,9 +305,10 @@ function calculerMoyenne(array $notes) : float {
 echo pairOuImpair(4);
 echo pairOuImpair(5);
 
-function pairOuImpair($nombre) : string {
+function pairOuImpair($nombre): string
+{
 
-    if($nombre % 2 == 0) {   // % = modulo
+    if ($nombre % 2 == 0) {   // % = modulo
         $resultat = "pair<br>";
     } else {
         $resultat = "impair<br>";
@@ -306,16 +320,15 @@ function pairOuImpair($nombre) : string {
 echo repeterMot("Youpi", 6, " - ");
 echo repeterMot("Hourra", 6, " / ");
 
-function repeterMot(string $mot, int $nbRepetitions, string $separateur) {
+function repeterMot(string $mot, int $nbRepetitions, string $separateur)
+{
 
     $resultat = "";
-    foreach(range(1, $nbRepetitions) as $valeur) {
-        $resultat .= $mot.$separateur;
+    foreach (range(1, $nbRepetitions) as $valeur) {
+        $resultat .= $mot . $separateur;
     }
 
     return $resultat;
 }
 
 echo str_repeat("Bidule", 10);
-
-
